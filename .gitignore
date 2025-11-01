@@ -27,3 +27,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Dev runtime files
+.runtime-env
+/tmp-*.mp3
+/*-16k.wav
+/*-16k.wav.json
