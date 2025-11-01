@@ -184,6 +184,9 @@ input, textarea {
 .cursor-dot { width: 8px; height: 8px; margin-top: -4px; margin-left: -4px; border-radius: 999px; background: var(--accent-primary); box-shadow: 0 0 14px rgba(0, 255, 140, 0.8); }
 .cursor-ring { width: 40px; height: 40px; margin-top: -20px; margin-left: -20px; border-radius: 999px; border: 2px solid var(--accent-primary); box-shadow: 0 0 15px rgba(0, 255, 140, 0.5); }
 
+/* Hide native cursor globally when custom cursor is active */
+.cursor-none, .cursor-none * { cursor: none !important; }
+
 /* Responsiveness */
 @media (min-width: 1600px) {
   .landscape { grid-template-columns: 65% 35%; }

@@ -62,6 +62,7 @@ function App() {
     const ring = document.createElement('div'); ring.className = 'cursor-ring';
     const dot = document.createElement('div'); dot.className = 'cursor-dot';
     document.body.appendChild(ring); document.body.appendChild(dot);
+    document.documentElement.classList.add('cursor-none');
 
     let rx = 0, ry = 0, dx = 0, dy = 0;
     const mm = (e) => { dx = e.clientX; dy = e.clientY; };
@@ -81,7 +82,7 @@ function App() {
 
     window.addEventListener('mousemove', mm);
     window.addEventListener('mousedown', click);
-    return () => { window.removeEventListener('mousemove', mm); window.removeEventListener('mousedown', click); cancelAnimationFrame(raf); ring.remove(); dot.remove(); window.__edulensCursorActive = false; };
+    return () => { window.removeEventListener('mousemove', mm); window.removeEventListener('mousedown', click); cancelAnimationFrame(raf); ring.remove(); dot.remove(); document.documentElement.classList.remove('cursor-none'); window.__edulensCursorActive = false; };
   }, [perfLow]);
 
   const videoId = videoUrl ? (videoUrl.split('v=')[1] || videoUrl.split('/').pop()).split('&')[0] : null;
