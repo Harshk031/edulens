@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 export default function TranscriptProgress({ videoId }) {
   const [status, setStatus] = useState({ status: 'idle', stage: 'Idle', progress: 0, elapsed: 0 });
+  const [eta, setEta] = useState(null);
 
   useEffect(() => {
     let timer;
     let lastStatus = 'idle';
     let lastStage = '';
+    let startedAt = Date.now();
     const fetchStatus = async () => {
       if (!videoId) return;
       try {
@@ -14,6 +16,14 @@ export default function TranscriptProgress({ videoId }) {
         if (r.ok) {
           const j = await r.json();
           setStatus(j);
+          // ETA estimation
+          try {
+            const p = Math.max(1, j.progress || 1);
+            const elapsedMs = Math.max(1, (j.elapsed ? j.elapsed*1000 : (Date.now()-startedAt)));
+            const per = elapsedMs / p; // ms per %
+            const remainingMs = Math.max(0, (100 - p) * per);
+            setEta(Math.round(remainingMs/1000));
+          } catch {}
           if (j.stage && j.stage !== lastStage) {
             try { window.dispatchEvent(new CustomEvent('pipeline:backend:stage', { detail: { stage: j.stage, progress: j.progress||0 } })); } catch {}
             lastStage = j.stage;
@@ -50,7 +60,7 @@ export default function TranscriptProgress({ videoId }) {
     <div style={{background:'rgba(255,255,255,0.05)', border:'1px solid rgba(255,255,255,0.1)', padding:12, borderRadius:12, marginBottom:12}}>
       <div style={{display:'flex', justifyContent:'space-between', marginBottom:6}}>
         <strong>Transcript Processing</strong>
-        <span>{pct}% · {status.stage} · {status.elapsed ? `${status.elapsed}s` : ''}</span>
+        <span>{pct}% · {status.stage} · {eta!=null ? `~${eta}s remaining` : (status.elapsed ? `${status.elapsed}s` : '')}</span>
       </div>
       <div style={{height:8, background:'rgba(255,255,255,0.1)', borderRadius:6, overflow:'hidden'}}>
         <div style={{width:`${pct}%`, height:'100%', background:'linear-gradient(90deg,#7b61ff,#4ce2ff)', transition:'width 0.6s ease'}} />

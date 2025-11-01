@@ -42,6 +42,8 @@ const createWindow = () => {
     width: 1280,
     height: 800,
     backgroundColor: '#0f0f1e',
+    autoHideMenuBar: true,
+    fullscreen: true,
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false,
@@ -51,7 +53,7 @@ const createWindow = () => {
       webSecurity: true,
       allowRunningInsecureContent: false,
       autoplayPolicy: 'no-user-gesture-required',
-      devTools: true,
+      devTools: false,
       spellcheck: false,
     },
   });
@@ -84,8 +86,8 @@ const createWindow = () => {
 
   const startURL = process.env.ELECTRON_START_URL || 'http://127.0.0.1:5173';
   win.loadURL(startURL).catch(err => console.error('Failed to load URL:', startURL, err));
-  // Auto-open DevTools for development
-  try { if (process.env.NODE_ENV !== 'production') win.webContents.openDevTools({ mode: 'detach' }); } catch {}
+  // DevTools disabled by default (enable only if EDULENS_DEVTOOLS=1)
+  try { if (process.env.EDULENS_DEVTOOLS === '1') win.webContents.openDevTools({ mode: 'detach' }); } catch {}
   return win;
 };
 
@@ -120,8 +122,8 @@ function createTimerWindow(parent){
 }
 
 app.whenReady().then(async () => {
-  // Open DevTools on any new webContents (views, windows) during dev
-  if (process.env.NODE_ENV !== 'production') {
+  // Disable auto DevTools; allow opt-in via EDULENS_DEVTOOLS
+  if (process.env.EDULENS_DEVTOOLS === '1') {
     app.on('web-contents-created', (_e, contents) => {
       try { contents.openDevTools({ mode: 'detach' }); } catch {}
     });
