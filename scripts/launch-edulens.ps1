@@ -16,6 +16,21 @@ if (-not (Test-Path $LogDir)) {
 }
 $LogFile = Join-Path $LogDir "launcher.log"
 
+# load env to pick dynamic PORT and API base
+function Read-Env($path) {
+  $map = @{}
+  if (Test-Path $path) {
+    Get-Content $path | ForEach-Object {
+      if ($_ -match '^(.*?)=(.*)$') { $map[$matches[1]] = $matches[2] }
+    }
+  }
+  return $map
+}
+$Root = Resolve-Path (Join-Path $ScriptRoot "..")
+$envLocal = Read-Env (Join-Path $Root ".env.local")
+$envMain  = Read-Env (Join-Path $Root ".env")
+$BackendPort = if ($envLocal.ContainsKey('PORT')) { [int]$envLocal['PORT'] } elseif ($envMain.ContainsKey('PORT')) { [int]$envMain['PORT'] } else { 5000 }
+
 function Log {
     param([string]$msg)
     $timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
@@ -63,8 +78,12 @@ try {
         }
     }
 
+    Free-Port $BackendPort
+    # Also free the common dev backend port 5000 in case a manual run is still alive
     Free-Port 5000
     Free-Port 5173
+    Free-Port 5174
+    Free-Port 5175
 
     if ($NoLaunch) {
         Log "NoLaunch: checks complete, exiting."
@@ -74,37 +93,57 @@ try {
     # Start backend: node server/server.js directly (more reliable than npm)
     Log "Starting backend (node server/server.js)..."
     $projectRoot = (Resolve-Path (Join-Path $ScriptRoot "..")).Path
-    $backendCmd = "cd `"$projectRoot`"; node server/server.js"
-    $backendProc = Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile", "-NoExit", "-Command", $backendCmd -WindowStyle Hidden -PassThru
+    # Use timestamped log files to avoid file-lock errors if previous process holds old logs
+    $ts = (Get-Date).ToString('yyyyMMdd_HHmmss')
+    $serverOut = Join-Path $LogDir ("server.$ts.out.log")
+    $serverErr = Join-Path $LogDir ("server.$ts.err.log")
+    $backendProc = Start-Process -FilePath "node" -ArgumentList "server/server.js" -WorkingDirectory $projectRoot -RedirectStandardOutput $serverOut -RedirectStandardError $serverErr -WindowStyle Hidden -PassThru
     Start-Sleep -Milliseconds 800
-    Log "Backend process started (PID $($backendProc.Id)). Waiting for port 5000 to become available..."
+    Log "Backend process started (PID $($backendProc.Id)). Waiting for port $BackendPort to become available..."
 
-    # Wait for port 5000 with HTTP health check
-    $maxRetries = 30
-    $healthUrl = "http://127.0.0.1:5000/health"
+    # Wait for backend health on chosen port
+    $maxRetries = 60
+    $healthUrl = "http://127.0.0.1:$BackendPort/health"
     $backendReady = $false
+    $runtimeDetected = $false
+
+    function Read-RuntimeEnv($root) {
+        $map = @{}
+        $file = Join-Path $root ".runtime-env"
+        if (Test-Path $file) {
+            Get-Content $file | ForEach-Object { if ($_ -match '^(.*?)=(.*)$') { $map[$matches[1]] = $matches[2] } }
+        }
+        return $map
+    }
     
     for ($i = 0; $i -lt $maxRetries; $i++) {
+        # If server switched ports, pick it up from .runtime-env
+        $rt = Read-RuntimeEnv $projectRoot
+        if ($rt.ContainsKey('PORT')) {
+            $newPort = [int]$rt['PORT']
+            if ($newPort -ne $BackendPort) {
+                $BackendPort = $newPort
+                $healthUrl = "http://127.0.0.1:$BackendPort/health"
+                if (-not $runtimeDetected) { Log "Detected runtime API port $BackendPort via .runtime-env; updating health target."; $runtimeDetected=$true }
+            }
+        }
         try {
             $response = Invoke-WebRequest -Uri $healthUrl -UseBasicParsing -TimeoutSec 2 -ErrorAction Stop
             if ($response.StatusCode -eq 200) {
-                Log "✅ Backend responsive on port 5000 (HTTP /health OK)."
+                Log "✅ Backend responsive on port $BackendPort (HTTP /health OK)."
                 $backendReady = $true
                 break
             }
         } catch {
-            # Health check failed, keep retrying
-            if ($i -eq 0) {
-                Log "Checking backend health... (attempt $($i+1)/$maxRetries)"
-            }
+            if ($i -eq 0) { Log "Checking backend health... (attempt $($i+1)/$maxRetries)" }
         }
-        
         Start-Sleep -Seconds 1
         Write-Host "." -NoNewline -ForegroundColor Cyan
-        
-        # Log progress every 5 attempts
         if (($i + 1) % 5 -eq 0) {
             Log "Health check attempt $($i+1)/$maxRetries..."
+            if (Test-Path $serverErr) {
+                try { $tail = Get-Content $serverErr -Tail 3 -ErrorAction SilentlyContinue; if ($tail) { Log ("server.err> " + ($tail -join ' | ')) } } catch {}
+            }
         }
     }
     
@@ -115,7 +154,7 @@ try {
             $proc = Get-Process -Id $backendProc.Id -ErrorAction SilentlyContinue
             if ($proc) {
                 Log "Backend process $($proc.Id) is still running, but /health endpoint not responding."
-                Log "This may indicate an error in server initialization."
+                Log "This may indicate an error in server initialization. Review server logs."
             } else {
                 Log "Backend process has exited. Check server/server.js for errors."
             }
@@ -138,21 +177,24 @@ try {
     Start-Sleep -Seconds 4  # Give Vite enough time to initialize before checking
 
     # Wait for Vite to be ready (port 5173) - HTTP health check
-    Log "Waiting for Vite dev server to be ready on port 5173..."
+    Log "Waiting for Vite dev server to be ready (5173/5174 fallback)..."
     $viteMaxRetries = 30
     $viteReady = $false
+    $DevPort = 5173
     
     for ($i = 1; $i -le $viteMaxRetries; $i++) {
-        try {
-            $response = Invoke-WebRequest -Uri "http://127.0.0.1:5173" -UseBasicParsing -TimeoutSec 2 -ErrorAction SilentlyContinue
-            if ($response -and $response.StatusCode -eq 200) {
-                Log "✅ Vite dev server is ready on port 5173."
-                $viteReady = $true
-                break
-            }
-        } catch {
-            # Keep retrying
+        foreach ($p in 5173,5174,5175) {
+            try {
+                $response = Invoke-WebRequest -Uri "http://127.0.0.1:$p" -UseBasicParsing -TimeoutSec 2 -ErrorAction SilentlyContinue
+                if ($response -and $response.StatusCode -eq 200) {
+                    Log "✅ Vite dev server is ready on port $p."
+                    $viteReady = $true
+                    $DevPort = $p
+                    break
+                }
+            } catch {}
         }
+        if ($viteReady) { break }
         Start-Sleep -Seconds 2
         Write-Host "." -NoNewline -ForegroundColor Cyan
         Log "Vite check attempt $i/$viteMaxRetries..."
@@ -166,7 +208,7 @@ try {
 
     # Start Electron app with inherited environment and proper working directory
     Log "Starting Electron app..."
-    $env:ELECTRON_START_URL = 'http://127.0.0.1:5173'
+    $env:ELECTRON_START_URL = "http://127.0.0.1:$DevPort"
     $electronBin = Join-Path $projectRoot "node_modules\\.bin\\electron.cmd"
     if (-not (Test-Path $electronBin)) { $electronBin = Join-Path $projectRoot "node_modules\\.bin\\electron.ps1" }
     if (-not (Test-Path $electronBin)) { $electronBin = "electron" }

@@ -1,8 +1,10 @@
 /* Root overlay container: visible but non-blocking outside of its own controls */
 .ftt-root{position:absolute;top:16px;right:16px;z-index:20;pointer-events:none}
+/* Bar variant for embedding above video */
+.ftt-root.ftt-bar{position:static;top:auto;right:auto;pointer-events:auto}
 
 /* Setup card */
-.ftt-card{pointer-events:auto;background:rgba(20,12,40,.7);backdrop-filter:blur(8px);border:1px solid rgba(168,85,247,.35);box-shadow:0 0 20px rgba(168,85,247,.25);border-radius:14px;padding:12px 14px;color:#fff;min-width:320px}
+.ftt-card{pointer-events:auto;background:rgba(20,12,40,.7);backdrop-filter:blur(6px);border:1px solid rgba(168,85,247,.35);box-shadow:0 0 12px rgba(168,85,247,.2);border-radius:14px;padding:12px 14px;color:#fff;min-width:320px}
 .ftt-title{font-weight:700;margin-bottom:8px}
 .ftt-presets{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .ftt-custom{display:flex;gap:8px;align-items:center}

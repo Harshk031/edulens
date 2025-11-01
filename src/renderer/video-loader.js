@@ -1,8 +1,10 @@
 // src/renderer/video-loader.js
 // Single source-of-truth YouTube loader with retries and fallbacks
 
+const API_BASE = import.meta.env.VITE_API_BASE || '';
 let _currentLoadId = 0;
 let _currentLoadPromise = null;
+let _lastContainer = null;
 
 const isElectron = () => {
   try {
@@ -13,15 +15,30 @@ const isElectron = () => {
 function extractVideoId(videoUrl) {
   try {
     if (!videoUrl) return null;
-    const u = new URL(videoUrl.replace('youtu.be/', 'www.youtube.com/watch?v='));
-    if (u.hostname.includes('youtube.com')) {
-      const id = u.searchParams.get('v');
-      if (id) return id;
-      const parts = u.pathname.split('/').filter(Boolean);
-      if (parts[0] === 'embed' && parts[1]) return parts[1];
+    // If raw ID provided
+    if (/^[A-Za-z0-9_-]{11}$/.test(videoUrl)) return videoUrl;
+
+    const u = new URL(videoUrl);
+    const host = (u.hostname || '').replace(/^www\./, '');
+    let id = null;
+
+    if (host === 'youtu.be') {
+      id = (u.pathname || '').split('/').filter(Boolean)[0] || null;
+    } else if (host.endsWith('youtube.com')) {
+      id = u.searchParams.get('v');
+      if (!id) {
+        const parts = (u.pathname || '').split('/').filter(Boolean);
+        const embedIdx = parts.indexOf('embed');
+        if (embedIdx >= 0 && parts[embedIdx + 1]) id = parts[embedIdx + 1];
+        else if (parts[0] === 'shorts' && parts[1]) id = parts[1];
+        else if (parts[0] === 'live' && parts[1]) id = parts[1];
+      }
     }
-    // raw ID
-    if (/^[a-zA-Z0-9_-]{6,}$/.test(videoUrl)) return videoUrl;
+
+    if (id) {
+      id = id.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 11);
+      if (/^[A-Za-z0-9_-]{11}$/.test(id)) return id;
+    }
   } catch {}
   return null;
 }
@@ -31,7 +48,7 @@ function logLine(msg) {
   console.log(line);
   // Best-effort send to backend file
   try {
-    fetch('http://127.0.0.1:5000/api/logs/videoloader', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ line }) }).catch(()=>{});
+    fetch(`${API_BASE}/api/logs/videoloader`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ line }) }).catch(()=>{});
   } catch {}
 }
 
@@ -42,7 +59,9 @@ async function attemptEmbed(container, tagName, url, timeoutMs) {
     el.style.width = '100%';
     el.style.height = '100%';
     el.style.border = '0';
-    el.allow = 'autoplay; encrypted-media; picture-in-picture';
+    // Enable richer playback features
+    el.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen; clipboard-write; web-share';
+    try { el.setAttribute('allowfullscreen', ''); } catch {}
     const cleanup = () => {
       try { el.onload = null; } catch {}
     };
@@ -60,12 +79,25 @@ async function attemptEmbed(container, tagName, url, timeoutMs) {
   });
 }
 
+// Listen for seek events from UI
+try {
+  window.addEventListener('video:seek', (e) => {
+    const seconds = Math.max(0, Math.floor(e.detail?.seconds || 0));
+    const vid = window.__edulensCurrentVideoId;
+    if (!vid || !_lastContainer) return;
+    const origin = API_BASE || '';
+    const url = `${origin}/local/embed/${vid}?start=${seconds}&autoplay=1`;
+    attemptEmbed(_lastContainer, 'iframe', url, 10000).catch(()=>{});
+  });
+} catch {}
+
 export async function loadYouTubeVideo(container, videoUrl) {
   if (!container) throw new Error('container required');
   const videoId = extractVideoId(videoUrl);
   if (!videoId) throw new Error('Invalid YouTube URL/ID');
+  try { window.__edulensCurrentVideoId = videoId; window.dispatchEvent(new CustomEvent('video:loaded', { detail: { videoId } })); } catch {}
 
-  const origin = 'http://127.0.0.1:5000';
+  const origin = API_BASE || '';
   const sources = [
     `${origin}/local/embed/${videoId}`,
     `https://www.youtube.com/embed/${videoId}`,
@@ -77,6 +109,7 @@ export async function loadYouTubeVideo(container, videoUrl) {
     logLine('cancel previous load (new request)');
   }
 
+  _lastContainer = container;
   _currentLoadPromise = (async () => {
     logLine(`Starting load for ${videoId}`);
     let ok = false; let lastErr = null;

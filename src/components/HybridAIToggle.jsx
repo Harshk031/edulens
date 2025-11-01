@@ -21,9 +21,9 @@ export default function HybridAIToggle({ onModeChange }) {
   const onlineStatus = status.online === 'ready' ? '🟢' : '🔴';
 
   return (
-    <div className="hybrid-ai-toggle">
+    <div className="hybrid-ai-toggle hover-animate accent-outline">
       <div className="toggle-section">
-        <h3 className="section-title">AI Mode Selector</h3>
+        <h3 className="section-title">Mode</h3>
         <div className="toggle-container">
           <button
             className={`toggle-btn ${mode === 'offline' ? 'active' : ''}`}
@@ -31,7 +31,7 @@ export default function HybridAIToggle({ onModeChange }) {
             title={`Ollama Status: ${status.offline}`}
           >
             <span className="status-light">{offlineStatus}</span>
-            🖥️ Offline
+            Offline
           </button>
           <button
             className={`toggle-btn ${mode === 'online' ? 'active' : ''}`}
@@ -39,14 +39,14 @@ export default function HybridAIToggle({ onModeChange }) {
             title={`Online Status: ${status.online}`}
           >
             <span className="status-light">{onlineStatus}</span>
-            ☁️ Online
+            Online
           </button>
         </div>
       </div>
 
       {mode === 'online' && (
         <div className="provider-section">
-          <h3 className="section-title">AI Provider</h3>
+          <h3 className="section-title">Provider</h3>
           <div className="provider-buttons">
             {providers.map((p) => (
               <button
@@ -63,13 +63,8 @@ export default function HybridAIToggle({ onModeChange }) {
 
       <div className="status-display">
         <p className="mode-info">
-          <strong>Current Mode:</strong> {mode.toUpperCase()}
+          <strong>Current:</strong> {mode.toUpperCase()} {mode === 'online' ? `• ${provider.toUpperCase()}` : ''}
         </p>
-        {mode === 'online' && (
-          <p className="provider-info">
-            <strong>Provider:</strong> {provider.toUpperCase()}
-          </p>
-        )}
         <div className="status-indicators">
           <span className="status-item">
             <strong>Offline:</strong> {offlineStatus} {status.offline}

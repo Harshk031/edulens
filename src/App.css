@@ -1,8 +1,8 @@
 .app-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
-  color: #e0e0e0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text);
+  font-family: var(--font-sans);
   display: flex;
   flex-direction: column;
 }
@@ -10,23 +10,26 @@
 .app-header {
   padding: 2rem;
   text-align: center;
-  border-bottom: 1px solid #0f3460;
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .app-header h1 {
   margin: 0 0 0.5rem 0;
   font-size: 2.5rem;
-  color: #fff;
-  background: linear-gradient(135deg, #8b5cf6 0%, #533483 100%);
+  font-weight: var(--font-weight-bold);
+  color: var(--text);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: 0.02em;
 }
 
 .subtitle {
   margin: 0;
-  color: #888;
+  color: var(--text-secondary);
   font-size: 0.95rem;
+  font-weight: var(--font-weight-normal);
 }
 
 .app-main {
@@ -38,18 +41,21 @@
 }
 
 .section {
-  background: rgba(15, 52, 96, 0.3);
-  border: 1px solid #0f3460;
-  border-radius: 12px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
   padding: 1.5rem;
   margin-bottom: 1.5rem;
+  backdrop-filter: blur(12px);
 }
 
 .section h2 {
   margin-top: 0;
   margin-bottom: 1rem;
-  color: #8b5cf6;
+  color: var(--accent-primary);
   font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.02em;
 }
 
 .youtube-container {
@@ -85,8 +91,8 @@
 .app-footer {
   text-align: center;
   padding: 1.5rem;
-  border-top: 1px solid #0f3460;
-  color: #666;
+  border-top: 1px solid var(--glass-border);
+  color: var(--text-secondary);
   font-size: 0.85rem;
   margin-top: 2rem;
 }
@@ -101,13 +107,14 @@
 
 /* Focus Mode Styles */
 .focus-mode-section {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(83, 52, 131, 0.1) 100%);
-  border: 2px solid #8b5cf6;
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  background: linear-gradient(135deg, rgba(0, 255, 140, 0.1) 0%, rgba(0, 59, 47, 0.1) 100%);
+  border: 2px solid var(--accent-primary);
+  box-shadow: var(--shadow-glow);
 }
 
 .focus-mode-section h2 {
-  color: #ff6b9d;
+  color: var(--accent-primary);
+  font-weight: var(--font-weight-bold);
   animation: pulse 2s infinite;
 }
 
@@ -137,18 +144,18 @@
 
 .focus-controls select {
   padding: 0.5rem 0.75rem;
-  background: rgba(15, 52, 96, 0.5);
-  border: 1px solid #8b5cf6;
-  border-radius: 6px;
-  color: #e0e0e0;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .focus-controls select:hover {
-  border-color: #ff6b9d;
-  background: rgba(139, 92, 246, 0.2);
+  border-color: var(--accent-primary);
+  background: rgba(0, 255, 140, 0.1);
 }
 
 .focus-controls select:disabled {
@@ -158,19 +165,20 @@
 
 .focus-start-btn {
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #8b5cf6 0%, #ff6b9d 100%);
+  background: var(--accent-gradient);
   border: none;
-  border-radius: 6px;
-  color: #fff;
-  font-weight: 600;
+  border-radius: var(--radius-sm);
+  color: var(--bg-primary);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
   transition: all 0.3s;
   font-size: 0.95rem;
+  letter-spacing: 0.03em;
 }
 
 .focus-start-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(0, 255, 140, 0.5);
 }
 
 .focus-start-btn:disabled {
@@ -190,27 +198,29 @@
 .nav-tab {
   padding: 0.6rem 1.2rem;
   background: transparent;
-  border: 2px solid #8b5cf6;
-  border-radius: 8px;
-  color: #8b5cf6;
+  border: 2px solid var(--accent-primary);
+  border-radius: var(--radius-sm);
+  color: var(--accent-primary);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
   transition: all 0.3s;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  letter-spacing: 0.03em;
 }
 
 .nav-tab:hover {
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(0, 255, 140, 0.1);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
 }
 
 .nav-tab.active {
-  background: linear-gradient(135deg, #8b5cf6 0%, #ff6b9d 100%);
-  color: #fff;
-  border-color: #ff6b9d;
+  background: var(--accent-gradient);
+  color: var(--bg-primary);
+  border-color: var(--accent-primary);
 }
 
 /* Header Stats */
@@ -222,17 +232,18 @@
 }
 
 .stat-badge {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(255, 107, 157, 0.2) 100%);
-  border: 1px solid #8b5cf6;
-  border-radius: 12px;
+  background: rgba(0, 255, 140, 0.12);
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-sm);
   padding: 0.5rem 1rem;
-  color: #ff6b9d;
+  color: var(--accent-primary);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   display: flex;
   align-items: center;
   gap: 0.25rem;
   animation: statPulse 2s infinite;
+  letter-spacing: 0.03em;
 }
 
 @keyframes statPulse {

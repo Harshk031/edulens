@@ -1,0 +1,69 @@
+{
+  "videoId": "test123",
+  "language": "en",
+  "originalLanguage": "en",
+  "duration": 180,
+  "segments": [
+    {
+      "start": 0,
+      "end": 15,
+      "text": "Welcome to this tutorial on machine learning. Today we'll explore neural networks and how they work."
+    },
+    {
+      "start": 15,
+      "end": 30,
+      "text": "A neural network consists of interconnected nodes organized in layers. Each node performs calculations on input data."
+    },
+    {
+      "start": 30,
+      "end": 45,
+      "text": "The first layer is called the input layer, where data enters the network. This could be images, text, or numbers."
+    },
+    {
+      "start": 45,
+      "end": 60,
+      "text": "Hidden layers perform the main computations. These layers extract features and patterns from the data."
+    },
+    {
+      "start": 60,
+      "end": 75,
+      "text": "The output layer produces the final result, such as a classification or prediction."
+    },
+    {
+      "start": 75,
+      "end": 90,
+      "text": "Training a neural network involves adjusting weights through backpropagation. This minimizes the error between predicted and actual values."
+    },
+    {
+      "start": 90,
+      "end": 105,
+      "text": "Activation functions like ReLU and sigmoid add non-linearity to the model. This allows networks to learn complex patterns."
+    },
+    {
+      "start": 105,
+      "end": 120,
+      "text": "Common applications include image recognition, natural language processing, and recommendation systems."
+    },
+    {
+      "start": 120,
+      "end": 135,
+      "text": "To get started with neural networks, you can use frameworks like TensorFlow or PyTorch. These make implementation easier."
+    },
+    {
+      "start": 135,
+      "end": 150,
+      "text": "Remember to split your data into training, validation, and test sets. This helps prevent overfitting."
+    },
+    {
+      "start": 150,
+      "end": 165,
+      "text": "Regularization techniques like dropout can improve model generalization. They prevent the model from memorizing training data."
+    },
+    {
+      "start": 165,
+      "end": 180,
+      "text": "That's a quick overview of neural networks. Practice building models to strengthen your understanding. Thanks for watching!"
+    }
+  ],
+  "originalSegments": null
+}

@@ -1,0 +1,51 @@
+/* Motion primitives and interactive effects */
+
+/* Hover scale + tilt */
+.hover-animate {
+  transform: translateZ(0);
+  transition: transform .35s cubic-bezier(.2,.6,.2,1), box-shadow .35s cubic-bezier(.2,.6,.2,1);
+  will-change: transform, box-shadow;
+}
+.hover-animate:hover {
+  transform: translateY(-3px) scale(1.02) rotateX(0.5deg) rotateY(-0.5deg);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.25);
+}
+
+/* Button pulse when active */
+.pulse-active {
+  animation: pulseActive 1.2s ease-in-out infinite;
+}
+@keyframes pulseActive {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, .55); }
+  50% { box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); }
+}
+
+/* Ripple on click (to be toggled via JS) */
+.ripple {
+  position: relative; overflow: hidden;
+}
+.ripple::after {
+  content: ""; position: absolute; inset: 0; margin: auto; width: 10px; height: 10px;
+  background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
+  border-radius: 999px; transform: scale(0); opacity: 0; pointer-events: none;
+}
+.ripple.is-animating::after { animation: ripple .45s ease-out forwards; }
+@keyframes ripple {
+  to { transform: scale(22); opacity: 0; }
+}
+
+/* Loading morph for AI responses */
+.loading-morph {
+  width: 24px; height: 24px; border-radius: 999px; background: conic-gradient(from 0deg, var(--accent-purple), var(--accent-pink), var(--accent-purple));
+  -webkit-mask: radial-gradient(circle 10px, #0000 98%, #000 100%);
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Subtle float for icons (hourglass idle) */
+.float-idle { animation: floatIdle 3s ease-in-out infinite; }
+@keyframes floatIdle { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-4px) } }
+
+/* Fade-in up for content blocks */
+.fade-in-up { opacity: 0; transform: translateY(8px); animation: fin 0.35s ease forwards; }
+@keyframes fin { to { opacity: 1; transform: translateY(0); } }

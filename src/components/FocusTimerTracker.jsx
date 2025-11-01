@@ -30,7 +30,7 @@ function fmt(s) {
   return `${m}:${sec}`;
 }
 
-export default function FocusTimerTracker() {
+export default function FocusTimerTracker({ variant = 'overlay' }) {
   const [duration, setDuration] = useState(25 * 60); // seconds
   const [remaining, setRemaining] = useState(25 * 60);
   const [running, setRunning] = useState(false);
@@ -92,7 +92,7 @@ export default function FocusTimerTracker() {
   if (!running && !paused && !completed && remaining === duration) {
     // setup
     return (
-      <div className="ftt-root" aria-live="polite">
+      <div className={`ftt-root ${variant==='bar'?'ftt-bar':''}`} aria-live="polite">
         <div className="ftt-card">
           <div className="ftt-title">How long would you like to focus?</div>
           <div className="ftt-presets">
@@ -126,7 +126,7 @@ export default function FocusTimerTracker() {
 
   // hourglass overlay view
   return (
-    <div className="ftt-root" style={{pointerEvents:'none'}}>
+    <div className={`ftt-root ${variant==='bar'?'ftt-bar':''}`} style={{pointerEvents: variant==='bar' ? 'auto' : 'none'}}>
       <div style={{position:'relative', pointerEvents:'auto'}}>
         <FocusHourglass
           duration={duration}

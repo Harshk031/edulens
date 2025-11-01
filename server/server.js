@@ -3,6 +3,9 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
+let morgan;
+try { ({ default: morgan } = await import('morgan')); } catch { morgan = null; }
 
 // Load environment variables first
 dotenv.config();
@@ -11,11 +14,22 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+let PORT = parseInt(process.env.PORT || '5000', 10);
+
+// Ensure storage dirs for Phase-4 pipeline
+import fsExtra from 'fs-extra';
+const storageDirs = [
+  path.join(__dirname, '..', 'src', 'storage'),
+  path.join(__dirname, '..', 'src', 'storage', 'transcripts'),
+  path.join(__dirname, '..', 'src', 'storage', 'embeddings'),
+  path.join(__dirname, '..', 'src', 'storage', 'sessions'),
+];
+for (const d of storageDirs) { await fsExtra.ensureDir(d); }
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+if (morgan) { app.use(morgan('dev')); } else { app.use((req,res,next)=>{ console.log(`[req] ${req.method} ${req.url}`); next(); }); }
 
 // Focus status route (simple, avoids 500s)
 import focusStatus from './routes/focus.js';
@@ -24,10 +38,9 @@ app.use('/api/focus', focusStatus);
 // Health check
 app.get('/health', (req, res) => {
   res.json({
-    status: 'online',
+    status: 'ok',
+    port: PORT,
     timestamp: new Date().toISOString(),
-    offlineAI: 'ready',
-    onlineAI: 'ready',
   });
 });
 
@@ -45,7 +58,7 @@ app.get('/local/embed/:videoId', (req, res) => {
     frameborder="0"
     allow="autoplay; encrypted-media; picture-in-picture"
     allowfullscreen
-    sandbox="allow-scripts allow-same-origin allow-forms">
+    sandbox="allow-scripts allow-same-origin allow-forms allow-presentation">
   </iframe>
 </body>
 </html>`;
@@ -63,6 +76,12 @@ const loadRoutes = async () => {
   } catch (err) {
     console.warn('⚠️  Offline AI routes not available:', err.message);
   }
+  try {
+    const { default: ttsRoutes } = await import('./routes/ttsRoutes.js');
+    app.use('/api/tts', ttsRoutes);
+  } catch (err) {
+    console.warn('⚠️  TTS routes not available:', err.message);
+  }
 
   try {
     const { default: onlineAI } = await import('./routes/onlineAI.js');
@@ -78,7 +97,7 @@ const loadRoutes = async () => {
     console.warn('⚠️  Focus routes not available:', err.message);
   }
 
-    try {
+  try {
     const { default: analytics } = await import('../src/api/analyticsRoutes.js');
     app.use('/api', analytics);
   } catch (err) {
@@ -89,6 +108,23 @@ const loadRoutes = async () => {
     app.get('/api/analytics/sessions/:userId', (req, res) => res.json({ success: true, sessions: [] }));
     app.get('/api/analytics/gamification/:userId', (req, res) => res.json({ success: true, gamification: { points: 0, streak: 0, badges: [] } }));
   }
+
+  // Phase-4 pipeline routes (video processing + AI tools)
+  try {
+    const videoRoutesMod = await import('../src/server/routes/videoRoutes.cjs');
+    const videoRoutes = videoRoutesMod.default || videoRoutesMod;
+    app.use('/api/video', videoRoutes);
+  } catch (err) {
+    console.warn('⚠️  Video routes not available:', err.message);
+  }
+  try {
+    const aiRoutesMod = await import('../src/server/routes/aiRoutes.cjs');
+    const aiRoutes = aiRoutesMod.default || aiRoutesMod;
+    app.use('/api/ai', aiRoutes);
+  } catch (err) {
+    console.warn('⚠️  AI routes not available:', err.message);
+  }
+
   try {
     // simple log ingestion for videoloader
     app.post('/api/logs/videoloader', async (req, res) => {
@@ -107,6 +143,22 @@ const loadRoutes = async () => {
 // Load routes after app is ready
 await loadRoutes();
 
+// Choose free port (auto-fallback)
+import detect from 'detect-port';
+const chosenPort = await detect(PORT);
+if (chosenPort !== PORT) {
+  console.warn(`⚠️  Port ${PORT} busy, switching to ${chosenPort}`);
+  PORT = chosenPort;
+}
+process.env.ACTUAL_PORT = String(PORT);
+// Write runtime env for the frontend/tools
+try {
+  const runtimePath = path.join(__dirname, '..', '.runtime-env');
+  const apiBase = `http://localhost:${PORT}`;
+  fs.writeFileSync(runtimePath, `API_BASE=${apiBase}\nVITE_API_BASE=${apiBase}\nPORT=${PORT}\n`);
+  console.log(`🔧 Runtime env written to .runtime-env (API_BASE=${apiBase})`);
+} catch (e) { console.warn('Could not write .runtime-env', e?.message); }
+
 // Root status endpoint
 app.get('/api/status', (req, res) => {
   res.json({
@@ -121,7 +173,8 @@ app.get('/api/status', (req, res) => {
 });
 
 const server = app.listen(PORT, '0.0.0.0', () => {
-  console.log(`\n✅ EduLens Hybrid AI Server running on port ${PORT}`);
+  console.log(`\n✅ EduLens Hybrid AI Server running on http://localhost:${PORT}`);
+  console.log(`🔗 Health: http://localhost:${PORT}/health`);
   console.log(`📍 Offline AI (Ollama): http://localhost:${PORT}/api/ai/offline`);
   console.log(`📍 Online AI (Groq/Claude/Gemini): http://localhost:${PORT}/api/ai/online`);
   console.log(`🔗 Status: http://localhost:${PORT}/api/status`);
@@ -134,5 +187,18 @@ server.on('error', (err) => {
   if (err.code === 'EADDRINUSE') {
     console.error(`Port ${PORT} is already in use.`);
   }
-  process.exit(1);
+});
+
+// Global safety nets to avoid process crash during dev
+process.on('unhandledRejection', (reason) => {
+  console.error('⚠️ UnhandledRejection:', reason?.message || reason);
+});
+process.on('uncaughtException', (err) => {
+  console.error('⚠️ UncaughtException:', err?.message || err);
+});
+
+// Express error handler
+app.use((err, _req, res, _next) => {
+  console.error('Express error:', err?.message || err);
+  res.status(500).json({ error: err?.message || 'Internal error' });
 });

@@ -614,7 +614,7 @@ npm run dev
 
 ---
 
-## 📝 Notes for TechExpo Demo
+## 📝 Demo Notes
 
 1. **Offline AI**: Ensure Ollama running before demo: `ollama serve`
 2. **Focus Mode**: Verify .data/sessions/ directory exists and is writable

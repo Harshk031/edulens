@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, session, shell, clipboard } from 'electron';
+import { app, BrowserWindow, ipcMain, session, shell, clipboard, BrowserView } from 'electron';
 import Store from 'electron-store';
 import { openYouTubePlayer, closeYouTubePlayer } from './electron/YouTubePlayer.js';
 import path from 'path';
@@ -8,6 +8,7 @@ import fs from 'fs';
 
 // Mitigate blank window / GPU driver issues on some Windows systems
 app.disableHardwareAcceleration();
+app.commandLine.appendSwitch('disable-http-cache');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,13 +16,10 @@ const __dirname = path.dirname(__filename);
 // Place userData under LocalAppData to avoid OneDrive/controlled-folder-access (robust before "ready")
 let userDataDir;
 try {
-  // Some Electron versions throw if called before ready; handle gracefully
   const localApp = process.env.LOCALAPPDATA || process.env.APPDATA || path.join(process.env.USERPROFILE || os.homedir(), 'AppData', 'Local');
   userDataDir = path.join(localApp, 'EduLensHybrid');
   fs.mkdirSync(userDataDir, { recursive: true });
   app.setPath('userData', userDataDir);
-
-  // Force all Chromium caches into a writable location (avoid OneDrive/permissions)
   const cacheDir = path.join(userDataDir, 'Cache');
   const mediaCacheDir = path.join(userDataDir, 'MediaCache');
   fs.mkdirSync(cacheDir, { recursive: true });
@@ -30,11 +28,10 @@ try {
   app.commandLine.appendSwitch('disk-cache-dir', cacheDir);
   app.commandLine.appendSwitch('media-cache-dir', mediaCacheDir);
   app.commandLine.appendSwitch('disable-gpu-shader-disk-cache');
-  // Embed stability switches
   app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
-  app.commandLine.appendSwitch('disable-features', 'CrossOriginOpenerPolicyByDefault,CrossOriginEmbedderPolicy');
+app.commandLine.appendSwitch('disable-features', 'CrossOriginOpenerPolicyByDefault,CrossOriginEmbedderPolicy,Autofill,AutofillAddress');
+app.commandLine.appendSwitch('enable-features', 'NetworkService');
 } catch (e) {
-  // Fallback to default userData if setPath fails
   userDataDir = app.getPath('userData');
 }
 
@@ -54,36 +51,27 @@ const createWindow = () => {
       webSecurity: true,
       allowRunningInsecureContent: false,
       autoplayPolicy: 'no-user-gesture-required',
+      devTools: true,
+      spellcheck: false,
     },
   });
 
-  // Spoof Chrome UA so YouTube treats the app as Chrome
-  const CHROME_UA =
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) ' +
-    'AppleWebKit/537.36 (KHTML, like Gecko) ' +
-    'Chrome/122.0.0.0 Safari/537.36';
+  const CHROME_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36';
   win.webContents.setUserAgent(CHROME_UA);
 
-  // Permit required permissions; deny everything else
   const ses = session.fromPartition('default');
   ses.setPermissionRequestHandler((_, permission, callback) => {
     if (['media', 'fullscreen'].includes(permission)) return callback(true);
     return callback(false);
   });
-
-  // Relax CSP during development to allow embeds
   ses.webRequest.onHeadersReceived((details, callback) => {
     const headers = details.responseHeaders || {};
-    headers['Content-Security-Policy'] = [
-      "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; frame-src *;"
-    ];
+    headers['Content-Security-Policy'] = ["default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; frame-src *;"];
     callback({ responseHeaders: headers });
   });
-
-  // Ensure YouTube requests carry expected Referer/Origin and UA
   ses.webRequest.onBeforeSendHeaders((details, callback) => {
     try {
-      const u = details.url || ''
+      const u = details.url || '';
       if (u.includes('youtube.com') || u.includes('googlevideo.com') || u.includes('ytimg.com')) {
         details.requestHeaders['Referer'] = 'https://www.youtube.com/';
         details.requestHeaders['Origin'] = 'https://www.youtube.com';
@@ -91,31 +79,24 @@ const createWindow = () => {
         details.requestHeaders['Accept-Language'] = 'en-US,en;q=0.9';
       }
     } catch {}
-    callback({ requestHeaders: details.requestHeaders })
+    callback({ requestHeaders: details.requestHeaders });
   });
-
-  // Open DevTools to debug Error 153
-  win.webContents.openDevTools({ mode: 'detach' });
 
   const startURL = process.env.ELECTRON_START_URL || 'http://127.0.0.1:5173';
-  win.loadURL(startURL).catch(err => {
-    console.error('Failed to load URL:', startURL, err);
-  });
-  
+  win.loadURL(startURL).catch(err => console.error('Failed to load URL:', startURL, err));
+  // Auto-open DevTools for development
+  try { if (process.env.NODE_ENV !== 'production') win.webContents.openDevTools({ mode: 'detach' }); } catch {}
   return win;
 };
 
 let mainWindow;
 let timerWin;
 
-import { BrowserView } from 'electron';
-
-// Feature flag: keep overlay code but DISABLED by default.
 const ENABLE_TIMER_OVERLAY = process.env.EDULENS_TIMER_OVERLAY === '1';
 
 function createTimerWindow(parent){
   try {
-    if (!ENABLE_TIMER_OVERLAY) return; // disabled unless explicitly enabled
+    if (!ENABLE_TIMER_OVERLAY) return;
     const { join } = path;
     const timerPath = `file://${join(__dirname,'overlay','timer.html')}`;
     timerWin = new BrowserWindow({
@@ -130,11 +111,7 @@ function createTimerWindow(parent){
       hasShadow: false,
       parent,
       backgroundColor: '#00000000',
-      webPreferences: {
-        contextIsolation: true,
-        nodeIntegration: false,
-        preload: join(__dirname, 'preload', 'timer-preload.cjs')
-      }
+      webPreferences: { contextIsolation: true, nodeIntegration: false, preload: join(__dirname, 'preload', 'timer-preload.cjs') }
     });
     timerWin.setIgnoreMouseEvents(false, { forward: true });
     try { timerWin.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true }); } catch {}
@@ -143,17 +120,27 @@ function createTimerWindow(parent){
 }
 
 app.whenReady().then(async () => {
-  // Clear any stale caches at boot (first-run safety)
+  // Open DevTools on any new webContents (views, windows) during dev
+  if (process.env.NODE_ENV !== 'production') {
+    app.on('web-contents-created', (_e, contents) => {
+      try { contents.openDevTools({ mode: 'detach' }); } catch {}
+    });
+  }
   try { await session.defaultSession.clearCache(); } catch {}
-
   mainWindow = createWindow();
   if (ENABLE_TIMER_OVERLAY) createTimerWindow(mainWindow);
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.webContents.executeJavaScript("console.log('✅ EduLens hybrid runtime active (Electron only)')");
   });
 
-  // Prevent navigation away from local embed route or app
-  const allowedPrefix = 'http://127.0.0.1:5000/local/embed/';
+  // Build allowed local embed prefix dynamically from .runtime-env if present
+  let allowedPrefix = 'http://127.0.0.1:5000/local/embed/';
+  try {
+    const rt = fs.readFileSync(path.join(__dirname, '.runtime-env'), 'utf-8');
+    const m = /PORT=(\d+)/.exec(rt) || /VITE_API_BASE=.*:(\d+)/.exec(rt);
+    const p = m ? m[1] : '5000';
+    allowedPrefix = `http://127.0.0.1:${p}/local/embed/`;
+  } catch {}
   mainWindow.webContents.on('will-navigate', (e, url) => {
     if (!url.startsWith('http://127.0.0.1:5173') && !url.startsWith(allowedPrefix)) {
       e.preventDefault();
@@ -164,7 +151,6 @@ app.whenReady().then(async () => {
     if (url.startsWith(allowedPrefix)) return { action: 'allow' };
     shell.openExternal(url); return { action: 'deny' };
   });
-  // Controlled full-screen player fallback window
   ipcMain.handle('launch-youtube', (_e, url) => openYouTubePlayer(url));
 
   // Keep legacy event as no-op or open the new player

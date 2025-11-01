@@ -1,16 +1,18 @@
 .hybrid-ai-toggle {
-  padding: 1.5rem;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px) brightness(1.1);
   border-radius: 12px;
-  border: 1px solid #0f3460;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: var(--shadow-glow);
 }
 
 .section-title {
-  margin: 0 0 0.75rem 0;
-  font-size: 0.9rem;
-  color: #8b5cf6;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   font-weight: 700;
 }
 
@@ -26,11 +28,11 @@
 
 .toggle-btn {
   flex: 1;
-  padding: 0.75rem 1rem;
-  border: 2px solid #0f3460;
-  background: #0f3460;
-  color: #e0e0e0;
-  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -48,10 +50,10 @@
 }
 
 .toggle-btn.active {
-  background: linear-gradient(135deg, #533483 0%, #6a3e8c 100%);
-  border-color: #8b5cf6;
+  background: var(--accent-gradient);
+  border-color: transparent;
   color: #fff;
-  box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.45);
 }
 
 .status-light {
@@ -76,11 +78,11 @@
 
 .provider-btn {
   flex: 1;
-  padding: 0.6rem 0.8rem;
-  border: 1px solid #533483;
-  background: #1a2f4f;
-  color: #b0b0b0;
-  border-radius: 6px;
+  padding: 8px 10px;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  background: rgba(255,255,255,0.05);
+  color: var(--text-secondary);
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
   font-size: 0.8rem;
@@ -93,10 +95,10 @@
 }
 
 .provider-btn.active {
-  background: #533483;
-  border-color: #8b5cf6;
+  background: var(--accent-gradient);
+  border-color: transparent;
   color: #fff;
-  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.35);
 }
 
 .status-display {

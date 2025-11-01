@@ -1,0 +1,300 @@
+/* ========================================
+   EDULENS PREMIUM THEME - Sheryians Inspired
+   Black-Green Futuristic Design
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Sheryians-inspired Color Palette */
+  --bg-primary: #0C1412;
+  --bg-secondary: #0e1b1e;
+  --bg-tertiary: #003B2F;
+  
+  --accent-primary: #00FF8C;
+  --accent-secondary: #00FFB2;
+  --accent-glow: rgba(0, 255, 140, 0.3);
+  
+  --text: #E6F5EC;
+  --text-secondary: #8FA89F;
+  --text-muted: #4A5D54;
+  
+  /* Glassmorphism */
+  --glass: rgba(0, 20, 10, 0.3);
+  --glass-strong: rgba(0, 20, 10, 0.6);
+  --glass-border: rgba(0, 255, 140, 0.15);
+  
+  /* Gradients */
+  --accent-gradient: linear-gradient(135deg, #00FF8C 0%, #00FFB2 100%);
+  --bg-gradient: linear-gradient(135deg, #0C1412 0%, #0e1b1e 50%, #003B2F 100%);
+  
+  /* Spacing & Sizing */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  
+  /* Shadows & Glows */
+  --shadow-glow: 0 0 20px var(--accent-glow);
+  --shadow-strong: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling for all elements */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text);
+  letter-spacing: 0.015em;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Glassmorphism Base */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-glow);
+}
+
+.glass-strong {
+  background: var(--glass-strong);
+  backdrop-filter: blur(16px);
+}
+
+/* Buttons - Premium Style */
+button, .btn {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glass {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  color: var(--text);
+}
+
+.btn-glass:hover {
+  background: rgba(0, 255, 140, 0.1);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.btn-gradient {
+  background: var(--accent-gradient);
+  color: #0C1412;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 255, 140, 0.35);
+}
+
+.btn-gradient:hover {
+  box-shadow: 0 12px 32px rgba(0, 255, 140, 0.5);
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* Ripple Effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 255, 140, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s;
+}
+
+.ripple.is-animating::after {
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+}
+
+/* Hover Animations */
+.hover-animate {
+  transition: all 0.3s ease;
+}
+
+.hover-animate:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 255, 140, 0.2);
+}
+
+/* Pulse Effect */
+.pulse-active {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 140, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 15px rgba(0, 255, 140, 0);
+  }
+}
+
+/* Glow Text */
+.glow-text {
+  color: var(--accent-primary);
+  text-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* Gradient Text */
+.grad-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 20, 10, 0.3);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00FF8C 0%, #00FFB2 100%);
+  border-radius: 5px;
+  box-shadow: 0 0 6px rgba(0, 255, 140, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00FFB2 0%, #00E0FF 100%);
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 255, 140, 0.3);
+  color: #fff;
+}
+
+/* Focus Indicator */
+*:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Cursor Trail (for high perf mode) */
+.cursor-ring {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--accent-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0.6;
+  box-shadow: 0 0 15px rgba(0, 255, 140, 0.5);
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(0, 255, 140, 0.8);
+}
+
+.cursor-dot.pulse-active {
+  animation: dotPulse 0.35s ease-out;
+}
+
+@keyframes dotPulse {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.5); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Fade In Animations */
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading Morph Animation */
+.loading-morph {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  animation: morph 1.5s ease-in-out infinite;
+}
+
+@keyframes morph {
+  0%, 100% {
+    border-radius: 50%;
+    transform: rotate(0deg);
+  }
+  25% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transform: rotate(90deg);
+  }
+  50% {
+    border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+    transform: rotate(180deg);
+  }
+  75% {
+    border-radius: 30% 70% 70% 30% / 70% 30% 30% 70%;
+    transform: rotate(270deg);
+  }
+}

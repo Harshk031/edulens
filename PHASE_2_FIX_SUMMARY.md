@@ -117,6 +117,6 @@ Starting Electron...
 
 ---
 
-**Status**: 🟢 **Ready for TechExpo Demo**
+**Status**: 🟢 **Ready for live demos**
 
 All backend startup issues resolved. Launcher should now detect port 5000 within 2-5 seconds.

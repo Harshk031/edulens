@@ -1,0 +1,7 @@
+.cp-root{position:fixed;inset:0;z-index:300}
+.cp-scrim{position:absolute;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(3px)}
+.cp-card{position:absolute;left:50%;top:15%;transform:translateX(-50%);width:min(720px,92vw);background:rgba(255,255,255,.06);backdrop-filter:blur(14px);border:1px solid rgba(139,92,246,.35);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.cp-input{width:100%;padding:12px 14px;background:transparent;border:none;color:#fff;outline:none;font-size:16px}
+.cp-list{max-height:50vh;overflow:auto}
+.cp-item{padding:10px 14px;border-top:1px solid rgba(139,92,246,.2)}
+.cp-item.active{background:rgba(139,92,246,.18)}

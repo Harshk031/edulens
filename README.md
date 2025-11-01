@@ -1,251 +1,107 @@
-# EduLens — Hybrid Focused Learning Platform (Built by Harsh Katiyar with AI assistance)
+# EduLens — The Hybrid Distraction-Free Learning Companion
 
-EduLens is a distraction‑aware learning workspace that blends YouTube‑based study, an AI assistant, and a progress‑tracking Focus Timer into a single desktop app. It runs as a hybrid Vite+React frontend with an Express backend and an Electron shell.
+Created by: Harsh Katiyar  
+Journey built with AI guidance and real engineering effort.
 
-## Elevator pitch
-- Load any YouTube lecture inside a clean, controlled player.
-- Ask AI questions, take notes, and track focus time — all in one screen.
-- Works offline (Ollama) and online (Groq/Claude/Gemini) with a unified pipeline.
+## 🧩 Overview
 
-## The development journey (Chrome Extension → Browser → Electron → Hybrid)
+EduLens is a hybrid Electron + Web-based focus and learning environment that embeds YouTube videos in a distraction-free interface and extends it with AI-powered features — summaries, quizzes, flashcards, notes, and mindmaps — powered by Ollama (offline) and Groq (online).
 
-Full phase docs:
-- Phase 0: [docs/PHASE_0_SUMMARY.md](docs/PHASE_0_SUMMARY.md)
-- Phase 1: [docs/PHASE_1_SUMMARY.md](docs/PHASE_1_SUMMARY.md)
-- Phase 2: [docs/PHASE_2_SUMMARY.md](docs/PHASE_2_SUMMARY.md)
-1) Chrome Extension (Phase 0 prototype)
-- Attempt: DOM‑level filtering, hot‑swapping the YouTube UI, and injecting AI sidebars.
-- Why it failed: frequent DOM changes in YouTube, brittle selectors, limited control over headers/CSP, and unpredictable update cadence.
+It merges productivity and learning into a unified “Focus Mode,” designed to help you learn faster and stay in deep concentration.
 
-2) Browser Redirect (local web app)
-- Attempt: host our own UI at http://localhost and redirect the user to a dedicated page with the player embedded.
-- Benefit: fast iteration and normal browser behavior; good origin (http) for embeds.
-- Limitation: can’t manage OS‑level interruptions, limited window control; “focus mode” remains superficial.
+## 🚀 Core Features
+- Hybrid video embedding system — Works in both Electron and Browser modes.
+- Distraction-free YouTube playback — Only the video, no recommended content.
+- AI-powered tools — Summaries, quizzes, flashcards, and notes from the video transcript.
+- Parallel transcript processing — Handles long videos under one minute using Whisper + ParallelX method.
+- Offline + Online AI — Ollama for local inference, Groq for cloud AI (auto fallback system).
+- Hourglass Focus Timer — Realistic sand animation synced with study time.
+- Modern Interface — Built with React, Vite, Electron, GSAP, and Three.js animations.
 
-3) Pure Electron (desktop app)
-- Goal: total control (window chrome, kiosk, preload, custom cache dirs).
-- Blocker: Error 153 — YouTube refused to play inside Electron embeds.
-  - Root cause: strict origin/CSP heuristics + suspicious flags (webSecurity:false, file:// origin, or webview misuse).
+## 🧭 Journey & Development Story
 
-4) Final Hybrid approach
-- Keep a Vite+React web frontend, Express backend, and an Electron shell — but make the player behave like a normal browser:
-  - Serve a minimal local embed wrapper at `http://localhost:5000/local/embed/:id`.
-  - Use a single, unified video loader that prefers the local embed, then safe fallbacks.
-  - Keep `webSecurity:true` and avoid risky flags.
-- Result: no Error 153; consistent origin and normal playback in Electron.
+### Phase 1 — The Chrome Extension Failure
+Initially, EduLens started as a Chrome extension to hide distractions directly on YouTube.  
+However, YouTube’s powerful DOM kept breaking the injected CSS and JavaScript, causing persistent conflicts.  
+After multiple failed iterations, the idea was abandoned.
 
-## What we fixed (high‑impact bullets)
-- Minimal embed URL (no enablejsapi, no origin=file://) via local wrapper route.
-- One unified loader with duplicate suppression, retries, logs.
-- Clipboard auto‑load; pasting/copying a YouTube link just works.
-- Express routes for focus/analytics; Vite proxy tuned; secure preload.
-- Timer redesigned as a user‑driven tracker with hourglass overlay (not a lockout).
+### Phase 2 — The Redirect Attempt
+The next approach was to redirect YouTube videos into a controlled local webpage (localhost).  
+This gave full design freedom, but browsers restricted system-level controls — making it impossible to create a true “focus environment.”  
+This idea was also dropped.
 
-## Features
-- Hybrid YouTube embed (local `/local/embed/:id`, iframe sandbox).
-- Focus Mode: hourglass overlay with pause/resume/extend, persistent.
-- AI Assistant: offline (Ollama) + online (Groq/Claude/Gemini) via one API.
-- One‑click launcher (PowerShell) + dev verification scripts.
+### Phase 3 — Full Electron Migration
+The project pivoted fully to Electron for total control.  
+Yet, embedding YouTube inside Electron caused NET::ERR_BLOCKED_BY_RESPONSE and 153 embedding errors.  
+YouTube’s CORS and CSP restrictions blocked direct <iframe> and <webview> usage.
 
-## Tech stack
-- Frontend: React + Vite
-- Backend: Node.js + Express
-- Desktop: Electron (contextIsolation on)
-- AI: Ollama locally; Groq/Claude/Gemini online
+### Phase 4 — The Hybrid Breakthrough
+After days of debugging, a hybrid architecture was born:
+- Electron uses <webview> with custom CSP injection.  
+- Web version uses <iframe> fallback.  
+- YouTube links copied to clipboard auto-load in both environments.  
+This solved the embedding issue permanently.
 
-## Run locally
-```powershell
-npm install
-npm run server      # start backend on 5000
-npm run vite        # frontend on 5173
-npm run electron    # Electron shell (or use scripts/launch-edulens.ps1)
-```
+### Phase 5 — AI System Integration
+Next came AI features.  
+We linked Ollama (offline) and Groq API (online).  
+Early hurdles included: invalid/missing keys, Groq 401 errors, and Ollama not responding.  
+These were fixed by wiring dynamic fallbacks, health checks, and automatic service detection at runtime.
 
-Environment:
-- Copy `.env.example` to `.env` and fill optional API keys.
-- Offline mode: `ollama serve`
+### Phase 6 — Transcript Intelligence
+EduLens now uses WhisperAI + ParallelX to convert both Hindi and English videos into full transcripts under one minute.  
+The transcript powers all AI tasks — summaries, notes, mindmaps, and quizzes — so you can understand any part of a video (like “10–15 minutes”) instantly.
 
-## Screenshots
-- Video embed: [docs/screenshots/video-embed.png](docs/screenshots/video-embed.png)
-- AI panel: [docs/screenshots/ai-panel.png](docs/screenshots/ai-panel.png)
-- Focus layout: [docs/screenshots/focus-layout.png](docs/screenshots/focus-layout.png)
-- Hourglass timer: [docs/screenshots/hourglass.png](docs/screenshots/hourglass.png)
+### Phase 7 — Visual & UX Overhaul
+We implemented:  
+- A cinematic launch screen (3–5 seconds) with a motivational quote and rocket animation.  
+- Sheryians-inspired dark-green theme with glassmorphism and smooth GSAP animations.  
+- Floating hourglass timer synced with session.  
+- Responsive landscape layout (video left, AI right).
 
-## Docs
-- Phase summaries: `docs/PHASE_0_SUMMARY.md`, `docs/PHASE_1_SUMMARY.md`, `docs/PHASE_2_SUMMARY.md`
-- Troubleshooting: `docs/TROUBLESHOOTING.md`
-- Demo script: `docs/DEMO.md`
-- Changelog: `CHANGELOG.md` (tag v1.0-expo)
+### Phase 8 — Stability & Launcher Automation
+A PowerShell-based launcher system was built:  
+- Auto-start backend (Express)  
+- Port health detection  
+- Electron auto-launch  
+- Desktop shortcut for one-click start
 
-## Contribution & Acknowledgement
-Built by Harsh Katiyar with AI assistance (Claude + ChatGPT). This repo documents the full iterative path: prototypes, failures, fixes, and the final hybrid.
+## 💻 Tech Stack
+- Frontend: React, Vite, GSAP, Three.js  
+- Backend: Node.js (Express)  
+- AI Engines: Ollama (local), Groq (cloud)  
+- Transcription: WhisperAI + ParallelX  
+- Packaging: Electron  
+- Launcher: PowerShell orchestration  
+- Version Control: Git + GitHub
 
-## License
-MIT — see LICENSE.
-
-## Foundation Architecture
-
-This is the unified Electron + React base for EduLens, designed to merge proven logic from earlier Web and AI versions while eliminating duplication.
-
-### ✅ Phase 0 Complete Checklist
-
-- [x] Clean Vite React foundation
-- [x] Electron launcher configured
-- [x] Dark theme UI with Shreyans design aesthetic
-- [x] HybridAI toggle component (Ollama ↔ Groq switching)
-- [x] YouTube iframe embedding test (Error 153 resolution)
-- [x] Express backend with AI route stubs
-- [x] Environment configuration template
-- [x] Verification script for base setup
-- [x] npm run dev launches both Vite + Electron
-- [x] All core files validated
-
----
-
-## Quick Start
-
-### Install Dependencies
-
+## ⚙️ Setup Instructions
 ```bash
+# Clone repository
+git clone https://github.com/Harshk031/edulens
+cd edulens
+
+# Install dependencies
 npm install
-```
 
-### Development Mode
+# Configure .env
+OLLAMA_BASE_URL=http://localhost:11434
+GROQ_API_KEY=your_groq_key
+VITE_API_BASE=http://localhost:5000
 
-Launch Vite dev server + Electron simultaneously:
-
-```bash
+# Run everything (frontend + backend + electron)
 npm run dev
 ```
 
-- **Vite dev server**: http://localhost:5173
-- **Electron window**: Loads React from dev server
+## 🎓 Future Roadmap
+- AI-driven visual summaries.  
+- Contextual Q&A linked to specific video timestamps.  
+- Adaptive study planner.  
+- Mobile companion app.  
+- Auto-update and crash recovery.
 
-### Production Build
-
-```bash
-npm run build
-npm run electron
-```
-
-### Verify Setup
-
-```bash
-npm run verify:base
-```
-
----
-
-## Project Structure
-
-```
-edulens-hybrid/
-├── src/
-│   ├── components/
-│   │   ├── HybridAIToggle.jsx      # AI mode switcher
-│   │   └── HybridAIToggle.css
-│   ├── App.jsx                     # Main app component
-│   ├── App.css                     # App styles
-│   ├── index.css                   # Global dark theme
-│   └── main.jsx                    # React entry point
-│
-├── server/
-│   ├── server.js                   # Express backend (ES6)
-│   ├── routes/                     # AI route endpoints
-│   └── utils/                      # Server utilities
-│
-├── electron.js                     # Electron main process
-├── .env.example                    # Environment template
-├── vite.config.js                  # Vite configuration
-├── package.json                    # Scripts & dependencies
-└── scripts/
-    └── verify-base.js              # Setup verification
-```
-
----
-
-## Key Features
-
-### AI Integration
-- **HybridAIToggle**: Switch between Ollama (local) and Groq (online) AI backends
-- Routes prepared for Ollama integration at http://localhost:11434
-- Routes prepared for Groq API integration
-
-### Browser Compatibility
-- YouTube iframes embedded and tested (Error 153 resolved)
-- Full Electron window acts as Chrome browser
-- nodeIntegration enabled for system access
-
-### Dark Theme
-- Shreyans-inspired purple & blue gradient palette
-- High-contrast text for readability
-- Smooth transitions and hover effects
-
-### Configuration
-Copy `.env.example` to `.env` and customize:
-```bash
-PORT=5000
-GROQ_API_KEY=your_key_here
-CLAUDE_API_KEY=your_key_here
-OLLAMA_BASE_URL=http://localhost:11434
-MODELS_PATH=D:/edulens-models
-```
-
----
-
-## Available Scripts
-
-| Script | Purpose |
-|--------|----------|
-| `npm run dev` | Dev mode (Vite + Electron) |
-| `npm run vite` | Vite dev server only |
-| `npm run electron` | Electron with dev server |
-| `npm run build` | Production build |
-| `npm run server` | Start Express backend |
-| `npm run verify:base` | Check setup integrity |
-| `npm run lint` | ESLint |
-
----
-
-## Next Phase (Phase 1): AI Integration Layer
-
-**Goals:**
-- Integrate Ollama API for local model inference
-- Connect Groq API for cloud inference
-- Build AIChatPanel component
-- Implement AI pipeline visualizer
-- Create focus/distraction detection
-
----
-
-## Tech Stack
-
-- **Frontend**: React 19 + Vite 7
-- **Desktop**: Electron 39
-- **Backend**: Express (ES6 modules)
-- **Styling**: CSS3 (dark theme)
-- **Environment**: Node.js + npm
-
----
-
-## Troubleshooting
-
-**Electron window won't open:**
-- Check that `npm run vite` is running on port 5173
-- Ensure `ELECTRON_START_URL` is set correctly
-
-**YouTube video not embedding:**
-- Verify iframe allows attribute includes `allow="...picture-in-picture; web-share"`
-- Check browser console for CORS or security errors
-
-**Verification fails:**
-- Run `npm run verify:base` to diagnose
-- Ensure all files in the structure are present
-
----
-
-## Author & License
-
-EduLens Hybrid © 2025 | MIT License
-
-Phase 0 Complete ✅
+## 💬 Author’s Note (by Harsh Katiyar)
+“EduLens started as a simple idea — I wanted to study from YouTube without distractions.  
+What began as a Chrome extension evolved into this full hybrid AI-assisted learning companion.  
+Every error taught me something new — from browser CORS nightmares to embedding failures, to API key problems.  
+This is more than a project — it’s a journey of persistence, curiosity, and continuous learning.”

@@ -1,132 +1,134 @@
 import { useEffect, useMemo, useState, useCallback } from 'react';
 
-const API_BASE = 'http://localhost:5000';
+const API_BASE = import.meta.env.VITE_API_BASE || (typeof process !== 'undefined' ? process.env?.VITE_API_BASE : '') || '';
+
+async function apiFetch(path, options) {
+  // Prefer relative first (Vite proxy/Electron), then explicit API_BASE
+  const bases = ['', API_BASE];
+  let lastErr = null;
+  for (const b of bases) {
+    try {
+      const res = await fetch(`${b}${path}`, options);
+      if (res.ok || (res.status && res.status < 500)) return res;
+    } catch (e) { lastErr = e; }
+  }
+  if (lastErr) throw lastErr;
+  throw new Error('fetch failed');
+}
 
 export default function useHybridAI() {
-  const [mode, setMode] = useState('offline'); // 'offline' | 'online'
-  const [provider, setProvider] = useState('groq'); // for online mode
+  const [mode, setMode] = useState('offline'); // visual only; pipeline is unified
+  const [provider, setProvider] = useState('ollama');
   const [status, setStatus] = useState({ offline: 'unknown', online: 'unknown' });
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([]);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
+  const [videoId, setVideoId] = useState('');
 
-  const basePath = useMemo(() => `${API_BASE}/api/ai/${mode}`, [mode]);
+  useEffect(() => {
+    const h = (e) => { const id = e?.detail?.videoId || window.__edulensCurrentVideoId; if (id) setVideoId(id); };
+    window.addEventListener('video:loaded', h);
+    h();
+    return () => window.removeEventListener('video:loaded', h);
+  }, []);
 
   const checkStatus = useCallback(async () => {
     try {
-      // offline health
-      const off = await fetch(`${API_BASE}/api/ai/offline/health`).then(r => r.json());
-      // online providers
-      const on = await fetch(`${API_BASE}/api/ai/online/providers`).then(r => r.json());
-      setStatus({ offline: off.status || 'unknown', online: 'ready' });
-    } catch {
+      // Prefer relative health to avoid stale ports; fall back to API_BASE
+      let h;
+      try { h = await fetch(`/health`).then(r=>r.json()); } catch {}
+      if (!h) { h = await fetch(`${API_BASE}/health`).then(r=>r.json()); }
+      if (h && (h.status === 'ok' || h.ok)) {
+        setStatus({ offline: 'ready', online: 'ready' });
+        return;
+      }
       setStatus({ offline: 'unknown', online: 'unknown' });
-    }
-  }, []);
+    } catch { setStatus({ offline: 'unknown', online: 'unknown' }); }
+  }, [API_BASE]);
 
   useEffect(() => {
     checkStatus();
+    // soft health monitor with state-change logging
+    let lastOk = null;
+    const monitor = async () => {
+      let ok = false;
+      try { const r = await fetch(`/health`); ok = r.ok; } catch {}
+      if (!ok && API_BASE) { try { const r2 = await fetch(`${API_BASE}/health`); ok = r2.ok; } catch {} }
+      if (lastOk !== ok) {
+        if (ok) console.log('✅ Backend healthy');
+        else console.warn('⚠️ Backend temporarily unavailable');
+        lastOk = ok;
+      }
+      setTimeout(monitor, ok ? 10000 : 5000);
+    };
+    monitor();
+    return () => { lastOk = null; };
   }, [checkStatus]);
 
   const sendChat = useCallback(async (content) => {
-    setLoading(true);
-    setError(null);
+    setLoading(true); setError(null);
     try {
-      const body = mode === 'offline'
-        ? { messages: [...messages, { role: 'user', content }] }
-        : { provider, messages: [...messages, { role: 'user', content }] };
-
-      const res = await fetch(`${basePath}/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
+      if (!videoId) throw new Error('No video loaded');
+      const res = await apiFetch(`/api/ai/query`, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ videoId, query: content, mode })
       });
-      const data = await res.json();
+      const data = await res.json(); if(!res.ok) throw new Error(data.error||'AI request failed');
+      setMessages(prev => [...prev, { role:'user', content }, { role:'assistant', content: data.text || '' }]);
+      setResult(data.text || '');
+    } catch(e){ setError(e.message); } finally { setLoading(false); }
+  }, [videoId, messages, mode]);
 
-      if (!res.ok || data.success === false) {
-        throw new Error(data.error || 'AI request failed');
-      }
-
-      setMessages(prev => [...prev, { role: 'user', content }]);
-
-      if (mode === 'offline') {
-        const aiMsg = data.message?.content || data.message?.text || data.response || '';
-        setMessages(prev => [...prev, { role: 'assistant', content: aiMsg }]);
-        setResult(aiMsg);
-      } else {
-        setMessages(prev => [...prev, { role: 'assistant', content: data.content }]);
-        setResult(data.content);
-      }
-    } catch (e) {
-      setError(e.message);
-    } finally {
-      setLoading(false);
-    }
-  }, [mode, basePath, provider, messages]);
-
-  const summarize = useCallback(async (text) => {
-    setLoading(true);
-    setError(null);
+  const summarize = useCallback(async (level='short') => {
+    setLoading(true); setError(null);
     try {
-      const body = mode === 'offline'
-        ? { text }
-        : { provider, text };
+      if (!videoId) throw new Error('No video loaded');
+      const res = await apiFetch(`/api/ai/summary`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ videoId, level, mode }) });
+      const data = await res.json(); if(!res.ok) throw new Error(data.error||'Summarization failed');
+      setResult(data.text || '');
+    } catch(e){ setError(e.message); } finally { setLoading(false); }
+  }, [videoId]);
 
-      const res = await fetch(`${basePath}/summarize`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-      const data = await res.json();
-      if (!res.ok || data.success === false) throw new Error(data.error || 'Summarization failed');
-      setResult(data.summary || data.response);
-    } catch (e) {
-      setError(e.message);
-    } finally {
-      setLoading(false);
-    }
-  }, [mode, basePath, provider]);
-
-  const quiz = useCallback(async (topic) => {
-    setLoading(true);
-    setError(null);
+  const quiz = useCallback(async () => {
+    setLoading(true); setError(null);
     try {
-      const body = mode === 'offline' ? { topic } : { provider, topic };
-      const res = await fetch(`${basePath}/quiz`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-      const data = await res.json();
-      if (!res.ok || data.success === false) throw new Error(data.error || 'Quiz failed');
-      setResult(data.quiz || data.response);
-    } catch (e) {
-      setError(e.message);
-    } finally {
-      setLoading(false);
-    }
-  }, [mode, basePath, provider]);
+      if (!videoId) throw new Error('No video loaded');
+      const res = await apiFetch(`/api/ai/quiz`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ videoId, mode }) });
+      const data = await res.json(); if(!res.ok) throw new Error(data.error||'Quiz failed');
+      setResult(data.text || '');
+    } catch(e){ setError(e.message); } finally { setLoading(false); }
+  }, [videoId]);
 
-  const mindmap = useCallback(async (topic) => {
-    setLoading(true);
-    setError(null);
+  const mindmap = useCallback(async () => {
+    setLoading(true); setError(null);
     try {
-      const body = mode === 'offline' ? { topic } : { provider, topic };
-      const res = await fetch(`${basePath}/mindmap`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
-      const data = await res.json();
-      if (!res.ok || data.success === false) throw new Error(data.error || 'Mindmap failed');
-      setResult(data.mindmap || data.response);
-    } catch (e) {
-      setError(e.message);
-    } finally {
-      setLoading(false);
-    }
-  }, [mode, basePath, provider]);
+      if (!videoId) throw new Error('No video loaded');
+      const res = await apiFetch(`/api/ai/mindmap`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ videoId, mode }) });
+      const data = await res.json(); if(!res.ok) throw new Error(data.error||'Mindmap failed');
+      setResult(data.text || '');
+    } catch(e){ setError(e.message); } finally { setLoading(false); }
+  }, [videoId]);
+
+  const notes = useCallback(async () => {
+    setLoading(true); setError(null);
+    try {
+      if (!videoId) throw new Error('No video loaded');
+      const res = await apiFetch(`/api/ai/notes`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ videoId, mode }) });
+      const data = await res.json(); if(!res.ok) throw new Error(data.error||'Notes failed');
+      setResult(data.text || '');
+    } catch(e){ setError(e.message); } finally { setLoading(false); }
+  }, [videoId]);
+
+  const flashcards = useCallback(async () => {
+    setLoading(true); setError(null);
+    try {
+      if (!videoId) throw new Error('No video loaded');
+      const res = await apiFetch(`/api/ai/flashcards`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ videoId, mode }) });
+      const data = await res.json(); if(!res.ok) throw new Error(data.error||'Flashcards failed');
+      setResult(data.text || '');
+    } catch(e){ setError(e.message); } finally { setLoading(false); }
+  }, [videoId]);
 
   return {
     mode,
@@ -138,6 +140,6 @@ export default function useHybridAI() {
     messages,
     result,
     error,
-    actions: { sendChat, summarize, quiz, mindmap, checkStatus },
+    actions: { sendChat, summarize, quiz, mindmap, notes, flashcards, checkStatus },
   };
 }

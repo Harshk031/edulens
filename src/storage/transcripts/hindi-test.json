@@ -1,0 +1,69 @@
+{
+  "videoId": "hindi-test",
+  "language": "en",
+  "originalLanguage": "hi",
+  "duration": 240,
+  "segments": [
+    {
+      "start": 0,
+      "end": 20,
+      "text": "Welcome to this physics tutorial. Today we will learn about Newton's laws of motion and their applications in daily life."
+    },
+    {
+      "start": 20,
+      "end": 40,
+      "text": "Newton's first law states that an object at rest stays at rest, and an object in motion stays in motion unless acted upon by an external force."
+    },
+    {
+      "start": 40,
+      "end": 60,
+      "text": "This is also known as the law of inertia. Inertia is the resistance of any physical object to change in its velocity."
+    },
+    {
+      "start": 60,
+      "end": 80,
+      "text": "Newton's second law relates force, mass, and acceleration. The formula is F equals ma, where F is force, m is mass, and a is acceleration."
+    },
+    {
+      "start": 80,
+      "end": 100,
+      "text": "This law tells us that heavier objects require more force to accelerate them. This is why pushing a car is harder than pushing a bicycle."
+    },
+    {
+      "start": 100,
+      "end": 120,
+      "text": "Newton's third law states that for every action, there is an equal and opposite reaction. When you push a wall, the wall pushes back with equal force."
+    },
+    {
+      "start": 120,
+      "end": 140,
+      "text": "These laws are fundamental to understanding motion and forces. They apply to everything from rockets to everyday objects."
+    },
+    {
+      "start": 140,
+      "end": 160,
+      "text": "In space, Newton's laws are especially important. Rockets work by pushing gases backward, which pushes the rocket forward."
+    },
+    {
+      "start": 160,
+      "end": 180,
+      "text": "On Earth, friction and air resistance affect motion. Without friction, objects would never stop moving."
+    },
+    {
+      "start": 180,
+      "end": 200,
+      "text": "Understanding these laws helps engineers design vehicles, buildings, and machines. They are the foundation of classical mechanics."
+    },
+    {
+      "start": 200,
+      "end": 220,
+      "text": "Practice problems will help you understand these concepts better. Calculate force when mass and acceleration are given."
+    },
+    {
+      "start": 220,
+      "end": 240,
+      "text": "Thank you for watching this tutorial. In the next lesson, we will learn about energy and momentum conservation."
+    }
+  ],
+  "originalSegments": null
+}

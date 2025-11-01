@@ -94,7 +94,7 @@
 
 ## 🚀 Launch Options Available
 
-### 1. Desktop Shortcut (Recommended for TechExpo Demo)
+### 1. Desktop Shortcut (Recommended for demos)
 ```
 Action: Double-click "EduLens Hybrid" on Desktop
 Result: App launches with automatic backend → frontend sequence
@@ -217,17 +217,17 @@ Expected result: **All 5 component checks pass ✅**
 
 ## 📞 Usage Instructions for Demo
 
-### For TechExpo Demo:
+### For demos:
 1. **Desktop Shortcut Method (Recommended)**
    - Double-click "EduLens Hybrid" on Desktop
    - Wait 5-10 seconds
    - App launches automatically
 
 2. **Backup Method (Command Line)**
-   ```bash
-   cd C:\Users\Harsh\OneDrive\Desktop\edulens-hybrid
-   npm start
-   ```
+```bash
+cd C:\Users\Harsh\OneDrive\Desktop\edulens-hybrid
+npm start
+```
 
 ### Before Demo:
 1. Ensure Ollama is running: `ollama serve`
@@ -270,7 +270,7 @@ Expected result: **All 5 component checks pass ✅**
 **Tested By**: Automated Verification Script  
 **Result**: 100% Pass Rate  
 
-**Ready for**: TechExpo Demo, End-to-End Testing, Production Deployment
+**Ready for**: Live demos, End-to-End Testing, Production Deployment
 
 ---
 

@@ -196,7 +196,7 @@ Expected:
 
 ---
 
-## ✅ Ready for TechExpo Demo
+## ✅ Ready for live demos
 
 **All Phase 2.1 issues resolved**:
 - ✅ Backend starts and binds to port 5000 instantly

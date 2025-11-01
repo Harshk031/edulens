@@ -22,13 +22,20 @@ export default function YouTubeEmbed({ videoId: initialVideoId }) {
     return () => window.removeEventListener('focus', handleClipboard);
   }, []);
 
+  const lastLoaded = useRef(null);
   useEffect(() => {
     if (!videoId || !ref.current) return;
+    if (lastLoaded.current === videoId) return;
+    lastLoaded.current = videoId;
     const url = `https://www.youtube.com/watch?v=${videoId}`;
     loadYouTubeVideo(ref.current, url);
   }, [videoId]);
 
   return (
-    <div ref={ref} style={{ width: '100%', height: '480px', borderRadius: '12px', overflow: 'hidden' }} />
+    <div
+      className="yt-embed"
+      ref={ref}
+      style={{ width: '100%', height: '540px', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 0 24px rgba(139, 92, 246, .3)', pointerEvents: 'auto' }}
+    />
   );
 }
