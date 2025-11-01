@@ -70,13 +70,17 @@ export default function useHybridAI() {
     setLoading(true); setError(null);
     try {
       if (!videoId) throw new Error('No video loaded');
+      try { window.dispatchEvent(new CustomEvent('pipeline:frontend:stage',{detail:{stage:'useHybridAI'}})); } catch {}
       const res = await apiFetch(`/api/ai/query`, {
         method:'POST', headers:{'Content-Type':'application/json'},
         body: JSON.stringify({ videoId, query: content, mode })
       });
+      try { window.dispatchEvent(new CustomEvent('pipeline:frontend:stage',{detail:{stage:'API Request'}})); } catch {}
       const data = await res.json(); if(!res.ok) throw new Error(data.error||'AI request failed');
+      try { window.dispatchEvent(new CustomEvent('pipeline:frontend:stage',{detail:{stage:'Response'}})); } catch {}
       setMessages(prev => [...prev, { role:'user', content }, { role:'assistant', content: data.text || '' }]);
       setResult(data.text || '');
+      try { window.dispatchEvent(new CustomEvent('pipeline:frontend:stage',{detail:{stage:'Render'}})); } catch {}
     } catch(e){ setError(e.message); } finally { setLoading(false); }
   }, [videoId, messages, mode]);
 

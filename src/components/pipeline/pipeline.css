@@ -1,0 +1,9 @@
+/* Shared pipeline styling in green theme */
+.pipe-box{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:10px;box-shadow:var(--shadow-glow)}
+.pipe-title{font-weight:700;color:var(--accent-primary);margin-bottom:6px}
+.pipe-row{display:flex;align-items:center;gap:0}
+.pipe-node{position:relative;display:flex;align-items:center;gap:8px}
+.node-dot{width:14px;height:14px;border-radius:999px;background:var(--accent-primary);box-shadow:0 0 12px var(--accent-glow);opacity:.25;transform:scale(.9)}
+.node-label{color:var(--text-secondary);font-size:.8rem}
+.node-arrow{width:36px;height:2px;background:linear-gradient(90deg, var(--accent-primary), transparent);margin:0 8px;opacity:.5}
+.pipe-meta{display:flex;justify-content:space-between;color:var(--text-secondary);font-size:.8rem;margin-top:6px}

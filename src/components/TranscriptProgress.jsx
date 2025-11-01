@@ -6,6 +6,7 @@ export default function TranscriptProgress({ videoId }) {
   useEffect(() => {
     let timer;
     let lastStatus = 'idle';
+    let lastStage = '';
     const fetchStatus = async () => {
       if (!videoId) return;
       try {
@@ -13,6 +14,10 @@ export default function TranscriptProgress({ videoId }) {
         if (r.ok) {
           const j = await r.json();
           setStatus(j);
+          if (j.stage && j.stage !== lastStage) {
+            try { window.dispatchEvent(new CustomEvent('pipeline:backend:stage', { detail: { stage: j.stage, progress: j.progress||0 } })); } catch {}
+            lastStage = j.stage;
+          }
           // If idle, check whether transcript exists; if not, start processing automatically
           if (j.status === 'idle') {
             try {

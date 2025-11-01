@@ -128,15 +128,23 @@ export default function AIChatPanel() {
         <button
           className={`tab ${activeTab === 'chat' ? 'active' : ''}`}
           onClick={() => setActiveTab('chat')}
+          onMouseDown={() => window.dispatchEvent(new CustomEvent('pipeline:frontend:stage',{detail:{stage:'Click'}}))}
         >
           💬 Chat
         </button>
         <button
           className={`tab ${activeTab === 'tools' ? 'active' : ''}`}
           onClick={() => setActiveTab('tools')}
+          onMouseDown={() => window.dispatchEvent(new CustomEvent('pipeline:frontend:stage',{detail:{stage:'Click'}}))}
         >
           🛠️ Tools
         </button>
+      </div>
+
+      {/* Pipelines */}
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8,padding:'8px 12px'}}>
+        {(() => {try{const Comp=require('./pipeline/FrontendPipeline.jsx').default; return <Comp/>;}catch{return null;}})()}
+        {(() => {try{const Comp=require('./pipeline/BackendPipeline.jsx').default; return <Comp/>;}catch{return null;}})()}
       </div>
 
       {activeTab === 'chat' && (
