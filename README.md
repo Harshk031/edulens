@@ -2,6 +2,11 @@
 
 EduLens is a distraction‑aware learning workspace that blends YouTube‑based study, an AI assistant, and a progress‑tracking Focus Timer into a single desktop app. It runs as a hybrid Vite+React frontend with an Express backend and an Electron shell.
 
+## About
+EduLens Hybrid is my personal take on a calmer learning space. I built it because I kept bouncing between a video, notes, and an AI tab. This app puts them together and adds a gentle, motivational timer — not a lock. It’s meant to feel human: steady, minimal, and respectful of your flow.
+
+Developed by Harsh Katiyar with AI assistance.
+
 ## Elevator pitch
 - Load any YouTube lecture inside a clean, controlled player.
 - Ask AI questions, take notes, and track focus time — all in one screen.
@@ -61,10 +66,10 @@ Environment:
 - Offline mode: `ollama serve`
 
 ## Docs
-- Phase summaries: `docs/PHASE_0_SUMMARY.md`, `docs/PHASE_1_SUMMARY.md`, `docs/PHASE_2_SUMMARY.md`
+- Phase summaries: `docs/phases/PHASE_0_SUMMARY.md`, `docs/phases/PHASE_1_SUMMARY.md`, `docs/phases/PHASE_2_SUMMARY.md`
 - Troubleshooting: `docs/TROUBLESHOOTING.md`
 - Demo script: `docs/DEMO.md`
-- Changelog: `CHANGELOG.md` (tag v1.0-expo)
+- Changelog: `CHANGELOG.md` (tags: v1.0, v1.0-expo)
 
 ## Contribution & Acknowledgement
 Built by Harsh Katiyar with AI assistance (Claude + ChatGPT). This repo documents the full iterative path: prototypes, failures, fixes, and the final hybrid.
