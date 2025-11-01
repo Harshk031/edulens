@@ -1,6 +1,9 @@
 import { useRef, useEffect, useState } from 'react';
 import useHybridAI from '../hooks/useHybridAI';
 import ToolPanel from './tools/ToolPanel.jsx';
+import MindmapModal from './tools/MindmapModal.jsx';
+import FlashcardsGrid from './tools/FlashcardsGrid.jsx';
+import QuizView from './tools/QuizView.jsx';
 import './AIChatPanel.css';
 import TranscriptProgress from './TranscriptProgress.jsx';
 import TTSControls from './TTSControls.jsx';
@@ -197,17 +200,26 @@ export default function AIChatPanel() {
             </div>
           )}
 
-          <ToolPanel
-            open={panel.open}
-            title={panel.title}
-            onClose={() => setPanel({ open: false, title: '', content: '' })}
-          >
-            {loading ? (
-              <div style={{display:'flex',alignItems:'center',gap:10}}><div className="loading-morph"/> Generating…</div>
-            ) : (
-              <pre style={{whiteSpace:'pre-wrap'}}>{typeof result === 'string' ? result : JSON.stringify(result, null, 2)}</pre>
-            )}
-          </ToolPanel>
+          {/* Fullscreen mindmap modal */}
+          {panel.title === 'Mindmap' ? (
+            <MindmapModal open={panel.open} onClose={() => setPanel({ open: false, title: '', content: '' })} text={typeof result === 'string' ? result : JSON.stringify(result)} />
+          ) : (
+            <ToolPanel
+              open={panel.open}
+              title={panel.title}
+              onClose={() => setPanel({ open: false, title: '', content: '' })}
+            >
+              {loading ? (
+                <div style={{display:'flex',alignItems:'center',gap:10}}><div className="loading-morph"/> Generating…</div>
+              ) : panel.title === 'Flashcards' ? (
+                <FlashcardsGrid text={typeof result === 'string' ? result : JSON.stringify(result)} videoId={typeof window!== 'undefined' ? window.__edulensCurrentVideoId : ''} />
+              ) : panel.title === 'Quiz' ? (
+                <QuizView text={typeof result === 'string' ? result : JSON.stringify(result)} />
+              ) : (
+                <pre style={{whiteSpace:'pre-wrap'}}>{typeof result === 'string' ? result : JSON.stringify(result, null, 2)}</pre>
+              )}
+            </ToolPanel>
+          )}
         </div>
       )}
 

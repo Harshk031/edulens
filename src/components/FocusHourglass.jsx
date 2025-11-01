@@ -29,9 +29,9 @@ export default function FocusHourglass({ duration, remaining, paused, onPause, o
       <div className={`hourglass ${paused ? 'paused':''}`}> 
         <svg viewBox="0 0 60 100" width="44" height="72" aria-label="Focus hourglass">
           <defs>
-            <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#e9d5ff"/>
-              <stop offset="100%" stopColor="#a78bfa"/>
+              <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#00FF8C"/>
+              <stop offset="100%" stopColor="#00FFB2"/>
             </linearGradient>
             <clipPath id="topClip">
               <polygon points="5,5 55,5 30,48" />

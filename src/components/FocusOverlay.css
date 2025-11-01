@@ -35,7 +35,7 @@ background: rgba(10, 10, 25, 0.6);
   margin: 0;
   font-size: 3rem;
   color: #fff;
-  text-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+text-shadow: 0 0 20px var(--accent-glow);
   letter-spacing: 2px;
   font-weight: 900;
   animation: pulse-title 2s ease-in-out infinite;
@@ -45,10 +45,10 @@ background: rgba(10, 10, 25, 0.6);
 
 @keyframes pulse-title {
   0%, 100% {
-    text-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+    text-shadow: 0 0 20px var(--accent-glow);
   }
   50% {
-    text-shadow: 0 0 40px rgba(139, 92, 246, 1);
+    text-shadow: 0 0 40px rgba(0, 255, 140, 0.9);
   }
 }
 
@@ -84,12 +84,12 @@ background: rgba(10, 10, 25, 0.6);
 }
 
 .hourglass svg {
-  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+filter: drop-shadow(0 0 10px var(--accent-glow));
 }
 
 .hourglass-text {
   margin: 0;
-  color: #8b5cf6;
+color: var(--accent-primary);
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 1px;
@@ -106,7 +106,7 @@ background: rgba(10, 10, 25, 0.6);
 /* Interactive card on top of non-interactive overlay */
 .focus-timer-container {
   pointer-events: auto;
-  background: linear-gradient(90deg, #8b5cf6, #ff6b9d);
+background: var(--accent-gradient);
   padding: 1rem 2rem;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
@@ -124,7 +124,7 @@ background: rgba(10, 10, 25, 0.6);
   color: #fff;
   font-family: 'Courier New', monospace;
   letter-spacing: 0.2em;
-  text-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
+text-shadow: 0 0 30px var(--accent-glow);
   min-width: 300px;
   text-align: center;
 }
@@ -244,9 +244,9 @@ background: rgba(10, 10, 25, 0.6);
 }
 
 .btn-stats {
-  background: rgba(139, 92, 246, 0.2);
-  border-color: #8b5cf6;
-  color: #8b5cf6;
+background: rgba(0, 255, 140, 0.12);
+border-color: var(--accent-primary);
+color: var(--accent-primary);
 }
 
 .btn-stats:hover {

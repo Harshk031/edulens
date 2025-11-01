@@ -226,23 +226,24 @@
 }
 
 .tools-input textarea {
-  background: #0f3460;
-  border: 1px solid #533483;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
   border-radius: 8px;
-  color: #e0e0e0;
+  color: var(--text);
   padding: 1rem;
-  font-family: 'Courier New', monospace;
-  font-size: 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
   resize: vertical;
 }
 
 .tools-input textarea::placeholder {
-  color: #666;
+  color: var(--text-muted);
 }
 
 .tools-input textarea:focus {
   outline: none;
-  border-color: #8b5cf6;
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-glow);
 }
 
 .tools-buttons {

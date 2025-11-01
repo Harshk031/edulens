@@ -1,7 +1,7 @@
 .toolpanel-root{position:fixed;inset:0;z-index:200}
 .toolpanel-scrim{position:absolute;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);animation:fade .4s ease forwards}
-.toolpanel-card{position:absolute;left:50%;bottom:4%;transform:translateX(-50%) translateY(12px);width:min(1200px,90vw);height:min(90vh,850px);border-radius:16px;background:rgba(255,255,255,.06);backdrop-filter:blur(16px) brightness(1.15);border:1px solid rgba(139,92,246,.35);box-shadow:0 20px 60px rgba(0,0,0,.35);animation:slideUp .4s ease forwards}
-.toolpanel-header{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid rgba(139,92,246,.25)}
+.toolpanel-card{position:absolute;left:50%;bottom:4%;transform:translateX(-50%) translateY(12px);width:min(1200px,90vw);height:min(90vh,850px);border-radius:16px;background:var(--glass);backdrop-filter:blur(16px) brightness(1.15);border:1px solid var(--glass-border);box-shadow:0 20px 60px rgba(0,0,0,.35);animation:slideUp .4s ease forwards}
+.toolpanel-header{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--glass-border)}
 .toolpanel-title{font-weight:700}
 .toolpanel-close{background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer}
 .toolpanel-body{padding:14px;overflow:auto;height:calc(100% - 54px)}

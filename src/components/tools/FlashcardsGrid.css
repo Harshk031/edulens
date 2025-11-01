@@ -1,0 +1,9 @@
+/* Flashcards grid styling */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.fc-empty{color:var(--text-muted);padding:8px}
+.fc-card{position:relative;background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid var(--glass-border);border-radius:12px;padding:12px;box-shadow:var(--shadow-glow)}
+.fc-idx{position:absolute;top:8px;right:10px;color:var(--text-secondary);font-weight:700}
+.fc-term{color:var(--accent-primary);font-weight:700;margin-bottom:4px}
+.fc-q{font-weight:600;margin:.25rem 0}
+.fc-a{margin:.25rem 0;color:var(--text-secondary)}
+.fc-jump{margin-top:.25rem;background:var(--accent-gradient);color:#0C1412;border:none;border-radius:8px;padding:6px 10px;cursor:pointer}

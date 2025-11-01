@@ -1,0 +1,14 @@
+/* Quiz view styles with red/green marking */
+.quiz-wrap{display:flex;flex-direction:column;gap:12px}
+.quiz-empty{color:var(--text-muted)}
+.quiz-item{background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid var(--glass-border);border-radius:12px;padding:12px}
+.quiz-q{font-weight:700;margin-bottom:8px}
+.qid{display:inline-block;min-width:34px;text-align:center;margin-right:6px;background:var(--glass);border:1px solid var(--glass-border);border-radius:8px;color:var(--accent-primary)}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.quiz-opt{background:var(--glass);border:1px solid var(--glass-border);color:var(--text);border-radius:10px;padding:8px 10px;text-align:left;cursor:pointer}
+.quiz-opt .opt-key{display:inline-block;width:20px;text-align:center;margin-right:6px;color:var(--text-secondary)}
+.quiz-opt.ok{border-color:#22c55e;background:rgba(34,197,94,.15)}
+.quiz-opt.bad{border-color:#ef4444;background:rgba(239,68,68,.12)}
+.quiz-feedback{margin-top:8px;font-weight:700}
+.quiz-feedback.ok{color:#22c55e}
+.quiz-feedback.bad{color:#ef4444}
