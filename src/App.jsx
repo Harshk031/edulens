@@ -12,6 +12,7 @@ import { useClipboardListener } from './hooks/useClipboardListener';
 import YouTubeEmbed from './components/YouTubeEmbed.jsx';
 import FocusTimerTracker from './components/FocusTimerTracker.jsx';
 import CommandPalette from './components/CommandPalette.jsx';
+import TranscriptProgress from './components/TranscriptProgress.jsx';
 import './App.css';
 import useHybridRuntime from './hooks/useHybridRuntime';
 function App() {
@@ -129,7 +130,7 @@ function App() {
           <div className="timer-bar" style={{marginBottom: 10, zIndex:100}}>
             <FocusTimerTracker variant="bar" />
           </div>
-          <div className="video-shell glass">
+          <div className="video-shell glass" style={{position:'relative'}}>
             {videoId ? (
               <YouTubeEmbed videoId={videoId} />
             ) : (
@@ -137,6 +138,10 @@ function App() {
                 Copy a YouTube link and return — it will auto-load here.
               </div>
             )}
+            {/* subtle bottom overlay progress (non-interactive) */}
+            <div style={{position:'absolute', left:12, right:12, bottom:12, pointerEvents:'none'}}>
+              <TranscriptProgress videoId={videoId} />
+            </div>
             <div className="glass glass-strong glass-controls" style={{transition:'all .35s cubic-bezier(.2,.6,.2,1)'}}>
               <span style={{opacity:.9}}>Distraction-free player</span>
               <span style={{opacity:.7, fontSize:12}}>No suggestions · No external UI</span>
