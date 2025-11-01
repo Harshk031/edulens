@@ -97,7 +97,7 @@
   background: linear-gradient(to bottom,
     rgba(255, 255, 255, 1) 0%,
     rgba(255, 200, 100, 0.95) 10%,
-    rgba(255, 107, 157, 0.8) 40%,
+    rgba(0, 224, 255, 0.6) 40%,
     rgba(0, 255, 178, 0.6) 70%,
     transparent 100%);
 }
@@ -108,8 +108,8 @@
   height: 70px;
   background: linear-gradient(to bottom,
     rgba(255, 200, 100, 0.9) 0%,
-    rgba(255, 107, 157, 0.7) 30%,
-    rgba(0, 224, 255, 0.5) 60%,
+    rgba(0, 224, 255, 0.6) 30%,
+    rgba(0, 255, 178, 0.5) 60%,
     transparent 100%);
   animation-delay: 0.04s;
 }
@@ -120,8 +120,8 @@
   height: 70px;
   background: linear-gradient(to bottom,
     rgba(255, 200, 100, 0.9) 0%,
-    rgba(255, 107, 157, 0.7) 30%,
-    rgba(0, 224, 255, 0.5) 60%,
+    rgba(0, 224, 255, 0.6) 30%,
+    rgba(0, 255, 178, 0.5) 60%,
     transparent 100%);
   animation-delay: 0.02s;
 }

@@ -35,7 +35,7 @@ export default function YouTubeEmbed({ videoId: initialVideoId }) {
     <div
       className="yt-embed"
       ref={ref}
-      style={{ width: '100%', height: '540px', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 0 24px rgba(139, 92, 246, .3)', pointerEvents: 'auto' }}
+      style={{ width: '100%', height: '540px', borderRadius: '20px', overflow: 'hidden', boxShadow: 'var(--shadow-glow)', border: '1px solid var(--glass-border)', pointerEvents: 'auto' }}
     />
   );
 }

@@ -1,9 +1,9 @@
 .hybrid-ai-toggle {
   padding: 10px 12px;
-  background: rgba(255,255,255,0.06);
+  background: var(--glass);
   backdrop-filter: blur(12px) brightness(1.1);
   border-radius: 12px;
-  border: 1px solid rgba(139, 92, 246, 0.25);
+  border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-glow);
 }
 
@@ -29,7 +29,7 @@
 .toggle-btn {
   flex: 1;
   padding: 10px 12px;
-  border: 1px solid rgba(139, 92, 246, 0.35);
+  border: 1px solid var(--glass-border);
   background: rgba(255,255,255,0.05);
   color: var(--text);
   border-radius: 10px;
@@ -44,16 +44,16 @@
 }
 
 .toggle-btn:hover {
-  background: #16213e;
-  border-color: #533483;
+  background: rgba(0, 255, 140, 0.08);
+  border-color: var(--accent-primary);
   color: #fff;
 }
 
 .toggle-btn.active {
   background: var(--accent-gradient);
   border-color: transparent;
-  color: #fff;
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.45);
+  color: #0C1412;
+  box-shadow: 0 0 20px var(--accent-glow);
 }
 
 .status-light {
@@ -79,7 +79,7 @@
 .provider-btn {
   flex: 1;
   padding: 8px 10px;
-  border: 1px solid rgba(139, 92, 246, 0.35);
+  border: 1px solid var(--glass-border);
   background: rgba(255,255,255,0.05);
   color: var(--text-secondary);
   border-radius: 8px;
@@ -90,20 +90,20 @@
 }
 
 .provider-btn:hover {
-  background: #2a3f5f;
+  background: rgba(0, 255, 140, 0.08);
   color: #e0e0e0;
 }
 
 .provider-btn.active {
   background: var(--accent-gradient);
   border-color: transparent;
-  color: #fff;
-  box-shadow: 0 0 18px rgba(139, 92, 246, 0.35);
+  color: #0C1412;
+  box-shadow: 0 0 18px var(--accent-glow);
 }
 
 .status-display {
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  background: rgba(0, 255, 140, 0.08);
+  border: 1px solid var(--glass-border);
   border-radius: 8px;
   padding: 1rem;
 }
@@ -117,7 +117,7 @@
 
 .mode-info strong,
 .provider-info strong {
-  color: #8b5cf6;
+  color: var(--accent-primary);
 }
 
 .status-indicators {
@@ -125,7 +125,7 @@
   gap: 1rem;
   margin-top: 0.75rem;
   padding-top: 0.75rem;
-  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  border-top: 1px solid var(--glass-border);
 }
 
 .status-item {
@@ -137,5 +137,5 @@
 }
 
 .status-item strong {
-  color: #8b5cf6;
+  color: var(--accent-primary);
 }

@@ -124,7 +124,10 @@ export async function loadYouTubeVideo(container, videoUrl) {
         logLine('iframe onload fired');
         ok = true; break;
       } catch (e) {
-        lastErr = e; logLine(`embed failed: ${e.message}`);
+        lastErr = e;
+        if (myId === _currentLoadId) {
+          logLine(`embed failed: ${e.message}`);
+        }
       }
     }
 

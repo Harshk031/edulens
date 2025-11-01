@@ -15,7 +15,7 @@ function RichResult({ text }){
         const m = p.match(/^\[(\d{1,2}:\d{2})\]$/);
         if (m){
           const sec = tsToSec(m[1]);
-          return <a key={i} style={{color:'#7b61ff', cursor:'pointer'}} onClick={()=>window.dispatchEvent(new CustomEvent('video:seek',{detail:{seconds:sec}}))}>{p}</a>;
+          return <a key={i} style={{color:'var(--accent-primary)', cursor:'pointer'}} onClick={()=>window.dispatchEvent(new CustomEvent('video:seek',{detail:{seconds:sec}}))}>{p}</a>;
         }
         return <span key={i}>{p}</span>;
       })}
