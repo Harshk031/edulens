@@ -75,6 +75,9 @@ A PowerShell-based launcher system was built:
 - Launcher: PowerShell orchestration  
 - Version Control: Git + GitHub
 
+## 📁 Repository Structure
+See docs/REPO_STRUCTURE.md for a directory-by-directory overview.
+
 ## ⚙️ Setup Instructions
 ```bash
 # Clone repository
