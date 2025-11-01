@@ -8,6 +8,11 @@ EduLens is a distraction‑aware learning workspace that blends YouTube‑based 
 - Works offline (Ollama) and online (Groq/Claude/Gemini) with a unified pipeline.
 
 ## The development journey (Chrome Extension → Browser → Electron → Hybrid)
+
+Full phase docs:
+- Phase 0: [docs/PHASE_0_SUMMARY.md](docs/PHASE_0_SUMMARY.md)
+- Phase 1: [docs/PHASE_1_SUMMARY.md](docs/PHASE_1_SUMMARY.md)
+- Phase 2: [docs/PHASE_2_SUMMARY.md](docs/PHASE_2_SUMMARY.md)
 1) Chrome Extension (Phase 0 prototype)
 - Attempt: DOM‑level filtering, hot‑swapping the YouTube UI, and injecting AI sidebars.
 - Why it failed: frequent DOM changes in YouTube, brittle selectors, limited control over headers/CSP, and unpredictable update cadence.
@@ -59,6 +64,12 @@ npm run electron    # Electron shell (or use scripts/launch-edulens.ps1)
 Environment:
 - Copy `.env.example` to `.env` and fill optional API keys.
 - Offline mode: `ollama serve`
+
+## Screenshots
+- Video embed: [docs/screenshots/video-embed.png](docs/screenshots/video-embed.png)
+- AI panel: [docs/screenshots/ai-panel.png](docs/screenshots/ai-panel.png)
+- Focus layout: [docs/screenshots/focus-layout.png](docs/screenshots/focus-layout.png)
+- Hourglass timer: [docs/screenshots/hourglass.png](docs/screenshots/hourglass.png)
 
 ## Docs
 - Phase summaries: `docs/PHASE_0_SUMMARY.md`, `docs/PHASE_1_SUMMARY.md`, `docs/PHASE_2_SUMMARY.md`

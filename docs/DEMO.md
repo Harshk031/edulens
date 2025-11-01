@@ -1,4 +1,4 @@
-# EduLens – TechExpo Demo Script
+# EduLens – Demo Script
 
 1) Overview (15s)
 - EduLens is a hybrid desktop learning workspace: YouTube + AI + Focus timer.
