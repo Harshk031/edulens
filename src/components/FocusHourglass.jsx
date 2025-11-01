@@ -47,12 +47,18 @@ export default function FocusHourglass({ duration, remaining, paused, onPause, o
               </feMerge>
             </filter>
           </defs>
-          {/* Frame */}
-          <path d="M5 5 H55 M5 95 H55 M5 5 Q30 50 5 95 M55 5 Q30 50 55 95" stroke="url(#hg)" strokeWidth="3" fill="none" filter="url(#glow)" />
+          {/* Wooden Frame */}
+          <defs>
+            <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#8B5A2B"/>
+              <stop offset="100%" stopColor="#D2B48C"/>
+            </linearGradient>
+          </defs>
+          <path d="M5 5 H55 M5 95 H55 M5 5 Q30 50 5 95 M55 5 Q30 50 55 95" stroke="url(#wood)" strokeWidth="4" fill="none" filter="url(#glow)" />
           {/* Sand top fill */}
           <g clipPath="url(#topClip)">
-            <rect x="5" y="5" width="50" height="40" fill="url(#hg)" opacity="0.18" />
-            <rect ref={topRef} className="sand-top" x="5" y="5" width="50" height="40" fill="url(#hg)" />
+            <rect x="5" y="5" width="50" height="40" fill="#f7e7a3" opacity="0.25" />
+            <rect ref={topRef} className="sand-top" x="5" y="5" width="50" height="40" fill="#f7e7a3" />
           </g>
           {/* Falling sand */}
           <rect ref={flowRef} className="sand-flow" x="28.5" y="44" width="3" height="12" fill="#00E0FF" />

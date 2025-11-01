@@ -47,6 +47,8 @@ html, body, #root {
   font-weight: var(--font-weight-normal);
   letter-spacing: 0.015em;
   line-height: 1.6;
+  height: 100%;
+  overflow: hidden; /* panes manage their own scroll */
 }
 
 /* Typography hierarchy - Sheryians style */
@@ -118,8 +120,10 @@ input, textarea {
 /* App scaffold */
 .edulens-app {
   min-height: 100vh;
+  height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  overflow: hidden;
 }
 
 .app-header {
@@ -175,6 +179,12 @@ input, textarea {
 }
 .btn-gradient { background: var(--accent-gradient); box-shadow: 0 8px 24px var(--accent-glow); }
 .btn-glass { background: var(--glass); border: 1px solid var(--glass-border); }
+.btn-exit-app{ background: var(--accent-gradient); color:#0C1412; border: none; box-shadow: 0 10px 26px var(--accent-glow); transform: translateZ(0); transition: transform .25s ease, box-shadow .25s ease; }
+.btn-exit-app:hover{ transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 36px rgba(0,255,140,.5); }
+.btn-exit-app:active{ transform: translateY(0) scale(.99); }
+
+/* Hide cursor over embedded video (and container) */
+.yt-embed, .yt-embed iframe { cursor: none !important; }
 
 /* Custom cursor layers */
 .cursor-ring, .cursor-dot {
