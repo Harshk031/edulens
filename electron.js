@@ -134,6 +134,17 @@ app.whenReady().then(async () => {
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.webContents.executeJavaScript("console.log('✅ EduLens hybrid runtime active (Electron only)')");
   });
+  // Cleanup temp media files on quit
+  const cleanupTemp = () => {
+    try {
+      const base = process.cwd();
+      const files = fs.readdirSync(base).filter(f => /^(tmp-.*\.(mp3|wav)(\.json)?)$/.test(f) || /-16k\.wav(\.json)?$/.test(f));
+      files.forEach(f => { try { fs.unlinkSync(path.join(base, f)); } catch {} });
+      const userBase = userDataDir || app.getPath('userData');
+      try { const uf = fs.readdirSync(userBase).filter(f => /^(tmp-.*\.(mp3|wav)(\.json)?)$/.test(f)); uf.forEach(f=>{ try { fs.unlinkSync(path.join(userBase,f)); } catch {} }); } catch {}
+    } catch {}
+  };
+  app.on('before-quit', cleanupTemp);
 
   // Build allowed local embed prefix dynamically from .runtime-env if present
   let allowedPrefix = 'http://127.0.0.1:5000/local/embed/';
@@ -161,6 +172,7 @@ app.whenReady().then(async () => {
   ipcMain.on('open-external', (_e, url) => {
     try { if (url) shell.openExternal(url); } catch {}
   });
+  ipcMain.on('app:quit', () => { try { app.quit(); } catch {} });
   // Clipboard monitor → send to renderer
   let lastClip = '';
   setInterval(() => {

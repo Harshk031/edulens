@@ -121,6 +121,7 @@ function App() {
           <span className="logo-text grad-text">EduLens Hybrid</span>
         </div>
         <HybridAIToggle onModeChange={setAiMode} />
+        <button className="btn btn-glass ripple" onClick={() => window?.electronAPI?.quit?.()}>Exit</button>
       </header>
 
       {/* Keep all tabs mounted to preserve state - just hide inactive ones */}

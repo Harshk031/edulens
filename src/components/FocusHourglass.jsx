@@ -55,7 +55,7 @@ export default function FocusHourglass({ duration, remaining, paused, onPause, o
             <rect ref={topRef} className="sand-top" x="5" y="5" width="50" height="40" fill="url(#hg)" />
           </g>
           {/* Falling sand */}
-          <rect ref={flowRef} className="sand-flow" x="29" y="46" width="2" height="8" fill="url(#hg)" />
+          <rect ref={flowRef} className="sand-flow" x="28.5" y="44" width="3" height="12" fill="#00E0FF" />
           {/* Sand bottom fill */}
           <g clipPath="url(#botClip)">
             <rect ref={botRef} className="sand-bottom" x="5" y="95" width="50" height="0" fill="url(#hg)" transform="translate(0,-40)" />

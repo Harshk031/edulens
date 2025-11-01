@@ -6,7 +6,7 @@
 /* Sand level binding by CSS variable --progress (0%..100%) */
 .hourglass .sand-top{transform-origin:50% 0%; transform:translateY(calc(var(--progress))); transition:transform .6s ease-out}
 .hourglass .sand-bottom{transform-origin:50% 100%; transform:translateY(calc(40px - (var(--progress)))); transition:transform .6s ease-out}
-.hourglass .sand-flow{opacity:1; animation:sparkle 1.2s linear infinite}
+.hourglass .sand-flow{opacity:.9; animation:sparkle 1.2s linear infinite; filter: drop-shadow(0 0 8px rgba(0, 224, 255, 0.8))}
 .hourglass.paused .sand-flow{opacity:.3; animation:none}
 @keyframes sparkle{0%{opacity:.2}50%{opacity:1}100%{opacity:.2}}
 

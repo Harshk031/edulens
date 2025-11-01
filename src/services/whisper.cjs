@@ -44,9 +44,13 @@ async function transcribe(audioFile, { language = 'auto' } = {}, onProgress = ()
           }));
           onProgress(1);
           const detectedLang = data.params?.language || 'en';
+          try { fs.unlinkSync(wav); } catch {}
+          try { fs.unlinkSync(outJson); } catch {}
           resolve({ language: detectedLang, segments });
         } catch (e) {
           console.error('Whisper parse error:', e);
+          try { fs.unlinkSync(wav); } catch {}
+          try { fs.unlinkSync(outJson); } catch {}
           resolve({ language: 'en', segments: [] });
         }
       });

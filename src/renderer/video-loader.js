@@ -12,15 +12,17 @@ const isElectron = () => {
   } catch { return false; }
 };
 
-function extractVideoId(videoUrl) {
+function extractVideoParams(videoUrl) {
   try {
     if (!videoUrl) return null;
     // If raw ID provided
-    if (/^[A-Za-z0-9_-]{11}$/.test(videoUrl)) return videoUrl;
+    if (/^[A-Za-z0-9_-]{11}$/.test(videoUrl)) return { videoId: videoUrl };
 
     const u = new URL(videoUrl);
     const host = (u.hostname || '').replace(/^www\./, '');
     let id = null;
+    let list = u.searchParams.get('list') || null;
+    let index = parseInt(u.searchParams.get('index') || u.searchParams.get('i') || '1', 10);
 
     if (host === 'youtu.be') {
       id = (u.pathname || '').split('/').filter(Boolean)[0] || null;
@@ -37,7 +39,7 @@ function extractVideoId(videoUrl) {
 
     if (id) {
       id = id.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 11);
-      if (/^[A-Za-z0-9_-]{11}$/.test(id)) return id;
+      if (/^[A-Za-z0-9_-]{11}$/.test(id)) return { videoId: id, list, index: isNaN(index)?1:index };
     }
   } catch {}
   return null;
@@ -93,15 +95,17 @@ try {
 
 export async function loadYouTubeVideo(container, videoUrl) {
   if (!container) throw new Error('container required');
-  const videoId = extractVideoId(videoUrl);
-  if (!videoId) throw new Error('Invalid YouTube URL/ID');
+  const params = extractVideoParams(videoUrl);
+  if (!params?.videoId) throw new Error('Invalid YouTube URL/ID');
+  const { videoId, list, index } = params;
   try { window.__edulensCurrentVideoId = videoId; window.dispatchEvent(new CustomEvent('video:loaded', { detail: { videoId } })); } catch {}
 
+  const listQuery = list ? `?list=${encodeURIComponent(list)}&index=${index||1}` : '';
   const origin = API_BASE || '';
   const sources = [
-    `${origin}/local/embed/${videoId}`,
-    `https://www.youtube.com/embed/${videoId}`,
-    `https://www.youtube-nocookie.com/embed/${videoId}`,
+    `${origin}/local/embed/${videoId}${listQuery}`,
+    `https://www.youtube.com/embed/${videoId}${listQuery}`,
+    `https://www.youtube-nocookie.com/embed/${videoId}${listQuery}`,
   ];
 
   const myId = ++_currentLoadId;

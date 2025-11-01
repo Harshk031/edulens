@@ -36,4 +36,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
   timerGet: () => { try { return ipcRenderer.invoke('timer:get'); } catch { return null } },
   focusEnd: () => { try { ipcRenderer.send('focus:end'); } catch {} },
   onFocusEnded: (handler) => { try { ipcRenderer.on('focus:ended', () => handler && handler()); } catch {} },
+  quit: () => { try { ipcRenderer.send('app:quit'); } catch {} },
 });

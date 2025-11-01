@@ -39,8 +39,10 @@ async function transcribe(audioFile, { language = 'auto' } = {}, onProgress = ()
           const data = JSON.parse(fs.readFileSync(outJson, 'utf-8'));
           const segments = (data.segments || []).map(s => ({ start: s.t0 / 100.0, end: s.t1 / 100.0, text: s.text || '' }));
           onProgress(1);
+          try { fs.unlinkSync(wav); } catch {}
+          try { fs.unlinkSync(outJson); } catch {}
           resolve({ language: data.language || 'en', segments });
-        } catch (e) { resolve({ language: 'en', segments: [] }); }
+        } catch (e) { try { fs.unlinkSync(wav); } catch {}; try { fs.unlinkSync(outJson); } catch {}; resolve({ language: 'en', segments: [] }); }
       });
     });
   }
