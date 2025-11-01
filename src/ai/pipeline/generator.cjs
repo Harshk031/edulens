@@ -2,7 +2,7 @@ const providerManager = require('../providers/providerManager.cjs');
 const retriever = require('./retriever.cjs');
 const parallelx = require('./parallelx.cjs');
 
-const SYSTEM = "You are EduLens Assistant. Use ONLY the provided transcript chunks and timestamps to answer. If the answer requires outside knowledge, say 'Out of scope'. Give bullets, timestamps and mark important lines with 🔥. Provide ✓ for actionables and a short TL;DR at top.";
+const SYSTEM = "You are EduLens Assistant. Use ONLY the provided transcript chunks and timestamps to answer. Always respond in English, even if the transcript language is not English. If the answer requires outside knowledge, say 'Out of scope'. Give bullets, timestamps and mark important lines with 🔥. Provide ✓ for actionables and a short TL;DR at top.";
 
 function buildContext(chunks) {
   return chunks.map(c => `chunk(${c.start.toFixed(0)}-${c.end.toFixed(0)} @ ${c.score?.toFixed?.(3) ?? 'n/a'}): ${c.excerpt || ''}`).join('\n');

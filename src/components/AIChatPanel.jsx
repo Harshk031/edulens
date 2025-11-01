@@ -48,23 +48,32 @@ export default function AIChatPanel() {
   };
 
   const handleSummarize = async () => {
-    if (!input.trim()) return;
-    await actions.summarize(input);
-    setInput('');
+    if (!input.trim()) {
+      await actions.summarize('short');
+    } else {
+      await actions.summarize(input);
+      setInput('');
+    }
     setPanel({ open: true, title: 'Summary', content: '' });
   };
 
   const handleQuiz = async () => {
-    if (!input.trim()) return;
-    await actions.quiz(input);
-    setInput('');
+    if (!input.trim()) {
+      await actions.quiz();
+    } else {
+      await actions.quiz(input);
+      setInput('');
+    }
     setPanel({ open: true, title: 'Quiz', content: '' });
   };
 
   const handleMindmap = async () => {
-    if (!input.trim()) return;
-    await actions.mindmap(input);
-    setInput('');
+    if (!input.trim()) {
+      await actions.mindmap();
+    } else {
+      await actions.mindmap(input);
+      setInput('');
+    }
     setPanel({ open: true, title: 'Mindmap', content: '' });
   };
 
@@ -94,6 +103,18 @@ export default function AIChatPanel() {
     };
     window.addEventListener('tool:execute', onExecute);
     return () => window.removeEventListener('tool:execute', onExecute);
+  }, [actions]);
+
+  // Auto-run summary once transcript is ready
+  useEffect(() => {
+    const onReady = async (e) => {
+      try {
+        await actions.summarize('short');
+        setPanel({ open: true, title: 'Summary', content: '' });
+      } catch {}
+    };
+    window.addEventListener('transcript:ready', onReady);
+    return () => window.removeEventListener('transcript:ready', onReady);
   }, [actions]);
 
   return (

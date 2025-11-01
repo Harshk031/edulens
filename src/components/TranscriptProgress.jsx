@@ -5,6 +5,7 @@ export default function TranscriptProgress({ videoId }) {
 
   useEffect(() => {
     let timer;
+    let lastStatus = 'idle';
     const fetchStatus = async () => {
       if (!videoId) return;
       try {
@@ -12,12 +13,23 @@ export default function TranscriptProgress({ videoId }) {
         if (r.ok) {
           const j = await r.json();
           setStatus(j);
-          const interval = (j.status==='processing' || j.status==='queued') ? 3000 : 8000;
+          // If idle, check whether transcript exists; if not, start processing automatically
+          if (j.status === 'idle') {
+            try {
+              const t = await fetch(`/api/video/transcript?videoId=${encodeURIComponent(videoId)}`);
+              if (t.status === 404) {
+                await fetch('/api/video/process', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ url: `https://youtu.be/${videoId}` }) });
+              }
+            } catch {}
+          }
+          // Fire event when processing completes the first time
+          if ((lastStatus === 'processing' || lastStatus === 'queued') && j.status === 'done') {
+            try { window.dispatchEvent(new CustomEvent('transcript:ready', { detail: { videoId } })); } catch {}
+          }
+          lastStatus = j.status;
+          const interval = (j.status==='processing' || j.status==='queued') ? 2000 : 8000;
           timer = setTimeout(fetchStatus, interval);
           return;
-        }
-        if (r.status === 404) {
-          try { await fetch('/api/video/process', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ url: `https://youtu.be/${videoId}` }) }); } catch {}
         }
       } catch {}
       timer = setTimeout(fetchStatus, 5000);
