@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    html,body{height:100%;margin:0;background:transparent;}
+    .timer-root{position:fixed;top:16px;right:16px;pointer-events:none;}
+    .chip{pointer-events:auto;display:flex;gap:8px;align-items:center;padding:8px 12px;border-radius:12px;background:rgba(24,12,48,.6);backdrop-filter:blur(6px);border:1px solid rgba(168,85,247,.45);box-shadow:0 0 12px rgba(168,85,247,.35);color:#fff;font-family:system-ui,Segoe UI,Roboto,Inter,sans-serif}
+    .digits{font-weight:800;font-size:18px;background:linear-gradient(90deg,#e9d5ff,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 10px rgba(168,85,247,.45)}
+    .btn{pointer-events:auto;background:#7c3aed;border:none;border-radius:8px;color:#fff;padding:6px 10px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="timer-root">
+    <div class="chip">
+      <span class="digits" id="digits">25:00</span>
+      <button class="btn" id="toggle">Pause</button>
+    </div>
+  </div>
+  <script src="timer.js"></script>
+</body>
+</html>

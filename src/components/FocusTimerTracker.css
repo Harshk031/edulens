@@ -1,0 +1,26 @@
+/* Root overlay container: visible but non-blocking outside of its own controls */
+.ftt-root{position:absolute;top:16px;right:16px;z-index:20;pointer-events:none}
+
+/* Setup card */
+.ftt-card{pointer-events:auto;background:rgba(20,12,40,.7);backdrop-filter:blur(8px);border:1px solid rgba(168,85,247,.35);box-shadow:0 0 20px rgba(168,85,247,.25);border-radius:14px;padding:12px 14px;color:#fff;min-width:320px}
+.ftt-title{font-weight:700;margin-bottom:8px}
+.ftt-presets{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ftt-custom{display:flex;gap:8px;align-items:center}
+.ftt-custom input{width:80px;padding:6px 8px;border-radius:8px;border:1px solid rgba(168,85,247,.3);background:rgba(0,0,0,.3);color:#fff}
+
+/* Running chip */
+.ftt-chip{pointer-events:auto;display:flex;gap:10px;align-items:center;background:rgba(24,12,48,.6);backdrop-filter:blur(6px);border:1px solid rgba(168,85,247,.45);box-shadow:0 0 12px rgba(168,85,247,.35);border-radius:12px;padding:8px 12px;color:#fff}
+.ftt-ring{filter:drop-shadow(0 0 6px rgba(168,85,247,.35))}
+.ftt-main{display:flex;flex-direction:column}
+.ftt-digits{font-weight:800;font-size:18px;background:linear-gradient(90deg,#e9d5ff,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 10px rgba(168,85,247,.45)}
+.ftt-sub{opacity:.85;font-size:12px}
+.ftt-controls{display:flex;gap:6px;margin-left:8px}
+
+/* Buttons */
+.ftt-btn{background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:6px 10px;cursor:pointer}
+.ftt-btn:hover{filter:brightness(1.06)}
+
+/* Completed */
+.ftt-chip.completed{background:rgba(0,0,0,.6)}
+.ftt-complete-text{font-weight:700;margin-right:8px}
+.ftt-actions{display:flex;gap:8px}

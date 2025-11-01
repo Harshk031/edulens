@@ -1,0 +1,274 @@
+.reward-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.reward-modal-card {
+  position: relative;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 2px solid #8b5cf6;
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3),
+    inset 0 0 30px rgba(139, 92, 246, 0.1);
+  overflow: hidden;
+}
+
+.reward-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.reward-close-btn:hover {
+  transform: scale(1.2);
+}
+
+.reward-content {
+  text-align: center;
+  color: #e0e0e0;
+}
+
+.reward-title {
+  margin: 0 0 2rem 0;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff6b9d 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titlePulse 2s infinite;
+}
+
+@keyframes titlePulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.reward-badge-section {
+  margin: 2rem 0;
+}
+
+.reward-badge-icon {
+  font-size: 5rem;
+  margin: 1rem 0;
+  display: inline-block;
+  animation: badgeBounce 1s ease-in-out infinite;
+}
+
+@keyframes badgeBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.reward-badge-name {
+  margin: 1rem 0 0.5rem 0;
+  font-size: 1.3rem;
+  color: #ff6b9d;
+  font-weight: 600;
+}
+
+.reward-badge-description {
+  margin: 0;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.reward-points-section {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid #8b5cf6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.points-icon {
+  font-size: 2rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.points-text {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffeb3b;
+}
+
+.reward-stats {
+  margin: 1.5rem 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+}
+
+.reward-celebrate-btn {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #8b5cf6 0%, #ff6b9d 100%);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+}
+
+.reward-celebrate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.5);
+}
+
+.reward-celebrate-btn:active {
+  transform: translateY(0);
+}
+
+/* Confetti Animation */
+.reward-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #8b5cf6, #ff6b9d);
+  border-radius: 50%;
+  left: 50%;
+  bottom: 100%;
+  animation: confettiFall var(--duration, 1s) linear forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes confettiFall {
+  to {
+    transform: translateY(600px) translateX(var(--tx, 50px)) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.confetti:nth-child(1) {
+  --tx: -80px;
+  left: 20%;
+}
+
+.confetti:nth-child(2) {
+  --tx: 100px;
+  left: 30%;
+}
+
+.confetti:nth-child(3) {
+  --tx: -120px;
+  left: 40%;
+}
+
+.confetti:nth-child(4) {
+  --tx: 80px;
+  left: 50%;
+}
+
+.confetti:nth-child(5) {
+  --tx: -60px;
+  left: 60%;
+}
+
+.confetti:nth-child(6) {
+  --tx: 110px;
+  left: 70%;
+}
+
+.confetti:nth-child(7) {
+  --tx: -100px;
+  left: 80%;
+}
+
+.confetti:nth-child(8) {
+  --tx: 70px;
+  left: 10%;
+}
+
+.confetti:nth-child(9) {
+  --tx: -90px;
+  left: 25%;
+}
+
+.confetti:nth-child(10) {
+  --tx: 95px;
+  left: 75%;
+}
+
+@media (max-width: 600px) {
+  .reward-modal-card {
+    padding: 2rem;
+    border-radius: 16px;
+  }
+
+  .reward-title {
+    font-size: 1.5rem;
+  }
+
+  .reward-badge-icon {
+    font-size: 3.5rem;
+  }
+
+  .reward-celebrate-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
