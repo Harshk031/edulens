@@ -30,10 +30,16 @@ export default function VideoCaptureButton({ videoId }) {
       
       // Check if we're in Electron
       if (window.electronAPI?.captureScreen) {
-        // Use Electron's screen capture
-        const result = await window.electronAPI.captureScreen();
+        console.log('[Capture] Using Electron screen capture...');
+        
+        // Use Electron's screen capture with timestamp
+        const result = await window.electronAPI.captureScreen({ 
+          timestamp: timeStr,
+          videoId: videoId 
+        });
         
         if (result.success && result.dataURL) {
+          console.log('[Capture] Screenshot captured successfully!', result.width, 'x', result.height);
           
           // Emit event for notes
           window.dispatchEvent(new CustomEvent('video:captured', {

@@ -174,25 +174,41 @@ try {
     });
     
     // Screen capture handler
-    ipcMain.handle('capture-screen', async (event) => {
+    ipcMain.handle('capture-screen', async (event, options = {}) => {
       try {
         const window = BrowserWindow.fromWebContents(event.sender);
         if (!window) {
           return { success: false, error: 'Window not found' };
         }
         
-        // Capture the window contents
-        const image = await window.webContents.capturePage();
-        const dataURL = image.toDataURL();
+        console.log('[Capture] Starting screen capture...');
         
-        // Get timestamp from current video if available
-        // This would need to be passed from frontend
-        const timestamp = '0:00'; // Placeholder
+        // Small delay to ensure video frame is rendered
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        // Capture the window contents with high quality
+        const image = await window.webContents.capturePage({
+          x: 0,
+          y: 0,
+          width: window.getBounds().width,
+          height: window.getBounds().height
+        });
+        
+        if (!image || image.isEmpty()) {
+          console.error('[Capture] Captured image is empty');
+          return { success: false, error: 'Captured image is empty' };
+        }
+        
+        // Convert to PNG data URL
+        const dataURL = image.toDataURL();
+        console.log('[Capture] Screenshot captured successfully, size:', dataURL.length);
         
         return {
           success: true,
           dataURL: dataURL,
-          timestamp: timestamp
+          timestamp: options.timestamp || '0:00',
+          width: image.getSize().width,
+          height: image.getSize().height
         };
       } catch (error) {
         console.error('[IPC] Screen capture error:', error);
