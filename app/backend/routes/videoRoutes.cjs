@@ -90,16 +90,29 @@ router.get('/info/:videoId', async (req, res) => {
 // Get video info by URL route (for external tests / tools)
 router.get('/info', async (req, res) => {
   try {
-    const { url } = req.query;
-    console.log('[video/info] Getting info for url:', url);
+    const { url, videoId: queryVideoId } = req.query;
+    console.log('[video/info] Getting info for:', { url, videoId: queryVideoId });
 
-    if (!url || typeof url !== 'string') {
-      return res.status(400).json({ error: 'YouTube URL is required', received: { url } });
+    // Accept either url or videoId parameter
+    let videoId = queryVideoId;
+    
+    if (!videoId && url) {
+      videoId = extractVideoId(url);
+      if (!videoId) {
+        return res.status(400).json({ 
+          error: 'Could not extract video ID from URL', 
+          received: { url },
+          suggestion: 'Please provide a valid YouTube URL or videoId parameter'
+        });
+      }
     }
-
-    const videoId = extractVideoId(url);
+    
     if (!videoId) {
-      return res.status(400).json({ error: 'Could not extract video ID from URL', received: { url } });
+      return res.status(400).json({ 
+        error: 'YouTube URL or videoId is required', 
+        received: { url, videoId: queryVideoId },
+        suggestion: 'Provide either url or videoId query parameter'
+      });
     }
 
     const transcriptPath = path.join(getStoragePath('transcripts'), `${videoId}.json`);

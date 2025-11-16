@@ -1355,11 +1355,30 @@ router.post('/query', async (req, res) => {
     const transcript = loadTranscript(videoId);
     if (!transcript) {
       console.error(`[AI/query] ❌ No transcript found for videoId: ${videoId}`);
+      
+      // Check if video is currently being processed
+      const jobsPath = path.join(getStoragePath('sessions'), 'jobs');
+      const jobFiles = fs.existsSync(jobsPath) ? fs.readdirSync(jobsPath) : [];
+      const activeJob = jobFiles.find(f => f.includes(videoId) && f.endsWith('.json'));
+      
+      if (activeJob) {
+        return res.status(202).json({
+          error: 'Transcript processing in progress',
+          message: `Video ${videoId} is currently being transcribed. Please wait and try again in a moment.`,
+          videoId,
+          status: 'processing',
+          suggestion: 'Wait for transcription to complete (usually 1-2 minutes), then retry your request.',
+          retryAfter: 30
+        });
+      }
+      
       return res.status(404).json({
         error: 'Transcript not found or invalid',
         message: `No valid transcript available for video ${videoId}. The transcript may be empty, still processing, or transcription may have failed.`,
         videoId,
-        suggestion: 'Please ensure the video has been processed and transcription completed successfully.'
+        status: 'not_found',
+        suggestion: 'Please process the video first by submitting it through the /api/video/process endpoint.',
+        action: 'process_video'
       });
     }
     
