@@ -11,6 +11,9 @@
   --sand-level: 0;
   visibility: visible !important;
   opacity: 1 !important;
+  z-index: 1000 !important;
+  position: relative !important;
+  min-width: 400px !important;
 }
 
 .timer-display {
