@@ -1,77 +1,77 @@
-# 🎓 EduLens - AI-Powered Learning Assistant
+# 🎓 EduLens - Your AI Study Buddy
 
-> Transform YouTube videos into comprehensive learning experiences with AI-powered transcription, analysis, and interactive study tools.
+Hey there! 👋 Welcome to EduLens - a project I built to make learning from YouTube videos way more effective. Ever watched a long tutorial and wished you could just ask questions about it? Or needed to study from a lecture but didn't have time to watch the whole thing? That's exactly why I created this.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
-[![Electron](https://img.shields.io/badge/Electron-Latest-blue.svg)](https://www.electronjs.org/)
+## What's This About?
 
-## ✨ Features
+EduLens takes any YouTube video and turns it into an interactive learning experience. It transcribes the video, lets you ask questions about the content, generates quizzes to test yourself, creates flashcards for studying, and even makes mind maps to visualize concepts. Pretty cool, right?
 
-### 🎬 Video Processing
-- **Automatic Transcription**: Powered by Whisper for accurate speech-to-text
-- **Full Video Coverage**: Processes videos from start to end with timestamps
-- **Multi-language Support**: English and Hindi transcription
+## What Can It Do?
 
-### 🤖 AI-Powered Learning Tools
-- **Smart Q&A**: Ask questions about video content with context-aware responses
-- **Auto-Generated Quizzes**: Create comprehensive quizzes from video content
-- **Flashcards**: Generate study flashcards with key concepts
-- **Study Notes**: Detailed notes with timestamps and structure
-- **Mind Maps**: Visual concept maps for better understanding
-- **Summaries**: Concise video summaries with key points
+### The Main Stuff
+- **Transcribe Videos** - Uses Whisper AI to convert speech to text. Works surprisingly well!
+- **Ask Questions** - Literally just ask anything about the video and get answers based on the actual content
+- **Generate Quizzes** - Test yourself with auto-generated questions from the video
+- **Make Flashcards** - Perfect for memorizing key concepts
+- **Create Notes** - Get structured notes with timestamps so you can jump back to specific parts
+- **Mind Maps** - Visual diagrams of how concepts connect (great for visual learners)
+- **Summaries** - TL;DR version of long videos
 
-### 💻 Developer Features
-- **Code Extraction**: Automatically detect and extract code snippets
-- **Syntax Highlighting**: Support for multiple programming languages
-- **Code Execution**: Run extracted code directly in the app
+### For Developers
+- **Code Extraction** - Automatically finds and extracts code from programming tutorials
+- **Syntax Highlighting** - Makes code readable with proper formatting
+- **Run Code** - Test code snippets right in the app
 
-### 🎯 Productivity
-- **Focus Mode**: Distraction-free learning environment
-- **Rich Text Editor**: Advanced note-taking with formatting
-- **Progress Tracking**: Monitor your learning journey
-- **Session Management**: Save and resume learning sessions
+### Other Cool Stuff
+- **Focus Mode** - Blocks distractions when you need to concentrate
+- **Rich Text Editor** - Take your own notes with formatting
+- **Works Offline** - Use LM Studio for complete privacy (no data sent anywhere)
 
-## 🚀 Quick Start
+## Getting Started
 
-### Prerequisites
-- Node.js 18+ installed
-- Windows OS (launchers optimized for Windows)
-- Optional: LM Studio for offline AI (privacy-focused)
+### What You'll Need
+- Node.js (version 18 or newer)
+- Windows (I built this on Windows, but it should work on Mac/Linux with minor tweaks)
+- A Groq API key (free tier works fine) OR LM Studio if you want everything local
 
-### Installation
+### Setup
 
-1. **Clone the repository:**
+1. **Clone this repo:**
    ```bash
-   git clone https://github.com/yourusername/EduLens.git
-   cd EduLens
+   git clone https://github.com/Harshk031/edulens.git
+   cd edulens
    ```
 
-2. **Install dependencies:**
+2. **Install stuff:**
    ```bash
    cd app
    npm install
    ```
+   This might take a minute - it's downloading all the dependencies.
 
-3. **Set up environment variables:**
-   Create `.env` file in `app/` directory:
+3. **Configure your AI:**
+   Create a file called `.env` in the `app/` folder:
    ```env
    PORT=5000
-   GROQ_API_KEY=your_groq_api_key_here
+   GROQ_API_KEY=your_api_key_here
    LM_STUDIO_URL=http://localhost:1234
    PREFERRED_AI_PROVIDER=groq
    ```
+   
+   Get a free Groq API key from [console.groq.com](https://console.groq.com)
 
-4. **Launch the application:**
+4. **Run it:**
    ```cmd
-   # Using desktop launcher (recommended)
+   # Easy way (Windows):
    cd launchers
    EduLens-Desktop-Only.cmd
 
-   # Or manually
+   # Manual way:
    cd app
    npm run dev
    ```
+
+That's it! The app should open in a new window.
 
 ## 🏗️ Project Structure
 
@@ -129,32 +129,30 @@ LM_STUDIO_URL=http://localhost:1234  # LM Studio endpoint
 PREFERRED_AI_PROVIDER=groq        # groq or lmstudio
 ```
 
-## 📖 Usage Guide
+## How to Use It
 
-### Basic Workflow
+### The Basics
 
-1. **Load a Video**
-   - Paste YouTube URL in the input field
-   - Click "Process" or press Enter
-   - Wait for transcription (progress shown)
+1. **Paste a YouTube URL** - Just copy any YouTube link and paste it in
+2. **Wait for it to process** - Takes a minute or two depending on video length
+3. **Start learning!** - Once it's done, you can:
+   - Ask questions about the content
+   - Generate a quiz to test yourself
+   - Make flashcards for studying
+   - Get a summary if you're in a hurry
+   - Create a mind map to see how concepts connect
 
-2. **Explore AI Features**
-   - **Ask Questions**: Type queries about the video
-   - **Generate Quiz**: Test your understanding
-   - **Create Flashcards**: Study key concepts
-   - **Take Notes**: Structured notes with timestamps
-   - **View Mind Map**: Visual concept overview
+### Pro Tips
+- The transcription works best with clear audio (obviously)
+- You can ask follow-up questions - it remembers the context
+- Use timestamps in the notes to jump back to specific parts of the video
+- Focus mode is great when you need to actually concentrate
+- If you're learning to code, try the code extraction feature on programming tutorials
 
-3. **Advanced Features**
-   - **Code Extraction**: Automatically detect code snippets
-   - **Focus Mode**: Enable distraction-free learning
-   - **Export**: Save notes and transcripts
-
-### Keyboard Shortcuts
-- `Ctrl+R`: Refresh application
-- `F12`: Open DevTools (debug)
-- `Ctrl+Q`: Quick query
-- `Ctrl+S`: Save notes
+### Keyboard Shortcuts (for the power users)
+- `Ctrl+R` - Refresh the app
+- `F12` - Open developer tools (if something breaks)
+- `Ctrl+S` - Save your notes
 
 ## 🛠️ Development
 
@@ -182,66 +180,76 @@ npm run test-backend     # Test backend routes
 3. Run `npm run dev` to start all services
 4. Open `http://localhost:5173` in browser (or Electron launches automatically)
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
-### Common Issues
+### If Something Breaks
 
-**Backend won't start:**
-- Check if port 5000 is available
-- Verify `.env` file exists
-- Run `npm install` to ensure dependencies
+**App won't start:**
+- Make sure port 5000 isn't already being used by something else
+- Check that your `.env` file exists and has the right stuff in it
+- Try running `npm install` again - maybe something didn't download properly
 
-**Transcription fails:**
-- Ensure Whisper is installed
-- Check video URL is valid
-- Verify internet connection
+**Transcription not working:**
+- Double-check the YouTube URL is valid
+- Make sure you have internet (Whisper needs to download the video)
+- Some videos might be region-locked or age-restricted
 
-**AI features not working:**
-- Check Groq API key in `.env`
-- Verify LM Studio is running (if using local)
-- Check backend logs for errors
+**AI giving weird responses:**
+- Check your Groq API key is correct in the `.env` file
+- If using LM Studio, make sure it's actually running
+- Look at the console logs (F12) - they usually tell you what went wrong
 
-**503 Errors:**
-- Restart the application
-- Check backend is running on port 5000
-- Verify Vite proxy configuration
+**Getting 503 errors:**
+- Just restart the app - sometimes the backend needs a fresh start
+- Make sure nothing else is using port 5000
 
-## 🔒 Privacy & Security
+## Privacy Stuff
 
-- **Local Storage**: All transcripts stored locally
-- **No Tracking**: No analytics or telemetry
-- **Offline Mode**: Use LM Studio for complete privacy
-- **API Keys**: Stored locally in `.env` (never committed)
+Just so you know:
+- Everything stays on your computer - transcripts, notes, all of it
+- I don't track anything or send analytics anywhere
+- If you use LM Studio instead of Groq, literally nothing leaves your machine
+- Your API keys stay in your `.env` file (and that file is gitignored, so it won't accidentally get uploaded)
 
-## 🤝 Contributing
+## Want to Contribute?
 
-Contributions are welcome! Please follow these steps:
+Found a bug? Have an idea? Want to add a feature? Go for it!
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Fork this repo
+2. Make your changes
+3. Test it to make sure it works
+4. Send a pull request
 
-## 📝 License
+I'm pretty chill about contributions - just try to keep the code readable and add comments if you're doing something complex.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Tech Stack
 
-## 🙏 Acknowledgments
+Built with:
+- React + Vite (frontend)
+- Node.js + Express (backend)
+- Electron (desktop app)
+- Whisper (transcription)
+- Groq API / LM Studio (AI)
 
-- **Whisper**: OpenAI's speech recognition model
-- **Groq**: Fast AI inference
-- **LM Studio**: Local AI runtime
-- **Electron**: Cross-platform desktop framework
-- **React**: UI framework
+## License
 
-## 📞 Support
+MIT License - basically do whatever you want with it, just don't blame me if something breaks 😅
 
-For issues, questions, or suggestions:
-- Open an issue on GitHub
-- Check existing issues for solutions
-- Review troubleshooting guide above
+## Credits
+
+Big thanks to:
+- OpenAI for Whisper
+- Groq for their fast API
+- The LM Studio team
+- Everyone who builds open source tools
+
+## Questions?
+
+If you run into issues or have questions:
+- Check the troubleshooting section above
+- Look through existing GitHub issues
+- Open a new issue if you can't find an answer
 
 ---
 
-**Made with ❤️ for learners everywhere**
+Built by [Harshk031](https://github.com/Harshk031) | If this helped you learn something, give it a ⭐!
