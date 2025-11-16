@@ -1,0 +1,4 @@
+.ai-dock{position:relative;z-index:10;height:100%;background:rgba(255,255,255,.06);backdrop-filter:blur(14px) brightness(1.1);border-left:1px solid rgba(168,85,247,.3);width:380px;min-width:280px;max-width:45vw;display:flex;flex-direction:column}
+.ai-dock.closed{width:48px;min-width:48px}
+.dock-header{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-bottom:1px solid rgba(168,85,247,.25);color:#fff}
+.dock-body{flex:1;overflow:auto}

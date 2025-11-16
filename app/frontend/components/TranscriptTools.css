@@ -1,0 +1,12 @@
+/* TranscriptTools styles */
+.tt-row { display:flex; gap:8px; align-items:center; margin:8px 0; }
+.tt-row.wrap { flex-wrap: wrap; }
+.tt-input { flex:1; padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.03); color:#fff; }
+.tt-btn { padding:8px 12px; border-radius:8px; border:1px solid rgba(139,92,246,.5); background: linear-gradient(135deg, rgba(139,92,246,.3), rgba(59,130,246,.25)); color:#fff; cursor:pointer; }
+.tt-btn.secondary { border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.06); }
+.tt-btn:disabled { opacity:.6; cursor:not-allowed; }
+.tt-badge { font-size:.85rem; opacity:.85; padding:4px 8px; border-radius:999px; background: rgba(255,255,255,.08); }
+.tt-link { color:#a78bfa; text-decoration:none; }
+.tt-link:hover { text-decoration:underline; }
+.tt-toggle { margin-left:auto; display:flex; align-items:center; gap:6px; }
+.tt-answer { white-space:pre-wrap; margin-top:8px; max-height:220px; overflow:auto; background: rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:8px; }

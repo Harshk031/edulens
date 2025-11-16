@@ -1,0 +1,34 @@
+{
+  "jobId": "job_testvideo_for_transcript_tc004_1763272646764",
+  "videoId": "testvideo_for_transcript_tc004",
+  "url": "https://www.youtube.com/watch?v=testvideo_for_transcript_tc004",
+  "status": "error",
+  "progress": 45,
+  "stage": "Error",
+  "stages": {
+    "input": {
+      "status": "done",
+      "progress": 100
+    },
+    "transcribe": {
+      "status": "failed",
+      "progress": 0
+    },
+    "fastSummary": {
+      "status": "pending",
+      "progress": 0
+    },
+    "indexing": {
+      "status": "pending",
+      "progress": 0
+    },
+    "llmReady": {
+      "status": "pending",
+      "progress": 0
+    }
+  },
+  "startedAt": "2025-11-16T05:57:26.764Z",
+  "updatedAt": "2025-11-16T05:59:58.177Z",
+  "error": "Failed to generate transcript after 3 attempts: Failed to generate transcript for video testvideo_for_transcript_tc004. All transcription methods failed. Please check audio download and transcription services.",
+  "errorAt": "2025-11-16T05:59:58.119Z"
+}

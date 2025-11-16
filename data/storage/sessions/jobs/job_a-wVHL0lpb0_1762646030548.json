@@ -1,0 +1,32 @@
+{
+  "jobId": "job_a-wVHL0lpb0_1762646030548",
+  "videoId": "a-wVHL0lpb0",
+  "url": "https://youtu.be/a-wVHL0lpb0",
+  "status": "failed",
+  "progress": 0,
+  "stages": {
+    "input": {
+      "status": "done",
+      "progress": 100
+    },
+    "transcribe": {
+      "status": "processing",
+      "progress": 45
+    },
+    "fastSummary": {
+      "status": "pending",
+      "progress": 0
+    },
+    "indexing": {
+      "status": "pending",
+      "progress": 0
+    },
+    "llmReady": {
+      "status": "pending",
+      "progress": 0
+    }
+  },
+  "startedAt": "2025-11-08T23:53:50.548Z",
+  "updatedAt": "2025-11-08T23:54:30.500Z",
+  "error": "Job timed out after 1 hour"
+}

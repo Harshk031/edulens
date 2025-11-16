@@ -1,0 +1,100 @@
+/* Import button animations */
+@import '../Animations/ButtonAnimations.css';
+
+/* ModernAppLayout - Header and styling */
+
+.modern-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(7, 16, 20, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 200, 120, 0.2);
+}
+
+.modern-header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #00CC7A 0%, #009B55 100%);
+  border-radius: 8px;
+  display: block;
+}
+
+.logo-text {
+  background: linear-gradient(135deg, #00CC7A 0%, #009B55 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.modern-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.modern-header-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.modern-header-clear {
+  background: rgba(15, 26, 26, 0.8);
+  color: #E6FFF8;
+  border-color: rgba(0, 200, 120, 0.3);
+}
+
+.modern-header-clear:hover {
+  background: rgba(0, 200, 120, 0.1);
+  border-color: rgba(0, 200, 120, 0.5);
+  transform: translateY(-1px);
+}
+
+.modern-header-exit {
+  background: rgba(255, 48, 48, 0.1);
+  color: #FF3B30;
+  border-color: #FF3B30;
+}
+
+.modern-header-exit:hover {
+  background: rgba(255, 48, 48, 0.2);
+  border-color: #FF3B30;
+  box-shadow: 0 4px 12px rgba(255, 48, 48, 0.3);
+  transform: translateY(-1px);
+}
+
+.modern-header-btn:focus-visible {
+  outline: 2px solid #00CC7A;
+  outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modern-header {
+    padding: 0.75rem 1rem;
+  }
+  
+  .modern-header-logo {
+    font-size: 1.25rem;
+  }
+  
+  .modern-header-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+

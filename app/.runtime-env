@@ -1,0 +1,3 @@
+API_BASE=http://localhost:5000
+VITE_API_BASE=
+PORT=5000

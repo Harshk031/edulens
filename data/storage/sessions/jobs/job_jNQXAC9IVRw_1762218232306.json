@@ -1,0 +1,39 @@
+{
+  "jobId": "job_jNQXAC9IVRw_1762218232306",
+  "videoId": "jNQXAC9IVRw",
+  "videoUrl": "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+  "languageHint": "en",
+  "status": "completed",
+  "progress": 100,
+  "createdAt": "2025-11-04T01:03:52.306Z",
+  "updatedAt": "2025-11-04T01:03:57.970Z",
+  "result": {
+    "videoId": "jNQXAC9IVRw",
+    "language": "en",
+    "originalLanguage": "en",
+    "duration": 19,
+    "segments": [
+      {
+        "start": 0,
+        "end": 4,
+        "text": "All right, so here we are, one of the elephants."
+      },
+      {
+        "start": 4,
+        "end": 14,
+        "text": "The cool thing about these guys is that they have really, really, really long punks, and that's cool."
+      },
+      {
+        "start": 14,
+        "end": 19,
+        "text": "And that's pretty much all there is to say."
+      }
+    ],
+    "originalSegments": null,
+    "encodingInfo": {
+      "charset": "utf-8",
+      "timestamp": "2025-11-04T00:48:54.373Z"
+    }
+  },
+  "completedAt": "2025-11-04T01:03:57.970Z"
+}

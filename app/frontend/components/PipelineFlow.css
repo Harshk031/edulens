@@ -1,0 +1,361 @@
+.pipeline-flow-container {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 6px 24px rgba(0, 224, 138, 0.08);
+}
+
+.pipeline-title {
+  margin: 0 0 1.5rem 0;
+  color: var(--accent-500);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.pipeline-stages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+.stage-wrapper {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pipeline-node {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, rgba(0, 224, 138, 0.08) 0%, rgba(0, 198, 117, 0.12) 100%);
+  border: 2px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.pipeline-node:hover {
+  border-color: var(--accent-500);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 224, 138, 0.2);
+}
+
+.pipeline-node.selected {
+  border-color: var(--accent-500);
+  box-shadow: 0 0 20px rgba(0, 224, 138, 0.4);
+}
+
+.pipeline-node.idle {
+  opacity: 0.5;
+}
+
+.pipeline-node.queued {
+  opacity: 0.7;
+  border-color: var(--text-muted);
+}
+
+.pipeline-node.running {
+  border-color: var(--accent-500);
+  animation: nodePulse 2s ease-in-out infinite;
+}
+
+.pipeline-node.done {
+  opacity: 1;
+  border-color: var(--accent-500);
+  background: linear-gradient(135deg, rgba(0, 224, 138, 0.15) 0%, rgba(0, 198, 117, 0.2) 100%);
+}
+
+.pipeline-node.failed {
+  border-color: var(--danger);
+  background: linear-gradient(135deg, rgba(255, 124, 124, 0.1) 0%, rgba(255, 90, 90, 0.15) 100%);
+}
+
+@keyframes nodePulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 224, 138, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 224, 138, 0.6);
+  }
+}
+
+.node-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.node-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.status-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-900);
+}
+
+.status-dot.idle {
+  background: var(--text-muted);
+}
+
+.status-dot.queued {
+  background: var(--text-muted);
+  animation: dotBlink 1.5s ease-in-out infinite;
+}
+
+.status-dot.running {
+  background: var(--accent-500);
+  animation: dotPulse 1s ease-in-out infinite;
+}
+
+.status-dot.done {
+  background: var(--accent-500);
+}
+
+.status-dot.failed {
+  background: var(--danger);
+  animation: dotBlink 0.8s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+@keyframes dotBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.node-spinner {
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--radius-md);
+}
+
+.spinner-ring {
+  width: 100%;
+  height: 100%;
+  border: 3px solid transparent;
+  border-top-color: var(--accent-500);
+  border-radius: var(--radius-md);
+  animation: spinRing 1s linear infinite;
+}
+
+@keyframes spinRing {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.connector {
+  width: 60px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.connector-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.flow-particle {
+  animation: flowParticle 2s linear infinite;
+}
+
+@keyframes flowParticle {
+  0% {
+    cx: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    cx: 60;
+    opacity: 0;
+  }
+}
+
+.node-details {
+  background: rgba(8, 14, 12, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.node-details h4 {
+  margin: 0 0 0.75rem 0;
+  color: var(--accent-500);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.detail-content p {
+  margin: 0.4rem 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.detail-status,
+.detail-progress,
+.detail-stage,
+.detail-elapsed {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail-error {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.status-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-badge.idle {
+  background: rgba(138, 160, 162, 0.2);
+  color: var(--text-muted);
+}
+
+.status-badge.queued {
+  background: rgba(138, 160, 162, 0.3);
+  color: var(--text-muted);
+}
+
+.status-badge.running {
+  background: rgba(0, 224, 138, 0.2);
+  color: var(--accent-500);
+}
+
+.status-badge.done {
+  background: rgba(0, 224, 138, 0.25);
+  color: var(--accent-500);
+}
+
+.status-badge.failed {
+  background: rgba(255, 124, 124, 0.2);
+  color: var(--danger);
+}
+
+.pipeline-summary {
+  background: rgba(8, 14, 12, 0.4);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+}
+
+.summary-bar {
+  height: 6px;
+  background: rgba(0, 224, 138, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.summary-progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-500), var(--accent-600));
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.summary-text {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pipeline-stages {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pipeline-node {
+    width: 75px;
+    height: 75px;
+  }
+
+  .node-icon {
+    font-size: 1.5rem;
+  }
+
+  .node-label {
+    font-size: 0.7rem;
+  }
+
+  .connector {
+    width: 40px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .pipeline-node,
+  .status-dot,
+  .spinner-ring,
+  .flow-particle,
+  .node-details {
+    animation: none !important;
+  }
+
+  .pipeline-node:hover {
+    transform: none;
+  }
+}

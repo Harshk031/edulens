@@ -1,0 +1,215 @@
+.code-execution-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.code-execution-modal {
+  background: linear-gradient(135deg, rgba(30, 30, 40, 0.95) 0%, rgba(20, 20, 30, 0.95) 100%);
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  color: white;
+  transform: scale(1.1);
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.code-info {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.info-item {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.info-item strong {
+  color: white;
+  margin-right: 6px;
+}
+
+.code-preview-section {
+  margin-bottom: 20px;
+}
+
+.code-preview-section h4 {
+  margin: 0 0 10px 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+}
+
+.code-preview-small {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px;
+  overflow-x: auto;
+  max-height: 200px;
+  font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #f8f8f2;
+}
+
+.execute-section {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.btn-execute {
+  background: linear-gradient(135deg, #00e08a 0%, #00b16a 100%);
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 224, 138, 0.3);
+}
+
+.btn-execute:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 224, 138, 0.4);
+}
+
+.btn-execute:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.output-section {
+  margin-top: 20px;
+}
+
+.output-section h4 {
+  margin: 0 0 10px 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+}
+
+.output-display {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  max-height: 300px;
+  overflow-y: auto;
+  font-family: 'Fira Code', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #f8f8f2;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.output-display.error {
+  border-color: rgba(255, 107, 107, 0.3);
+  background: rgba(255, 107, 107, 0.05);
+  color: #ff6b6b;
+}
+
+.execution-info {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.info-badge {
+  background: rgba(102, 126, 234, 0.2);
+  color: #667eea;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Scrollbar styling */
+.code-execution-modal::-webkit-scrollbar,
+.output-display::-webkit-scrollbar,
+.code-preview-small::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.code-execution-modal::-webkit-scrollbar-track,
+.output-display::-webkit-scrollbar-track,
+.code-preview-small::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.code-execution-modal::-webkit-scrollbar-thumb,
+.output-display::-webkit-scrollbar-thumb,
+.code-preview-small::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.3);
+  border-radius: 4px;
+}
+
+.code-execution-modal::-webkit-scrollbar-thumb:hover,
+.output-display::-webkit-scrollbar-thumb:hover,
+.code-preview-small::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 126, 234, 0.5);
+}
+

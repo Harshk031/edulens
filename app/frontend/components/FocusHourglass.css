@@ -1,0 +1,74 @@
+.hourglass-container{
+  position: relative;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  animation: float 4s ease-in-out infinite;
+  z-index: 5;
+  pointer-events: auto;
+  cursor: pointer;
+  background: transparent;
+  backdrop-filter: none;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  box-shadow: none;
+  min-width: 60px;
+  min-height: 80px;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: transform 0.2s ease;
+}
+
+.hourglass-container:hover {
+  transform: scale(1.05);
+}
+.hourglass{
+  filter:drop-shadow(0 0 10px rgba(0,200,120,.5));
+  position:relative;
+}
+/* Timer label removed - TopTimer displays the time */
+.timer-label{
+  display:none; /* Hidden - TopTimer already shows the time */
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
+/* Sand level binding - proper physics simulation */
+.hourglass .sand-top{
+  transform-origin: 50% 100%; /* Sand empties from bottom */
+  transition: height 0.6s ease-out;
+  filter: drop-shadow(0 2px 4px rgba(0,200,120,0.4));
+}
+.hourglass .sand-bottom{
+  transform-origin: 50% 100%; /* Sand accumulates from bottom */
+  transition: height 0.6s ease-out;
+  filter: drop-shadow(0 -2px 4px rgba(0,200,120,0.4));
+}
+/* Enhanced sand flow visibility */
+.hourglass .sand-flow{
+  opacity:1;
+  animation:sparkle 1.2s linear infinite, flow-glow 1s ease-in-out infinite;
+  filter:drop-shadow(0 0 6px rgba(0,255,140,0.8));
+}
+.hourglass.paused .sand-flow{
+  opacity:.3;
+  animation:none;
+  filter:drop-shadow(0 0 3px rgba(0,200,120,0.4));
+}
+@keyframes sparkle{
+  0%{opacity:.6}
+  50%{opacity:1}
+  100%{opacity:.6}
+}
+@keyframes flow-glow{
+  0%,100%{
+    filter:drop-shadow(0 0 6px rgba(0,255,140,0.8));
+  }
+  50%{
+    filter:drop-shadow(0 0 12px rgba(0,255,140,1));
+  }
+}
+
+.hourglass-menu{position:absolute;top:70px;right:0;background:rgba(15,26,26,.8);backdrop-filter:blur(8px);border:1px solid rgba(0,200,120,.35);box-shadow:0 0 14px rgba(0,200,120,.25);border-radius:10px;padding:6px 8px;display:flex;gap:6px}
+.hourglass-menu button{background:#00CC7A;color:#071014;border:none;border-radius:8px;padding:6px 8px;cursor:pointer;font-weight:600}

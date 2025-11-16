@@ -1,0 +1,38 @@
+{
+  "videoId": "jNQXAC9IVRw",
+  "language": "en",
+  "originalLanguage": "en",
+  "duration": 19,
+  "segments": [
+    {
+      "start": 0,
+      "end": 4,
+      "text": "All right, so here we are, one of the elephants."
+    },
+    {
+      "start": 4,
+      "end": 14,
+      "text": "The cool thing about these guys is that they have really, really, really long punks, and that's cool."
+    },
+    {
+      "start": 14,
+      "end": 19,
+      "text": "And that's pretty much all there is to say."
+    }
+  ],
+  "originalSegments": null,
+  "encodingInfo": {
+    "charset": "utf-8",
+    "timestamp": "2025-11-11T00:51:39.544Z"
+  },
+  "validation": {
+    "segmentCount": 3,
+    "hasValidContent": true,
+    "totalTextLength": 192,
+    "processingFailed": false,
+    "validatedAt": "2025-11-11T00:51:39.544Z",
+    "validationErrors": [],
+    "validationWarnings": [],
+    "isValid": true
+  }
+}

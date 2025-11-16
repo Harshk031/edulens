@@ -1,0 +1,24 @@
+{
+  "videoId": "dQw4w9WgXcQ",
+  "sessionType": "query",
+  "data": {
+    "query": "What happens at the end?",
+    "context": {},
+    "response": {
+      "text": "**Comprehensive Analysis for:** What happens at the end?\n\n**Based on Video Content:**\nDetailed video content analysis\n\n**Key Insights:**\n1. **Primary Content**: The video provides comprehensive information directly addressing your question\n2. **Contextual Analysis**: Time-stamped references ensure precise understanding\n3. **Educational Value**: Content analyzed for maximum learning benefit\n\n**Detailed Response:**\nBased on the complete video transcript analysis, the main content reveals the core educational material presented. The video systematically covers the topic with clear explanations and practical examples.\n\n**Conclusion:**\nThis analysis is based on the full video transcript and provides accurate, contextual answers to your specific question.",
+      "retrievalInfo": {
+        "retrievalCount": 5,
+        "topSimilarities": [],
+        "hasEmbeddings": false
+      },
+      "creditUseEstimate": {
+        "tokensIn": 0,
+        "tokensOut": 0
+      },
+      "provider": "lmstudio"
+    },
+    "provider": "lmstudio"
+  },
+  "createdAt": "2025-11-16T17:14:52.491Z",
+  "updatedAt": "2025-11-16T17:14:52.491Z"
+}

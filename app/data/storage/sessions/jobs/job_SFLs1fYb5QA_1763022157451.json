@@ -1,0 +1,33 @@
+{
+  "jobId": "job_SFLs1fYb5QA_1763022157451",
+  "videoId": "SFLs1fYb5QA",
+  "url": "https://youtu.be/SFLs1fYb5QA",
+  "status": "processing",
+  "progress": 40,
+  "stage": "Transcribing",
+  "stages": {
+    "input": {
+      "status": "done",
+      "progress": 100
+    },
+    "transcribe": {
+      "status": "processing",
+      "progress": 53
+    },
+    "fastSummary": {
+      "status": "pending",
+      "progress": 0
+    },
+    "indexing": {
+      "status": "pending",
+      "progress": 0
+    },
+    "llmReady": {
+      "status": "pending",
+      "progress": 0
+    }
+  },
+  "startedAt": "2025-11-13T08:22:37.451Z",
+  "updatedAt": "2025-11-13T08:28:35.057Z",
+  "error": "Attempt 1/3: Transcription timeout after 300 seconds"
+}

@@ -1,0 +1,285 @@
+.voice-notes-recorder {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid rgba(0, 255, 156, 0.2);
+}
+
+.voice-notes-error {
+  text-align: center;
+  padding: 40px 20px;
+  color: #ff6b6b;
+}
+
+.voice-notes-error p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.recorder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.recorder-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text-primary, #fff);
+}
+
+.language-select {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text-primary, #fff);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.language-select:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.language-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.recorder-controls {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.record-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.record-btn.start {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: white;
+}
+
+.record-btn.start:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(255, 107, 107, 0.5);
+}
+
+.record-btn.stop {
+  background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
+  color: white;
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(81, 207, 102, 0.3);
+  }
+  50% {
+    box-shadow: 0 6px 30px rgba(81, 207, 102, 0.6);
+  }
+}
+
+.mic-icon,
+.stop-icon {
+  font-size: 24px;
+}
+
+.recording-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  background: rgba(255, 107, 107, 0.15);
+  border-radius: 10px;
+  margin: 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ff6b6b;
+}
+
+.pulse-dot {
+  width: 12px;
+  height: 12px;
+  background: #ff6b6b;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+.transcript-display {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.transcript-display h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: var(--text-primary, #fff);
+}
+
+.transcript-display p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary, rgba(255, 255, 255, 0.85));
+}
+
+.interim-text {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.notes-list {
+  margin-top: 24px;
+}
+
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notes-header h4 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--text-primary, #fff);
+}
+
+.export-notes-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.export-notes-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.note-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.note-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.note-meta {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.note-time {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.note-lang {
+  background: rgba(102, 126, 234, 0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #667eea;
+  font-weight: 600;
+}
+
+.note-text {
+  margin: 12px 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary, rgba(255, 255, 255, 0.9));
+}
+
+.note-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.note-action-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 6px 12px;
+  color: var(--text-primary, #fff);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.note-action-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.note-action-btn.delete:hover {
+  background: rgba(255, 59, 48, 0.3);
+  border-color: #ff3b30;
+  color: #ff6b6b;
+}
+
+@media (max-width: 768px) {
+  .recorder-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .record-btn {
+    padding: 14px 24px;
+    font-size: 16px;
+  }
+
+  .note-actions {
+    flex-direction: column;
+  }
+
+  .note-action-btn {
+    width: 100%;
+  }
+}

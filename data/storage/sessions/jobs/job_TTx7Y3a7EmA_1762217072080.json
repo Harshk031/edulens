@@ -1,0 +1,13 @@
+{
+  "jobId": "job_TTx7Y3a7EmA_1762217072080",
+  "videoId": "TTx7Y3a7EmA",
+  "videoUrl": "https://youtu.be/TTx7Y3a7EmA?si=ZSptUC0ULzdr45mB",
+  "languageHint": "en",
+  "status": "failed",
+  "progress": 40,
+  "createdAt": "2025-11-04T00:44:32.080Z",
+  "updatedAt": "2025-11-04T00:44:47.281Z",
+  "error": "Job stuck - no updates for 9623 minutes",
+  "stuckAt": 40,
+  "canRecover": true
+}

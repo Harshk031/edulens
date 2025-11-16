@@ -1,0 +1,3 @@
+@echo off
+REM Quick Status Check
+powershell -Command "$b=(Get-Process node -EA 0|?{$_.MainWindowTitle -like '*Backend*'});$v=(netstat -ano|Select-String ':5173');$e=(Get-Process electron -EA 0);Write-Host '';Write-Host 'STATUS:' -F Cyan;if($b){Write-Host '  Backend: OK' -F Green}else{Write-Host '  Backend: NO' -F Red};if($v){Write-Host '  Vite: OK' -F Green}else{Write-Host '  Vite: NO' -F Red};if($e){Write-Host '  Electron: OK' -F Green}else{Write-Host '  Electron: NO' -F Red};Write-Host '';if($b -and $v -and $e){Write-Host 'All systems running!' -F Green}else{Write-Host 'Some components missing!' -F Yellow};Write-Host '';pause"

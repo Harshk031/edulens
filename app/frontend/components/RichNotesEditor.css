@@ -1,0 +1,277 @@
+.notes-editor-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+.notes-editor-container {
+  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+  border-radius: 20px;
+  max-width: 900px;
+  width: 95%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.notes-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.notes-close {
+  background: rgba(0, 0, 0, 0.08);
+  border: none;
+  color: #333;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.notes-close:hover {
+  background: rgba(255, 59, 48, 0.15);
+  color: #ff3b30;
+  transform: rotate(90deg);
+}
+
+.notes-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px 20px;
+  background: #f9f9f9;
+  border-bottom: 1px solid #e0e0e0;
+  align-items: center;
+}
+
+.toolbar-group {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background: #d0d0d0;
+}
+
+.toolbar-btn {
+  background: white;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  color: #333;
+  font-weight: 500;
+}
+
+.toolbar-btn:hover {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+  transform: translateY(-1px);
+}
+
+.toolbar-btn:active {
+  transform: translateY(0);
+}
+
+.highlight-btn:hover {
+  background: #ffeb3b;
+  color: #333;
+  border-color: #ffcc00;
+}
+
+.toolbar-label {
+  font-size: 13px;
+  color: #666;
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.color-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.color-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.color-btn.active {
+  border-color: #333;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.notes-editor-content {
+  flex: 1;
+  padding: 25px;
+  overflow-y: auto;
+  background: white;
+  outline: none;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  min-height: 400px;
+}
+
+.notes-editor-content:empty::before {
+  content: attr(placeholder);
+  color: #999;
+  font-style: italic;
+}
+
+.notes-editor-content h1 {
+  font-size: 32px;
+  margin-top: 20px;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.notes-editor-content h2 {
+  font-size: 26px;
+  margin-top: 18px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.notes-editor-content h3 {
+  font-size: 22px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.notes-editor-content ul {
+  padding-left: 28px;
+  margin: 12px 0;
+}
+
+.notes-editor-content li {
+  margin: 6px 0;
+}
+
+.notes-editor-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 10px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.notes-footer {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  border-top: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  border-radius: 0 0 20px 20px;
+}
+
+.save-btn,
+.export-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.save-btn:hover,
+.export-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.export-btn {
+  background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
+  box-shadow: 0 4px 15px rgba(81, 207, 102, 0.3);
+}
+
+.export-btn:hover {
+  box-shadow: 0 6px 20px rgba(81, 207, 102, 0.5);
+}
+
+/* Scrollbar styling */
+.notes-editor-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.notes-editor-content::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 5px;
+}
+
+.notes-editor-content::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 5px;
+}
+
+.notes-editor-content::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+@media (max-width: 768px) {
+  .notes-toolbar {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .toolbar-btn {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .notes-editor-content {
+    padding: 16px;
+    font-size: 15px;
+  }
+}

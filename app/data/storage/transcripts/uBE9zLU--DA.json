@@ -1,0 +1,568 @@
+{
+  "videoId": "uBE9zLU--DA",
+  "language": "en",
+  "originalLanguage": "en",
+  "duration": 180,
+  "segments": [
+    {
+      "start": 0,
+      "end": 6,
+      "text": "Hi, hello, I am Hanji, I don't understand how much obvious things can be missed in your data structures and algorithm preparation."
+    },
+    {
+      "start": 0,
+      "end": 3.31,
+      "text": "So next time when you are reading Data Structures in Algorithm,"
+    },
+    {
+      "start": 4.08,
+      "end": 5.53,
+      "text": "I'll go out of the way."
+    },
+    {
+      "start": 5.53,
+      "end": 8.13,
+      "text": "please keep in mind that Mr. Hanji is already a crud master."
+    },
+    {
+      "start": 8.04,
+      "end": 9.1,
+      "text": "It's divided and conquered."
+    },
+    {
+      "start": 9.1,
+      "end": 10.6,
+      "text": "You can see the number of cases of the same number of cases in which you can see the number of cases of cache is the same."
+    },
+    {
+      "start": 10.49,
+      "end": 11.73,
+      "text": "After that, there will be techniques."
+    },
+    {
+      "start": 12.18,
+      "end": 14,
+      "text": "If this is missing, it means it is very dangerous."
+    },
+    {
+      "start": 13.46,
+      "end": 15.94,
+      "text": "This is the reason why your data structure is never over."
+    },
+    {
+      "start": 15,
+      "end": 19.02,
+      "text": "Most of the cases you see in this position, which we have read, are the data structures in the first phase."
+    },
+    {
+      "start": 16,
+      "end": 17.54,
+      "text": "But if you come to this video, we will talk about it later."
+    },
+    {
+      "start": 18.26,
+      "end": 21,
+      "text": "Mr. Piss, Mr. Piss, Mr. Piss, the classes on Data Structures are watching his videos."
+    },
+    {
+      "start": 19,
+      "end": 21.58,
+      "text": "If you have come to this video, if you like it, please share it as well."
+    },
+    {
+      "start": 21.72,
+      "end": 23.08,
+      "text": "What happened after that?"
+    },
+    {
+      "start": 23.08,
+      "end": 24.5,
+      "text": "If you want to share it, then it becomes absolutely correct."
+    },
+    {
+      "start": 23.16,
+      "end": 25.76,
+      "text": "Prefix or suffix?"
+    },
+    {
+      "start": 24.5,
+      "end": 27.04,
+      "text": "All these cases do not question any lead code. No fanciness, no drama, no data structures are known."
+    },
+    {
+      "start": 25.76,
+      "end": 26.76,
+      "text": "Based on what happens."
+    },
+    {
+      "start": 26.76,
+      "end": 28.24,
+      "text": "Let's talk about it. Now we have the most important thing here."
+    },
+    {
+      "start": 28.24,
+      "end": 29.84,
+      "text": "I don't think you have any plan or strategies."
+    },
+    {
+      "start": 29.76,
+      "end": 30.8,
+      "text": "What else do we have?"
+    },
+    {
+      "start": 30.8,
+      "end": 33.5,
+      "text": "First of all, we need to draw the data structures of your algorithm."
+    },
+    {
+      "start": 31.6,
+      "end": 32.68,
+      "text": "Sliding windows."
+    },
+    {
+      "start": 32.68,
+      "end": 36,
+      "text": "If you have reached this level, you will be sitting on the other side of the playlist and the other side of the road."
+    },
+    {
+      "start": 33.5,
+      "end": 36,
+      "text": "How do we store data and how do we perform the current operation?"
+    },
+    {
+      "start": 34.4,
+      "end": 36.94,
+      "text": "If you look at it, it's a sliding window."
+    },
+    {
+      "start": 37.94,
+      "end": 41.9,
+      "text": "After that, when you come to the algorithm part, the part of the algorithm is closely connected to the interview preparation."
+    },
+    {
+      "start": 41.1,
+      "end": 43,
+      "text": "We have a component where we read completely from the DS."
+    },
+    {
+      "start": 43,
+      "end": 45.6,
+      "text": "And there is a component where we prepare the interview."
+    },
+    {
+      "start": 43.56,
+      "end": 45.26,
+      "text": "there are 15 or 20 techniques."
+    },
+    {
+      "start": 45.26,
+      "end": 51.26,
+      "text": "Now, you can write this as an algorithm, or your specific questions, or your interview techniques."
+    },
+    {
+      "start": 46.08,
+      "end": 48.3,
+      "text": "I thought it would be useful for you to make this video."
+    },
+    {
+      "start": 48.46,
+      "end": 50.46,
+      "text": "In this video, no course will mention anyone."
+    },
+    {
+      "start": 50.18,
+      "end": 52.26,
+      "text": "But do you think Twitter is useful for making this video or not?"
+    },
+    {
+      "start": 52.42,
+      "end": 53.42,
+      "text": "Otherwise, this video will be diluted."
+    },
+    {
+      "start": 53.42,
+      "end": 54.78,
+      "text": "or meet in the middle, swipe line."
+    },
+    {
+      "start": 54.78,
+      "end": 56.36,
+      "text": "This video is the first and second most of the time."
+    },
+    {
+      "start": 56.36,
+      "end": 57.36,
+      "text": "So, what do we need to do now? The first story starts with your data structures and algorithm."
+    },
+    {
+      "start": 57.2,
+      "end": 59.2,
+      "text": "Yes, this is a technique that has two points of sliding window."
+    },
+    {
+      "start": 59.06,
+      "end": 61.3,
+      "text": "There is no course in this course where you have to read it."
+    },
+    {
+      "start": 61.42,
+      "end": 62.42,
+      "text": "This is a technique that has two points of sliding window."
+    },
+    {
+      "start": 63,
+      "end": 64,
+      "text": "Now, when you read the data structures, how do you read it?"
+    },
+    {
+      "start": 65.34,
+      "end": 66.5,
+      "text": "It is a very easy task. We need to think about it."
+    },
+    {
+      "start": 66.48,
+      "end": 67.76,
+      "text": "You can make easy things."
+    },
+    {
+      "start": 68.28,
+      "end": 69.28,
+      "text": "First, you read your linear data structure."
+    },
+    {
+      "start": 70.18,
+      "end": 72.5,
+      "text": "And when you do the interview preparation, what do you do? Yes, tell me, first of all, you start."
+    },
+    {
+      "start": 71.68,
+      "end": 73.3,
+      "text": "When you meet people who are more interested in the first phase,"
+    },
+    {
+      "start": 73.3,
+      "end": 74.3,
+      "text": "You will know this."
+    },
+    {
+      "start": 74.3,
+      "end": 75.64,
+      "text": "who are interested in the first phase, or who are still using YouTube,"
+    },
+    {
+      "start": 75,
+      "end": 79.14,
+      "text": "In linear data structures, we have array, linked list, queue, stack, but what do we do in this?"
+    },
+    {
+      "start": 78.92,
+      "end": 81.44,
+      "text": "They master the basic first."
+    },
+    {
+      "start": 81.44,
+      "end": 83,
+      "text": "They want to create all the linear data structures."
+    },
+    {
+      "start": 83,
+      "end": 84.5,
+      "text": "All these data structures, such as array, what else do we have?"
+    },
+    {
+      "start": 84.84,
+      "end": 86.06,
+      "text": "The non-linear data structures."
+    },
+    {
+      "start": 86.06,
+      "end": 87.5,
+      "text": "First, tell me, what is the technique of traversing or searching?"
+    },
+    {
+      "start": 87.5,
+      "end": 90.06,
+      "text": "Link list, linked list, and stack."
+    },
+    {
+      "start": 88,
+      "end": 90.3,
+      "text": "Linear search, binary search, death for search, breadth for search."
+    },
+    {
+      "start": 89.44,
+      "end": 92.56,
+      "text": "If you start learning techniques with their crud,"
+    },
+    {
+      "start": 93.5,
+      "end": 94.56,
+      "text": "And queue. Mostly, this is what happens."
+    },
+    {
+      "start": 94,
+      "end": 96.02,
+      "text": "All these techniques are part of the algorithm."
+    },
+    {
+      "start": 96.78,
+      "end": 98.78,
+      "text": "In all these, we read, we call it cred operation."
+    },
+    {
+      "start": 98.96,
+      "end": 99.96,
+      "text": "And these are the interviews."
+    },
+    {
+      "start": 100.56,
+      "end": 102.5,
+      "text": "That's it. We don't do any question about it. We don't do any story about it."
+    },
+    {
+      "start": 101,
+      "end": 105.06,
+      "text": "And if you want to think like a basic one, first of all, a programming language goes to you."
+    },
+    {
+      "start": 102.44,
+      "end": 105.1,
+      "text": "So your confidence is increasing."
+    },
+    {
+      "start": 105.1,
+      "end": 106.6,
+      "text": "We only do one cred operation with all of it."
+    },
+    {
+      "start": 107.36,
+      "end": 109.78,
+      "text": "I don't even know what to say in the road map."
+    },
+    {
+      "start": 109.5,
+      "end": 111,
+      "text": "If you don't have a master in it, then forget all this."
+    },
+    {
+      "start": 111,
+      "end": 112.28,
+      "text": "All these data structures, and all these cred operations are done."
+    },
+    {
+      "start": 112.28,
+      "end": 113.52,
+      "text": "Every college has a teacher who reads D.S."
+    },
+    {
+      "start": 113.5,
+      "end": 114.5,
+      "text": "This is the first thing."
+    },
+    {
+      "start": 114.5,
+      "end": 116,
+      "text": "Link list. How do we make it? How do we add data?"
+    },
+    {
+      "start": 117.38,
+      "end": 118.38,
+      "text": "What are the nodes? Read them all."
+    },
+    {
+      "start": 121.5,
+      "end": 123.26,
+      "text": "When we read the DS, this is the approach of our linear data structures."
+    },
+    {
+      "start": 122,
+      "end": 123.54,
+      "text": "Traversal and this is the technique."
+    },
+    {
+      "start": 124.2,
+      "end": 125.7,
+      "text": "Apart from that, what are the other techniques?"
+    },
+    {
+      "start": 125.84,
+      "end": 127.34,
+      "text": "After that, we read the non-linear data structures."
+    },
+    {
+      "start": 127.34,
+      "end": 128.62,
+      "text": "And to master each technique, you have to question the lead code."
+    },
+    {
+      "start": 129,
+      "end": 130,
+      "text": "Let's read them."
+    },
+    {
+      "start": 130,
+      "end": 131,
+      "text": "Non-linear."
+    },
+    {
+      "start": 131.12,
+      "end": 132.36,
+      "text": "Or you can also do it on MasterG."
+    },
+    {
+      "start": 134.1,
+      "end": 136.5,
+      "text": "We have trees. If we don't go deep, we'll see segmented tree."
+    },
+    {
+      "start": 134.2,
+      "end": 135.2,
+      "text": "You do sorting."
+    },
+    {
+      "start": 135.2,
+      "end": 137.3,
+      "text": "How can all our confidence be good?"
+    },
+    {
+      "start": 137.8,
+      "end": 139.38,
+      "text": "Because all these techniques are taken before them."
+    },
+    {
+      "start": 139,
+      "end": 140,
+      "text": "Let's see in the graph."
+    },
+    {
+      "start": 140.88,
+      "end": 142.36,
+      "text": "Because this crud is much more related to the crud."
+    },
+    {
+      "start": 142,
+      "end": 143.5,
+      "text": "First of all, you can see the recursion."
+    },
+    {
+      "start": 145,
+      "end": 147.5,
+      "text": "Suppose you're reading a tree, or you're reading a graph."
+    },
+    {
+      "start": 146.6,
+      "end": 147.64,
+      "text": "then traversal searching is easier."
+    },
+    {
+      "start": 147.64,
+      "end": 149.5,
+      "text": "There is a little bit of recursion here."
+    },
+    {
+      "start": 150,
+      "end": 151.5,
+      "text": "Basically, these types, such as non-linear data structures,"
+    },
+    {
+      "start": 151.5,
+      "end": 152.58,
+      "text": "Backtracking, it takes some time to understand."
+    },
+    {
+      "start": 153.5,
+      "end": 156.08,
+      "text": "you read the cred operation with them. This is your data structure."
+    },
+    {
+      "start": 154,
+      "end": 156.12,
+      "text": "Because, in the techniques interview, you get the question of techniques."
+    },
+    {
+      "start": 157.02,
+      "end": 158.02,
+      "text": "So, you get the sorting."
+    },
+    {
+      "start": 158.32,
+      "end": 159.8,
+      "text": "Two pointer, prefix, sliding window."
+    },
+    {
+      "start": 160.8,
+      "end": 162.4,
+      "text": "Or you meet in the middle, sweep line, segmentary."
+    },
+    {
+      "start": 162.5,
+      "end": 164,
+      "text": "Now, we're not in the part of the DS, but in the part of the interview."
+    },
+    {
+      "start": 165.12,
+      "end": 167.5,
+      "text": "So, the non-linear data structures are all based on the hash."
+    },
+    {
+      "start": 165.24,
+      "end": 167.86,
+      "text": "So next time, whenever you are reading your data structures"
+    },
+    {
+      "start": 167.86,
+      "end": 168.86,
+      "text": "Because, it is an optimized technique."
+    },
+    {
+      "start": 168.86,
+      "end": 170.64,
+      "text": "in Algorithm, please take care of this."
+    },
+    {
+      "start": 170.5,
+      "end": 172.5,
+      "text": "Or you can also go to the cache, or you can read the non-linear data."
+    },
+    {
+      "start": 172.64,
+      "end": 174.18,
+      "text": "The first thing you have to do is master crud."
+    },
+    {
+      "start": 174,
+      "end": 175.5,
+      "text": "And you can only see the cred operation."
+    },
+    {
+      "start": 175,
+      "end": 176.18,
+      "text": "You get the two point."
+    },
+    {
+      "start": 176.18,
+      "end": 178.5,
+      "text": "After that, there will be techniques to learn. This is the reason I think, because of which you..."
+    },
+    {
+      "start": 178.5,
+      "end": 180,
+      "text": "Whatever you want, you can write here."
+    }
+  ],
+  "originalSegments": null,
+  "encodingInfo": {
+    "charset": "utf-8",
+    "timestamp": "2025-11-14T10:47:47.961Z"
+  },
+  "validation": {
+    "segmentCount": 109,
+    "hasValidContent": true,
+    "totalTextLength": 5797,
+    "processingFailed": false,
+    "validatedAt": "2025-11-14T10:47:47.961Z",
+    "validationErrors": [],
+    "validationWarnings": [],
+    "isValid": true
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "jobId": "job_tysDxjfgLMg_1762394652911",
+  "videoId": "tysDxjfgLMg",
+  "url": "https://youtu.be/tysDxjfgLMg?si=Azt-M_k_7n9kyH8g",
+  "status": "done",
+  "progress": 100,
+  "stages": {
+    "input": {
+      "status": "done",
+      "progress": 100
+    },
+    "transcribe": {
+      "status": "done",
+      "progress": 100
+    },
+    "fastSummary": {
+      "status": "done",
+      "progress": 100
+    },
+    "indexing": {
+      "status": "done",
+      "progress": 100
+    },
+    "llmReady": {
+      "status": "done",
+      "progress": 100
+    }
+  },
+  "startedAt": "2025-11-06T02:04:12.912Z",
+  "updatedAt": "2025-11-06T02:04:17.438Z",
+  "completedAt": "2025-11-06T02:04:17.438Z"
+}

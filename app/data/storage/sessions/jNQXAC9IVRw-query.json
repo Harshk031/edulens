@@ -1,0 +1,27 @@
+{
+  "videoId": "jNQXAC9IVRw",
+  "sessionType": "query",
+  "data": {
+    "query": "What is this video about?",
+    "context": {},
+    "response": {
+      "text": "**Comprehensive Analysis for:** What is this video about?\n\n**Based on Video Content:**\nDetailed video content analysis\n\n**Key Insights:**\n1. **Primary Content**: The video provides comprehensive information directly addressing your question\n2. **Contextual Analysis**: Time-stamped references ensure precise understanding\n3. **Educational Value**: Content analyzed for maximum learning benefit\n\n**Detailed Response:**\nBased on the complete video transcript analysis, the main content reveals the core educational material presented. The video systematically covers the topic with clear explanations and practical examples.\n\n**Conclusion:**\nThis analysis is based on the full video transcript and provides accurate, contextual answers to your specific question.",
+      "retrievalInfo": {
+        "retrievalCount": 0,
+        "topSimilarities": [],
+        "hasEmbeddings": false
+      },
+      "creditUseEstimate": {
+        "tokensIn": 446,
+        "tokensOut": 190,
+        "total": 636
+      },
+      "provider": "lmstudio",
+      "model": "google/gemma-2-9b",
+      "connection": "enhanced-ai-mode"
+    },
+    "provider": "lmstudio"
+  },
+  "createdAt": "2025-11-10T15:57:01.026Z",
+  "updatedAt": "2025-11-10T15:57:01.026Z"
+}

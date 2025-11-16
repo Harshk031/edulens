@@ -1,0 +1,101 @@
+[
+  {
+    "name": "Backend Health",
+    "success": true,
+    "status": 200,
+    "data": {
+      "status": "ok",
+      "service": "video-routes",
+      "timestamp": "2025-11-09T19:14:59.912Z",
+      "storage": {
+        "transcripts": "C:\\Users\\Harsh\\OneDrive\\Desktop\\backup\\EduLens\\data\\storage\\transcripts",
+        "embeddings": "C:\\Users\\Harsh\\OneDrive\\Desktop\\backup\\EduLens\\data\\storage\\embeddings",
+        "sessions": "C:\\Users\\Harsh\\OneDrive\\Desktop\\backup\\EduLens\\data\\storage\\sessions"
+      }
+    }
+  },
+  {
+    "name": "AI System Status",
+    "success": true,
+    "status": 200,
+    "providers": {
+      "lmstudio": "ready",
+      "groq": "unavailable",
+      "lmstudioModel": "connected",
+      "groqModel": "unknown",
+      "fallback": "ready",
+      "enhanced_fallback": "ready",
+      "timestamp": "2025-11-09T19:15:01.947Z",
+      "note": "Enhanced fallback provides full transcript-aware responses"
+    }
+  },
+  {
+    "name": "Video Status Check",
+    "success": true,
+    "status": 200,
+    "videoData": {
+      "success": true,
+      "videoId": "status",
+      "sessions": 0,
+      "totalDuration": 0,
+      "events": [],
+      "message": "No analytics data for this video"
+    }
+  },
+  {
+    "name": "AI Query Feature",
+    "success": true,
+    "status": 200,
+    "responseLength": 614,
+    "hasText": true,
+    "preview": "Based on the transcript analysis: All right, so here we are, one of the elephants. The cool thing ab..."
+  },
+  {
+    "name": "AI Summary Feature",
+    "success": true,
+    "status": 200,
+    "responseLength": 634,
+    "hasText": true
+  },
+  {
+    "name": "AI Notes Feature",
+    "success": true,
+    "status": 200,
+    "responseLength": 574,
+    "hasText": true
+  },
+  {
+    "name": "AI Quiz Feature",
+    "success": true,
+    "status": 200,
+    "responseLength": 350,
+    "hasText": true
+  },
+  {
+    "name": "AI Flashcards Feature",
+    "success": true,
+    "status": 200,
+    "responseLength": 361,
+    "hasText": true
+  },
+  {
+    "name": "AI Mindmap Feature",
+    "success": true,
+    "status": 200,
+    "responseLength": 322,
+    "hasText": true
+  },
+  {
+    "name": "Code Extraction Feature",
+    "success": true,
+    "status": 200,
+    "hasCode": true,
+    "codeLength": 25
+  },
+  {
+    "name": "Analytics System",
+    "success": true,
+    "status": 200,
+    "analyticsData": "<!doctype html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <link rel=\"icon\" type=\"image/svg+xml\" href=\"/vite.svg\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>EduLens - AI-Powered Video Learning</title>\r\n  </head>\r\n  <body>\r\n    <div id=\"root\"></div>\r\n    <script type=\"module\" src=\"/main.jsx\"></script>\r\n  </body>\r\n</html>\r\n"
+  }
+]

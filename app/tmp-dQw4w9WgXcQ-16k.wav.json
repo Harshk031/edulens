@@ -1,0 +1,791 @@
+{
+	"systeminfo": "AVX = 1 | AVX2 = 1 | AVX512 = 0 | FMA = 1 | NEON = 0 | ARM_FMA = 0 | METAL = 0 | F16C = 1 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | SSSE3 = 0 | VSX = 0 | CUDA = 0 | COREML = 0 | OPENVINO = 0 | ",
+	"model": {
+		"type": "base",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"text": {
+			"ctx": 448,
+			"state": 512,
+			"head": 8,
+			"layer": 6
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "C:\\whisper.cpp\\ggml-base.bin",
+		"language": "en",
+		"translate": false
+	},
+	"result": {
+		"language": "en"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,580"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2580
+			},
+			"text": " (upbeat music)"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,580",
+				"to": "00:00:22,920"
+			},
+			"offsets": {
+				"from": 2580,
+				"to": 22920
+			},
+			"text": " ♪ There are no strangers to love ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,920",
+				"to": "00:00:27,120"
+			},
+			"offsets": {
+				"from": 22920,
+				"to": 27120
+			},
+			"text": " ♪ You know the rules and something why ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,120",
+				"to": "00:00:31,120"
+			},
+			"offsets": {
+				"from": 27120,
+				"to": 31120
+			},
+			"text": " ♪ The commitments fall on thinking of ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:31,120",
+				"to": "00:00:35,120"
+			},
+			"offsets": {
+				"from": 31120,
+				"to": 35120
+			},
+			"text": " ♪ You won't get this wrong any other guy ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:35,120",
+				"to": "00:00:39,120"
+			},
+			"offsets": {
+				"from": 35120,
+				"to": 39120
+			},
+			"text": " ♪ I just want to tell you how I feel ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:39,120",
+				"to": "00:00:43,120"
+			},
+			"offsets": {
+				"from": 39120,
+				"to": 43120
+			},
+			"text": " ♪ I've got to make you understand ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:43,120",
+				"to": "00:00:45,120"
+			},
+			"offsets": {
+				"from": 43120,
+				"to": 45120
+			},
+			"text": " ♪ Never gonna give you up ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:45,120",
+				"to": "00:00:47,120"
+			},
+			"offsets": {
+				"from": 45120,
+				"to": 47120
+			},
+			"text": " ♪ Never gonna let you down ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:47,120",
+				"to": "00:00:49,120"
+			},
+			"offsets": {
+				"from": 47120,
+				"to": 49120
+			},
+			"text": " ♪ Never gonna run around it ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:49,120",
+				"to": "00:00:51,120"
+			},
+			"offsets": {
+				"from": 49120,
+				"to": 51120
+			},
+			"text": " ♪ Who's there to you ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:51,120",
+				"to": "00:00:53,120"
+			},
+			"offsets": {
+				"from": 51120,
+				"to": 53120
+			},
+			"text": " ♪ Never gonna make you cry ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:53,120",
+				"to": "00:00:55,120"
+			},
+			"offsets": {
+				"from": 53120,
+				"to": 55120
+			},
+			"text": " ♪ Never gonna say goodbye ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:55,120",
+				"to": "00:01:00,120"
+			},
+			"offsets": {
+				"from": 55120,
+				"to": 60120
+			},
+			"text": " ♪ Never gonna tell the lie and hurt you ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:00,120",
+				"to": "00:01:04,120"
+			},
+			"offsets": {
+				"from": 60120,
+				"to": 64120
+			},
+			"text": " ♪ We've known each other for so long ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:04,120",
+				"to": "00:01:06,120"
+			},
+			"offsets": {
+				"from": 64120,
+				"to": 66120
+			},
+			"text": " ♪ Your heart's been aching now ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:06,120",
+				"to": "00:01:08,120"
+			},
+			"offsets": {
+				"from": 66120,
+				"to": 68120
+			},
+			"text": " ♪ You're too shy to say it ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:08,120",
+				"to": "00:01:12,120"
+			},
+			"offsets": {
+				"from": 68120,
+				"to": 72120
+			},
+			"text": " ♪ It's as if we both know what's been going on ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:12,120",
+				"to": "00:01:17,120"
+			},
+			"offsets": {
+				"from": 72120,
+				"to": 77120
+			},
+			"text": " ♪ We know the game and we're gonna play it ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:17,120",
+				"to": "00:01:21,120"
+			},
+			"offsets": {
+				"from": 77120,
+				"to": 81120
+			},
+			"text": " ♪ And if you ask me why I feel it ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:21,120",
+				"to": "00:01:25,120"
+			},
+			"offsets": {
+				"from": 81120,
+				"to": 85120
+			},
+			"text": " ♪ Don't tell me you're too bad to see ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:25,120",
+				"to": "00:01:27,120"
+			},
+			"offsets": {
+				"from": 85120,
+				"to": 87120
+			},
+			"text": " ♪ Never gonna give you up ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:27,120",
+				"to": "00:01:29,120"
+			},
+			"offsets": {
+				"from": 87120,
+				"to": 89120
+			},
+			"text": " ♪ Never gonna let you down ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:29,120",
+				"to": "00:01:31,120"
+			},
+			"offsets": {
+				"from": 89120,
+				"to": 91120
+			},
+			"text": " ♪ Never gonna run around it ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:31,120",
+				"to": "00:01:33,120"
+			},
+			"offsets": {
+				"from": 91120,
+				"to": 93120
+			},
+			"text": " ♪ Who's there to you ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:33,120",
+				"to": "00:01:35,120"
+			},
+			"offsets": {
+				"from": 93120,
+				"to": 95120
+			},
+			"text": " ♪ Never gonna make you cry ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:35,120",
+				"to": "00:01:37,120"
+			},
+			"offsets": {
+				"from": 95120,
+				"to": 97120
+			},
+			"text": " ♪ Never gonna say goodbye ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:37,120",
+				"to": "00:01:41,120"
+			},
+			"offsets": {
+				"from": 97120,
+				"to": 101120
+			},
+			"text": " ♪ Never gonna tell the lie and hurt you ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:41,120",
+				"to": "00:01:44,120"
+			},
+			"offsets": {
+				"from": 101120,
+				"to": 104120
+			},
+			"text": " ♪ Never gonna give you up ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:44,120",
+				"to": "00:01:46,120"
+			},
+			"offsets": {
+				"from": 104120,
+				"to": 106120
+			},
+			"text": " ♪ Never gonna let you down ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:46,120",
+				"to": "00:01:48,120"
+			},
+			"offsets": {
+				"from": 106120,
+				"to": 108120
+			},
+			"text": " ♪ Never gonna run around it ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:48,120",
+				"to": "00:01:50,120"
+			},
+			"offsets": {
+				"from": 108120,
+				"to": 110120
+			},
+			"text": " ♪ Who's there to you ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:50,120",
+				"to": "00:01:52,120"
+			},
+			"offsets": {
+				"from": 110120,
+				"to": 112120
+			},
+			"text": " ♪ Never gonna make you cry ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:52,120",
+				"to": "00:01:54,120"
+			},
+			"offsets": {
+				"from": 112120,
+				"to": 114120
+			},
+			"text": " ♪ Never gonna say goodbye ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:54,120",
+				"to": "00:01:58,120"
+			},
+			"offsets": {
+				"from": 114120,
+				"to": 118120
+			},
+			"text": " ♪ Never gonna tell the lie and hurt you ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:01:58,120",
+				"to": "00:02:02,120"
+			},
+			"offsets": {
+				"from": 118120,
+				"to": 122120
+			},
+			"text": " ♪ If you ask me why ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:02,120",
+				"to": "00:02:06,120"
+			},
+			"offsets": {
+				"from": 122120,
+				"to": 126120
+			},
+			"text": " ♪ If you ask me why ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:06,120",
+				"to": "00:02:08,120"
+			},
+			"offsets": {
+				"from": 126120,
+				"to": 128120
+			},
+			"text": " ♪ If you ask me why ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:08,120",
+				"to": "00:02:12,120"
+			},
+			"offsets": {
+				"from": 128120,
+				"to": 132120
+			},
+			"text": " ♪ Never gonna give you up ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:12,120",
+				"to": "00:02:16,120"
+			},
+			"offsets": {
+				"from": 132120,
+				"to": 136120
+			},
+			"text": " ♪ Never gonna give you up ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:16,120",
+				"to": "00:02:20,120"
+			},
+			"offsets": {
+				"from": 136120,
+				"to": 140120
+			},
+			"text": " ♪ We've known each other for so long ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:20,120",
+				"to": "00:02:23,120"
+			},
+			"offsets": {
+				"from": 140120,
+				"to": 143120
+			},
+			"text": " ♪ Your heart's been aching 'cause ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:23,120",
+				"to": "00:02:25,120"
+			},
+			"offsets": {
+				"from": 143120,
+				"to": 145120
+			},
+			"text": " ♪ You're just shy as to say it ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:25,120",
+				"to": "00:02:29,120"
+			},
+			"offsets": {
+				"from": 145120,
+				"to": 149120
+			},
+			"text": " ♪ Just as we both know what's been going on ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:29,120",
+				"to": "00:02:33,120"
+			},
+			"offsets": {
+				"from": 149120,
+				"to": 153120
+			},
+			"text": " ♪ We know the game and we're gonna play it ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:33,120",
+				"to": "00:02:37,120"
+			},
+			"offsets": {
+				"from": 153120,
+				"to": 157120
+			},
+			"text": " ♪ I just wanna tell you how I feel ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:37,120",
+				"to": "00:02:41,120"
+			},
+			"offsets": {
+				"from": 157120,
+				"to": 161120
+			},
+			"text": " ♪ I gotta make you understand ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:41,120",
+				"to": "00:02:43,120"
+			},
+			"offsets": {
+				"from": 161120,
+				"to": 163120
+			},
+			"text": " ♪ Never gonna give you up ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:43,120",
+				"to": "00:02:45,120"
+			},
+			"offsets": {
+				"from": 163120,
+				"to": 165120
+			},
+			"text": " ♪ Never gonna let you down ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:45,120",
+				"to": "00:02:47,120"
+			},
+			"offsets": {
+				"from": 165120,
+				"to": 167120
+			},
+			"text": " ♪ Never gonna run around it ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:47,120",
+				"to": "00:02:49,120"
+			},
+			"offsets": {
+				"from": 167120,
+				"to": 169120
+			},
+			"text": " ♪ Who's there to you ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:49,120",
+				"to": "00:02:51,120"
+			},
+			"offsets": {
+				"from": 169120,
+				"to": 171120
+			},
+			"text": " ♪ Never gonna make you cry ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:51,120",
+				"to": "00:02:53,120"
+			},
+			"offsets": {
+				"from": 171120,
+				"to": 173120
+			},
+			"text": " ♪ Never gonna say goodbye ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:53,120",
+				"to": "00:02:57,120"
+			},
+			"offsets": {
+				"from": 173120,
+				"to": 177120
+			},
+			"text": " ♪ Never gonna tell the lie and hurt you ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:57,120",
+				"to": "00:02:59,120"
+			},
+			"offsets": {
+				"from": 177120,
+				"to": 179120
+			},
+			"text": " ♪ If you ask me why ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:02:59,120",
+				"to": "00:03:02,120"
+			},
+			"offsets": {
+				"from": 179120,
+				"to": 182120
+			},
+			"text": " ♪ Never gonna let you down ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:02,120",
+				"to": "00:03:04,120"
+			},
+			"offsets": {
+				"from": 182120,
+				"to": 184120
+			},
+			"text": " ♪ Never gonna run around it ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:04,120",
+				"to": "00:03:06,120"
+			},
+			"offsets": {
+				"from": 184120,
+				"to": 186120
+			},
+			"text": " ♪ Who's there to you ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:06,120",
+				"to": "00:03:08,120"
+			},
+			"offsets": {
+				"from": 186120,
+				"to": 188120
+			},
+			"text": " ♪ Never gonna make you cry ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:08,120",
+				"to": "00:03:10,120"
+			},
+			"offsets": {
+				"from": 188120,
+				"to": 190120
+			},
+			"text": " ♪ Never gonna say goodbye ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:10,120",
+				"to": "00:03:14,120"
+			},
+			"offsets": {
+				"from": 190120,
+				"to": 194120
+			},
+			"text": " ♪ Never gonna tell the lie and hurt you ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:14,120",
+				"to": "00:03:17,120"
+			},
+			"offsets": {
+				"from": 194120,
+				"to": 197120
+			},
+			"text": " ♪ Never gonna give you up ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:17,120",
+				"to": "00:03:19,120"
+			},
+			"offsets": {
+				"from": 197120,
+				"to": 199120
+			},
+			"text": " ♪ Never gonna let you down ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:19,120",
+				"to": "00:03:21,120"
+			},
+			"offsets": {
+				"from": 199120,
+				"to": 201120
+			},
+			"text": " ♪ Never gonna run around it ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:21,120",
+				"to": "00:03:23,120"
+			},
+			"offsets": {
+				"from": 201120,
+				"to": 203120
+			},
+			"text": " ♪ Who's there to you ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:23,120",
+				"to": "00:03:25,120"
+			},
+			"offsets": {
+				"from": 203120,
+				"to": 205120
+			},
+			"text": " ♪ Never gonna make you cry ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:25,120",
+				"to": "00:03:27,120"
+			},
+			"offsets": {
+				"from": 205120,
+				"to": 207120
+			},
+			"text": " ♪ Never gonna say goodbye ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:27,120",
+				"to": "00:03:31,120"
+			},
+			"offsets": {
+				"from": 207120,
+				"to": 211120
+			},
+			"text": " ♪ Never gonna tell the lie and hurt you ♪"
+		},
+		{
+			"timestamps": {
+				"from": "00:03:31,120",
+				"to": "00:03:41,100"
+			},
+			"offsets": {
+				"from": 211120,
+				"to": 221100
+			},
+			"text": " [BLANK_AUDIO]"
+		}
+	]
+}

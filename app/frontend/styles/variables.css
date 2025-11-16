@@ -1,0 +1,17 @@
+:root {
+  /* New Sherians-like palette */
+  --bg-900: #071014; /* near black base */
+  --bg-800: #0b1412;
+  --accent-500: #00e08a; /* green accent */
+  --accent-600: #00c675;
+  --muted-400: #8aa0a2;
+  --card-bg: rgba(8, 14, 12, 0.7);
+  --glass-border: rgba(0, 224, 138, 0.14);
+  --text-primary: #eafaf3;
+  --text-muted: #9fb6af;
+  --danger: #ff7c7c;
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --font-base: "Inter", "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --transition: 220ms cubic-bezier(.16, .8, .26, 1);
+}

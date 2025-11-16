@@ -1,0 +1,37 @@
+[
+  {
+    "id": "TC001",
+    "title": "get basic info for a youtube video",
+    "description": "Test the GET /api/video/info endpoint with a valid YouTube URL query parameter to verify it returns the correct video metadata with HTTP 200 status."
+  },
+  {
+    "id": "TC002",
+    "title": "start or reuse a transcription job for a video",
+    "description": "Test the POST /api/video/process endpoint by submitting a valid videoId and optional force flag to ensure it starts a new transcription job or reuses an existing one, returning HTTP 200."
+  },
+  {
+    "id": "TC003",
+    "title": "get processing status for a video transcription job",
+    "description": "Test the GET /api/video/status endpoint with a valid videoId to verify it returns the current transcription job status including progress and stage with HTTP 200, and returns 404 if no job is found."
+  },
+  {
+    "id": "TC004",
+    "title": "fetch final transcript json for a video",
+    "description": "Test the GET /api/video/transcript/{videoId} endpoint with a valid videoId path parameter to ensure it returns the complete transcript JSON with HTTP 200, or 404 if the transcript does not exist."
+  },
+  {
+    "id": "TC005",
+    "title": "check availability of ai providers",
+    "description": "Test the GET /api/ai/status endpoint to verify it returns the health status and available models of LM Studio and Groq AI providers with HTTP 200."
+  },
+  {
+    "id": "TC006",
+    "title": "ask questions about a video using transcript",
+    "description": "Test the POST /api/ai/query endpoint by submitting a valid videoId and question in the request body to ensure it returns an AI-generated answer with optional citations and HTTP 200."
+  },
+  {
+    "id": "TC007",
+    "title": "generate structured video summaries",
+    "description": "Test the POST /api/complete-ai/summary endpoint with a valid videoId and optional length and style parameters to verify it returns a structured summary payload with HTTP 200."
+  }
+]

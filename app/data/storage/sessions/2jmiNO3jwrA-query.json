@@ -1,0 +1,28 @@
+{
+  "videoId": "2jmiNO3jwrA",
+  "sessionType": "query",
+  "data": {
+    "query": "hello",
+    "context": {},
+    "response": {
+      "text": "Hello. It seems like you're looking to discuss the content of the video, but you haven't asked a specific question yet. Let me provide an overview of what the video is about, and then you can ask your question.\n\n\nThe video discusses the importance of learning coding, despite the rise of Artificial Intelligence (AI). The speaker mentions that some people, like Jansson Wagnar, CEO of NVIDIA, believe that AI will replace human coders [1:14]. However, the speaker argues that coding will still be relevant in the future, and that AI will actually assist coders in their work [15:25].\n\n\nSome key points from the video include:\n* The speaker's opinion that coding will still be relevant in the future, despite the rise of AI [14:59]\n* The importance of learning basic programming skills, such as Python, C++, or JavaScript [14:30]\n* The potential for AI to automate repetitive tasks, freeing up coders to focus on higher-level thinking [4:11]\n* The concept of the \"notion agent,\" a tool that can automate tasks and increase productivity [2:50]\n\n\nIf you have a specific question about the video, I'd be happy to help. Please feel free to ask, and I'll do my best to provide a detailed and comprehensive answer, referencing specific timestamps from the transcript.",
+      "retrievalInfo": {
+        "retrievalCount": 8,
+        "topSimilarities": [
+          0.9999999989999999,
+          0.7071067796865473,
+          0.6666666651111111
+        ],
+        "hasEmbeddings": true
+      },
+      "creditUseEstimate": {
+        "tokensIn": 0,
+        "tokensOut": 0
+      },
+      "provider": "groq"
+    },
+    "provider": "groq"
+  },
+  "createdAt": "2025-11-11T09:04:28.144Z",
+  "updatedAt": "2025-11-11T09:04:28.144Z"
+}

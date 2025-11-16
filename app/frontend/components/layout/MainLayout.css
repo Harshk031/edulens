@@ -1,0 +1,129 @@
+/* MainLayout - Modern 12-column grid with Sherians green/black theme */
+
+.main-layout {
+  min-height: 100vh;
+  background: #071014; /* Sherians dark background */
+  color: #E6FFF8; /* Light text */
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.main-layout-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(7, 16, 20, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 200, 120, 0.2);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.main-layout-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  padding: 1.5rem;
+  margin-top: 80px; /* Header height */
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Video Section - 7 columns (left) */
+.main-layout-video-section {
+  grid-column: 1 / 8; /* Span 7 columns */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  max-height: calc(100vh - 120px);
+  padding-right: 0.5rem;
+}
+
+/* Right Panel - 5 columns (right) */
+.main-layout-right-panel {
+  grid-column: 8 / 13; /* Span 5 columns */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: sticky;
+  top: 100px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-left: 0.5rem;
+}
+
+/* Responsive: Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+  .main-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .main-layout-video-section {
+    grid-column: 1 / -1;
+    max-height: none;
+  }
+  
+  .main-layout-right-panel {
+    grid-column: 1 / -1;
+    position: relative;
+    top: 0;
+    max-height: none;
+  }
+}
+
+/* Responsive: Mobile (< 768px) */
+@media (max-width: 768px) {
+  .main-layout-header {
+    padding: 0.75rem 1rem;
+  }
+  
+  .main-layout-grid {
+    padding: 1rem;
+    margin-top: 70px;
+    gap: 1rem;
+  }
+  
+  .main-layout-right-panel {
+    /* Becomes bottom drawer on mobile */
+    max-height: 60vh;
+    border-top: 2px solid rgba(0, 200, 120, 0.3);
+    border-radius: 16px 16px 0 0;
+    background: rgba(15, 26, 26, 0.95);
+    backdrop-filter: blur(20px);
+  }
+}
+
+/* Scrollbar styling - Sherians green accent */
+.main-layout-video-section::-webkit-scrollbar,
+.main-layout-right-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-layout-video-section::-webkit-scrollbar-track,
+.main-layout-right-panel::-webkit-scrollbar-track {
+  background: rgba(0, 200, 120, 0.05);
+  border-radius: 4px;
+}
+
+.main-layout-video-section::-webkit-scrollbar-thumb,
+.main-layout-right-panel::-webkit-scrollbar-thumb {
+  background: rgba(0, 200, 120, 0.3);
+  border-radius: 4px;
+}
+
+.main-layout-video-section::-webkit-scrollbar-thumb:hover,
+.main-layout-right-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 200, 120, 0.5);
+}
+

@@ -1,0 +1,429 @@
+[
+  {
+    "id": "TC001",
+    "title": "Backend Startup on Required Port 5000",
+    "description": "Verify that the backend server starts successfully and binds to port 5000, and fails with a clear error message when port 5000 is occupied.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Ensure port 5000 is free and start backend server"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify backend binds to port 5000 successfully"
+      },
+      {
+        "type": "action",
+        "description": "Simulate port 5000 being occupied by another process"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to start backend server"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify backend fails startup and outputs a clear error indicating port 5000 is busy"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Frontend Development Server Startup on Port 5173",
+    "description": "Verify that the frontend (Vite) server starts successfully on port 5173 and fails with a clear error if the port is already in use.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Ensure port 5173 is free and start frontend development server"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm frontend server binds to port 5173 and serves correctly"
+      },
+      {
+        "type": "action",
+        "description": "Simulate port 5173 being in use by another process"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to start frontend development server"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify frontend startup fails with a clear error message about port conflict"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Desktop Launcher Script Port and Process Cleanup",
+    "description": "Verify that the desktop launcher script aggressively kills all node and electron processes and frees ports 5000 and 5173 before startup.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Start multiple node and electron processes occupying ports 5000 and 5173"
+      },
+      {
+        "type": "action",
+        "description": "Run desktop launcher script"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all node and electron processes related to EduLens are terminated"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm ports 5000 and 5173 are free after launcher script completion"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Video Transcription Pipeline Successful Processing",
+    "description": "Test clipboard YouTube video input, backend video download, audio extraction, chunking, Faster-Whisper transcription, segment merging, and transcript JSON storage without hanging or errors.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Paste a valid YouTube video URL into the desktop app"
+      },
+      {
+        "type": "action",
+        "description": "Trigger video processing via POST /api/video/process endpoint"
+      },
+      {
+        "type": "action",
+        "description": "Poll /api/video/status until transcription completes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify status updates correctly and final job status indicates success"
+      },
+      {
+        "type": "action",
+        "description": "Fetch transcript JSON via GET /api/video/transcript/{videoId}"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm transcript JSON file exists locally with merged segments and correct metadata"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Fallback to Whisper.cpp Transcription on Faster-Whisper Failure",
+    "description": "Verify transcription falls back to whisper.cpp when Faster-Whisper fails, and final transcript is successfully saved.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate Faster-Whisper failure during transcription"
+      },
+      {
+        "type": "action",
+        "description": "Initiate video transcription pipeline"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify system attempts whisper.cpp transcription fallback"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm final transcript JSON is saved after fallback transcription"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "AI Question Answering Using Local LM Studio Provider",
+    "description": "Validate that AI question answering uses the local LM Studio provider when available, returns detailed timestamps, and relevant answers based on the transcript.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Ensure LM Studio local model is available and healthy"
+      },
+      {
+        "type": "action",
+        "description": "Send AI question query via POST /api/ai/query with videoId and question"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response includes detailed AI answer with timestamps and citations from the transcript"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm that answer is contextually accurate and appropriately formatted"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Fallback to Groq Cloud AI Provider on Local LM Studio Failure",
+    "description": "Verify that if LM Studio is unavailable or fails, the system automatically uses Groq cloud AI provider to answer questions, ensuring consistent AI feature availability.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate LM Studio unavailability or error"
+      },
+      {
+        "type": "action",
+        "description": "Send AI question query via /api/ai/query"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm fallback to Groq provider occurs without user intervention"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify AI response is received successfully with correct timestamped citations"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Generate Structured Summaries with Custom Length and Style",
+    "description": "Check that the /api/complete-ai/summary endpoint creates AI-generated structured summaries reflecting requested length and style parameters.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Request a summary POST /api/complete-ai/summary with videoId, length='short', style='formal'"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response contains a formal style summary matching requested length"
+      },
+      {
+        "type": "action",
+        "description": "Request a summary with different length and style parameters"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm summary response changes accordingly reflecting parameters"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Interactive AI Generated Quizzes, Flashcards, Notes, Mindmaps",
+    "description": "Validate that the AI system generates interactive educational content types correctly from transcript data.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send requests to generate quizzes, flashcards, notes, and mindmaps for a processed video using respective AI endpoints"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify generated quizzes include multiple-choice questions with explanations"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm flashcards and notes include rich formatting"
+      },
+      {
+        "type": "assertion",
+        "description": "Check mindmaps are structured and relevant to video content"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Port Conflict Prevention and Fail Fast Behavior",
+    "description": "Confirm that backend and frontend services strictly enforce port usage, fail fast on conflicts, and provide clear user guidance.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Manually occupy ports 5000 and 5173"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to launch backend and frontend"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that backend and frontend fail immediately if configured ports are busy"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify user error messages provide clear instructions to resolve port conflicts"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "API Endpoint Comprehensive Response Validation",
+    "description": "Verify all core API routes respond as expected, returning HTTP 200 with correct payload or proper 404 when data not found.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Call GET /api/video/info with a valid video URL"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify HTTP 200 with valid video metadata"
+      },
+      {
+        "type": "action",
+        "description": "Call POST /api/video/process with a valid videoId"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify HTTP 200 indicating job started or reused"
+      },
+      {
+        "type": "action",
+        "description": "Call GET /api/video/status with processed videoId"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify HTTP 200 with job progress info"
+      },
+      {
+        "type": "action",
+        "description": "Call GET /api/video/transcript/{videoId} with existing transcript"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify HTTP 200 with transcript JSON"
+      },
+      {
+        "type": "action",
+        "description": "Call GET /api/video/transcript/{videoId} with unknown videoId"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify HTTP 404 Transcript Not Found"
+      },
+      {
+        "type": "action",
+        "description": "Call GET /api/ai/status"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify HTTP 200 with health status of AI providers"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Native Electron App Startup and Stability",
+    "description": "Ensure that the Electron-based native desktop application launches automatically after startup delay, disables browser dependency, and remains stable during interaction.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Launch the EduLens desktop app via launcher script"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no browser window opens; native Electron UI loads"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm UI remains responsive while user navigates features"
+      },
+      {
+        "type": "action",
+        "description": "Simulate various user interactions including video input, transcription monitoring, and AI content requests"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify app remains stable and no crashes or hangs occur"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Multi-language AI Response Handling and Time-based Querying",
+    "description": "Verify AI responses support multiple languages and provide precise time-based answers referencing video transcript timeline.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Submit AI queries in different supported languages for a processed video"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm responses are in the requested language, accurately referencing transcript segments"
+      },
+      {
+        "type": "action",
+        "description": "Ask questions specifically requesting time-based responses"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify returned answers include correct timestamps allowing synchronized video review"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Error Messaging and Debug Panel Visibility for Failures",
+    "description": "Check that all failures during startup or runtime produce descriptive error messages and debug panel status indicators reflect true health state.",
+    "category": "error handling",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Cause backend service failure (e.g., process crash or AI provider disconnection)"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify user-visible error messages explain issue clearly"
+      },
+      {
+        "type": "action",
+        "description": "Observe debug panel status indicators"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm backend, frontend, and AI provider health states are correctly reported"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Persistent Local JSON Storage Validation",
+    "description": "Verify that all transcripts, embeddings, AI sessions, and related data persist correctly in local JSON files across application restarts.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Process a video completely to generate full transcript JSON and AI session data"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm JSON files are written correctly on disk in expected file paths"
+      },
+      {
+        "type": "action",
+        "description": "Restart the application and backend services"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify JSON data remains intact and is successfully loaded for continued AI queries and UI display"
+      }
+    ]
+  }
+]

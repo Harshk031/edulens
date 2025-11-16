@@ -1,0 +1,98 @@
+.capture-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(59, 130, 246, 0.2));
+  border: 1px solid rgba(147, 51, 234, 0.4);
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+}
+
+.capture-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.3), rgba(59, 130, 246, 0.3));
+  border-color: rgba(147, 51, 234, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(147, 51, 234, 0.4);
+}
+
+.capture-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.capture-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.capture-btn.capturing {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(16, 185, 129, 0.3));
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+.capture-icon {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.capture-icon.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.capture-notification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(5, 150, 105, 0.95));
+  border: 1px solid rgba(16, 185, 129, 0.8);
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.capture-notification span {
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .capture-btn {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  
+  .capture-icon {
+    font-size: 16px;
+  }
+  
+  .capture-notification {
+    top: 60px;
+    right: 10px;
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+}

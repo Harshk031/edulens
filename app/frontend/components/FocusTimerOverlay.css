@@ -1,0 +1,7 @@
+.focus-timer-overlay{position:absolute;top:16px;right:16px;z-index:20;pointer-events:auto}
+.timer-chip{display:flex;gap:10px;align-items:center;background:var(--glass);backdrop-filter:blur(8px);border:1px solid var(--glass-border);box-shadow:0 0 12px var(--accent-glow);border-radius:12px;padding:10px 14px;color:var(--text);cursor:pointer}
+.timer-chip .digits{font-weight:700;font-size:18px;background:var(--accent-gradient);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 8px var(--accent-glow)}
+.timer-chip .status{opacity:.8;font-size:12px}
+.focus-timer-overlay .ended-banner{position:absolute;top:52px;right:0;background:rgba(0,20,10,.6);border:1px solid var(--accent-primary);padding:12px;border-radius:10px;color:var(--text)}
+.ended-title{font-weight:700;margin-bottom:8px}
+.ended-btn{background:var(--accent-gradient);color:#0C1412;border:none;border-radius:8px;padding:6px 10px;cursor:pointer}

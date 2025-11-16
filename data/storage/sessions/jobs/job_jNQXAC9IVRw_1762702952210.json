@@ -1,0 +1,33 @@
+{
+  "jobId": "job_jNQXAC9IVRw_1762702952210",
+  "videoId": "jNQXAC9IVRw",
+  "url": "https://youtu.be/jNQXAC9IVRw",
+  "status": "done",
+  "progress": 100,
+  "stages": {
+    "input": {
+      "status": "done",
+      "progress": 100
+    },
+    "transcribe": {
+      "status": "done",
+      "progress": 100
+    },
+    "fastSummary": {
+      "status": "done",
+      "progress": 100
+    },
+    "indexing": {
+      "status": "done",
+      "progress": 100
+    },
+    "llmReady": {
+      "status": "done",
+      "progress": 100
+    }
+  },
+  "startedAt": "2025-11-09T15:42:32.210Z",
+  "stage": "Ready",
+  "updatedAt": "2025-11-09T15:45:17.744Z",
+  "completedAt": "2025-11-09T15:45:17.744Z"
+}

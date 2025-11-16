@@ -1,0 +1,32 @@
+{
+  "jobId": "job_3LRZRSIh_KE_1762166838385",
+  "videoId": "3LRZRSIh_KE",
+  "url": "https://youtu.be/3LRZRSIh_KE",
+  "status": "failed",
+  "progress": 0,
+  "stages": {
+    "input": {
+      "status": "done",
+      "progress": 100
+    },
+    "transcribe": {
+      "status": "processing",
+      "progress": 73
+    },
+    "fastSummary": {
+      "status": "pending",
+      "progress": 0
+    },
+    "indexing": {
+      "status": "pending",
+      "progress": 0
+    },
+    "llmReady": {
+      "status": "pending",
+      "progress": 0
+    }
+  },
+  "startedAt": "2025-11-03T10:47:18.385Z",
+  "updatedAt": "2025-11-03T10:48:04.458Z",
+  "error": "Job timed out after 1 hour"
+}

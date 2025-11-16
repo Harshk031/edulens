@@ -1,0 +1,34 @@
+{
+  "jobId": "job_test-video-6ca6818c-7059-4a82-858c-1bd4c1d183c5_1763273298197",
+  "videoId": "test-video-6ca6818c-7059-4a82-858c-1bd4c1d183c5",
+  "url": "https://www.youtube.com/watch?v=test-video-6ca6818c-7059-4a82-858c-1bd4c1d183c5",
+  "status": "error",
+  "progress": 45,
+  "stage": "Error",
+  "stages": {
+    "input": {
+      "status": "done",
+      "progress": 100
+    },
+    "transcribe": {
+      "status": "failed",
+      "progress": 0
+    },
+    "fastSummary": {
+      "status": "pending",
+      "progress": 0
+    },
+    "indexing": {
+      "status": "pending",
+      "progress": 0
+    },
+    "llmReady": {
+      "status": "pending",
+      "progress": 0
+    }
+  },
+  "startedAt": "2025-11-16T06:08:18.197Z",
+  "updatedAt": "2025-11-16T06:10:59.351Z",
+  "error": "Failed to generate transcript after 3 attempts: Failed to generate transcript for video test-video-6ca6818c-7059-4a82-858c-1bd4c1d183c5. All transcription methods failed. Please check audio download and transcription services.",
+  "errorAt": "2025-11-16T06:10:59.292Z"
+}

@@ -1,0 +1,155 @@
+/* Button Animations - Sherians green theme */
+
+/* Hover animations */
+.modern-header-btn,
+.right-panel-tab,
+.video-close-btn {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-header-btn::before,
+.right-panel-tab::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 200, 120, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.modern-header-btn:hover::before,
+.right-panel-tab:hover::before {
+  width: 200px;
+  height: 200px;
+}
+
+.modern-header-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 200, 120, 0.3);
+}
+
+.right-panel-tab:hover {
+  transform: translateY(-1px);
+}
+
+/* Active state animations */
+.right-panel-tab.active {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(0, 200, 120, 0.2);
+  }
+  50% {
+    box-shadow: 0 4px 16px rgba(0, 200, 120, 0.4);
+  }
+}
+
+/* Loading spinner */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(0, 200, 120, 0.3);
+  border-top-color: #00CC7A;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Scale animation for buttons */
+@keyframes scale-in {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.button-enter {
+  animation: scale-in 0.2s ease-out;
+}
+
+/* Enhanced cursor animations */
+@keyframes cursor-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(0, 204, 122, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(0, 204, 122, 1));
+  }
+}
+
+.cursor-animated {
+  animation: cursor-glow 2s ease-in-out infinite;
+}
+
+/* Interactive element hover effects */
+.interactive-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.interactive-hover:hover {
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.1) drop-shadow(0 4px 12px rgba(0, 204, 122, 0.3));
+}
+
+/* Pulse animation for active elements */
+@keyframes active-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 204, 122, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(0, 204, 122, 0);
+  }
+}
+
+.pulse-active {
+  animation: active-pulse 2s ease-in-out infinite;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .modern-header-btn,
+  .right-panel-tab,
+  .video-close-btn {
+    transition: none;
+  }
+  
+  .modern-header-btn::before,
+  .right-panel-tab::before {
+    display: none;
+  }
+  
+  .right-panel-tab.active {
+    animation: none;
+  }
+  
+  .loading-spinner {
+    animation: none;
+  }
+  
+  .button-enter {
+    animation: none;
+  }
+}
+

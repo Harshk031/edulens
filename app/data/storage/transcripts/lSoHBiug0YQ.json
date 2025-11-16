@@ -1,0 +1,238 @@
+{
+  "videoId": "lSoHBiug0YQ",
+  "language": "en",
+  "originalLanguage": "en",
+  "duration": 371,
+  "segments": [
+    {
+      "start": 0,
+      "end": 10,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 10,
+      "end": 17,
+      "text": "[APPLAUSE]"
+    },
+    {
+      "start": 17,
+      "end": 26,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 26,
+      "end": 27,
+      "text": ">> One more time."
+    },
+    {
+      "start": 27,
+      "end": 37,
+      "text": "[APPLAUSE]"
+    },
+    {
+      "start": 37,
+      "end": 37,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 37,
+      "end": 37,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 37,
+      "end": 47,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 47,
+      "end": 53,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 53,
+      "end": 63,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 63,
+      "end": 73,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 73,
+      "end": 83,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 83,
+      "end": 83,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 83,
+      "end": 93,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 93,
+      "end": 97,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 97,
+      "end": 107,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 107,
+      "end": 117,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 117,
+      "end": 121,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 121,
+      "end": 131,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 131,
+      "end": 141,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 141,
+      "end": 151,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 151,
+      "end": 161,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 161,
+      "end": 171,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 171,
+      "end": 181,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 181,
+      "end": 191,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 191,
+      "end": 201,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 201,
+      "end": 211,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 211,
+      "end": 221,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 221,
+      "end": 231,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 231,
+      "end": 241,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 241,
+      "end": 251,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 251,
+      "end": 261,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 261,
+      "end": 271,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 271,
+      "end": 281,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 281,
+      "end": 291,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 291,
+      "end": 301,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 301,
+      "end": 311,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 311,
+      "end": 321,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 321,
+      "end": 331,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 331,
+      "end": 341,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 341,
+      "end": 351,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 351,
+      "end": 361,
+      "text": "[MUSIC]"
+    },
+    {
+      "start": 361,
+      "end": 371,
+      "text": "[MUSIC]"
+    }
+  ],
+  "originalSegments": null,
+  "encodingInfo": {
+    "charset": "utf-8",
+    "timestamp": "2025-11-14T08:25:55.025Z"
+  },
+  "validation": {
+    "segmentCount": 43,
+    "hasValidContent": true,
+    "totalTextLength": 317,
+    "processingFailed": false,
+    "validatedAt": "2025-11-14T08:25:55.025Z",
+    "validationErrors": [],
+    "validationWarnings": [],
+    "isValid": true
+  }
+}

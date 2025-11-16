@@ -1,0 +1,22 @@
+{
+  "videoId": "2jmiNO3jwrA",
+  "sessionType": "quiz",
+  "data": {
+    "difficulty": "medium",
+    "questionCount": 3,
+    "response": {
+      "text": "**Question 1**: What is the main topic of the video, and what is the speaker's stance on the idea that AI will replace coding in the future? [0:00]\nA) The video is about the importance of learning AI, and the speaker believes coding will become obsolete.\nB) The video is about the future of coding, and the speaker thinks AI will replace coding.\nC) The video is about what to learn in 2016, and the speaker believes coding is still relevant despite AI advancements.\nD) The video is about the benefits of AI, and the speaker is neutral on the topic of coding.\n\n**Correct Answer**: C\n**Detailed Explanation**: The video starts by discussing the idea that AI will replace coding in the future, but the speaker argues that coding is still a valuable skill to learn. The speaker mentions that Jansson Wagnar, the CEO of NVIDIA, is optimistic about AI, but this does not mean that coding will become obsolete [1:14]. The speaker believes that coding will still be relevant, and that AI will augment human capabilities, rather than replace them [2:25]. This is evident from the speaker's statement that \"humans always remain in the loop\" [2:23].\n\n**Question 2**: What is the Notion Agent, and how does it relate to productivity and AI? [2:50]\nA) The Notion Agent is a tool that automates tasks, but it is not related to AI.\nB) The Notion Agent is a feature of Notion that uses AI to increase productivity.\nC) The Notion Agent is a separate software that competes with Notion.\nD) The Notion Agent is a human assistant that helps with productivity.\n\n**Correct Answer**: B\n**Detailed Explanation**: The Notion Agent is a feature of Notion that uses AI to increase productivity [2:50]. The speaker explains that the Notion Agent can automate tasks, such as searching, reading, and updating information [3:06]. The speaker also mentions that the Notion Agent can learn from the user's preferences and adapt to their workflow [3:39]. This demonstrates how AI can be used to augment human capabilities and increase productivity.\n\n**Question 3**: What is the speaker's opinion on the idea that the AI bubble will pop, and what does this have to do with the dotcom bubble? [7:22]\nA) The speaker believes the AI bubble will pop, and it is similar to the dotcom bubble.\nB) The speaker thinks the AI bubble will not pop, and it is unrelated to the dotcom bubble.\nC) The speaker is neutral on the topic of the AI bubble, but mentions that it is similar to the dotcom bubble.\nD) The speaker believes the AI bubble will pop, but it is not similar to the dotcom bubble.\n\n**Correct Answer**: A\n**Detailed Explanation**: The speaker discusses the idea that the AI bubble will pop, and compares it to the dotcom bubble [7:22]. The speaker explains that the dotcom bubble was a period of excessive investment in internet companies, which eventually led to a crash [7:32]. The speaker suggests that the AI bubble may be similar, with investors putting large amounts of money into AI startups without a clear path to profitability [9:01]. However, the speaker also notes that AI is a more useful and practical technology than the internet was during the dotcom bubble, and that adoption will be slower and more steady [8:10]. This demonstrates the speaker's nuanced understanding of the topic and their ability to draw parallels between different technological trends.",
+      "provider": "groq",
+      "sources": [],
+      "creditUseEstimate": {
+        "tokensIn": 0,
+        "tokensOut": 0
+      },
+      "difficulty": "medium",
+      "questionCount": 3
+    },
+    "provider": "groq"
+  },
+  "createdAt": "2025-11-11T10:37:55.505Z",
+  "updatedAt": "2025-11-11T10:37:55.505Z"
+}
